@@ -1,8 +1,89 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import logo from "./assets/Logo.svg";
 import ProjectsPage from "./ProjectsPage";
+
+import designerBear from "./assets/designer-bear.png";
+import developerBear from "./assets/developer-bear.png";
+
+/* =========================
+   SCROLL REVEAL TEXT (INTRO)
+========================= */
+
+function ScrollRevealText({ lines }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.35 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  let letterIndex = 0;
+
+  return (
+    <p ref={ref} className="intro-text">
+      {lines.map((line, lineIdx) => (
+        <span key={lineIdx} className="intro-line">
+          {line.map((chunk, i) => {
+            if (typeof chunk === "string") {
+              return chunk.split(" ").map((word, wordIdx) => (
+                <span
+                  key={wordIdx}
+                  style={{ display: "inline-block", whiteSpace: "nowrap" }}
+                >
+                  {word.split("").map((char) => {
+                    const delay = letterIndex * 0.015;
+                    letterIndex++;
+                    return (
+                      <span
+                        key={letterIndex}
+                        className={`intro-letter ${
+                          visible ? "visible" : ""
+                        }`}
+                        style={{ transitionDelay: `${delay}s` }}
+                      >
+                        {char}
+                      </span>
+                    );
+                  })}
+                  <span>&nbsp;</span>
+                </span>
+              ));
+            }
+
+            const delay = letterIndex * 0.015;
+            letterIndex += chunk.text.length;
+
+            return (
+              <span
+                key={i}
+                className={`highlight intro-letter-group ${
+                  visible ? "visible" : ""
+                }`}
+                style={{
+                  transitionDelay: `${delay}s`,
+                  display: "inline-block",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {chunk.text}
+                <span>&nbsp;</span>
+              </span>
+            );
+          })}
+          <br />
+        </span>
+      ))}
+    </p>
+  );
+}
 
 /* =========================
    LANDING PAGE
@@ -10,12 +91,28 @@ import ProjectsPage from "./ProjectsPage";
 
 function LandingPage() {
   const [loaded, setLoaded] = useState(false);
+  const transitionStarRef = useRef(null);
 
+  // 👇 LAST ITEM = TOP CARD ON LOAD
   const [cards, setCards] = useState([
-    { id: "a", className: "card-a" },
-    { id: "b", className: "card-b" },
-    { id: "c", className: "card-c" },
-    { id: "d", className: "card-d" },
+    {
+      id: "d",
+      className: "card-d",
+    },
+    {
+      id: "c",
+      className: "card-c",
+    },
+    {
+      id: "developer",
+      className: "card-b",
+      image: developerBear, // 👈 MUST EXIST
+    },
+    {
+      id: "designer",
+      className: "card-a",
+      image: designerBear, // 👈 SHOWS FIRST
+    },
   ]);
 
   useEffect(() => {
@@ -25,6 +122,23 @@ function LandingPage() {
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 120);
     return () => clearTimeout(t);
+  }, []);
+
+  /* =========================
+     STAR PARALLAX
+  ========================= */
+  useEffect(() => {
+    const onScroll = () => {
+      if (!transitionStarRef.current) return;
+
+      transitionStarRef.current.style.transform = `
+        translateY(${window.scrollY * 0.15}px)
+        rotate(-8deg)
+      `;
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const handleCardClick = (e) => {
@@ -56,6 +170,7 @@ function LandingPage() {
           <div className={`card-stack ${loaded ? "loaded" : ""}`}>
             {cards.map((card, index) => {
               const isTop = index === cards.length - 1;
+
               return (
                 <div
                   key={card.id}
@@ -66,65 +181,82 @@ function LandingPage() {
                     cursor: isTop ? "pointer" : "default",
                   }}
                   onClick={isTop ? handleCardClick : undefined}
-                />
+                >
+                  {/* 👇 IMAGE FILLS CARD */}
+                  {card.image && (
+                    <div className="card-art">
+                      <img
+                        src={card.image}
+                        alt=""
+                        className="card-bear"
+                      />
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* ===== SPACER BETWEEN HERO & INTRO ===== */}
       <div className="section-spacer" />
 
-      {/* ================= INTRO STATEMENT ================= */}
+      {/* ================= INTRO ================= */}
       <section className="intro-section">
         <div className="intro-content">
-          <p className="intro-text">
-            I'M A DIGITAL DESIGNER <br />
-            AND DEVELOPER. I <br />
-            BRIDGE <span className="highlight">IDEAS</span> AND <br />
-            <span className="highlight">DESIGN</span> TO BRING <br />
-            DIGITAL EXPERIENCES <br />
-            TO LIFE.
-          </p>
+          <ScrollRevealText
+            lines={[
+              ["I'M A DIGITAL DESIGNER"],
+              ["AND DEVELOPER. I"],
+              ["BRIDGE ", { text: "IDEAS" }, " AND"],
+              [{ text: "DESIGN" }, " TO BRING"],
+              ["DIGITAL EXPERIENCES"],
+              ["TO LIFE."],
+            ]}
+          />
         </div>
 
         <div className="intro-star" />
       </section>
 
-      {/* ================= PROJECTS ================= */}
-      <section className="projects-section">
-        <div className="projects-container">
-          <div className="projects-header">
-            <h2 className="projects-label">02 — FEATURED WORK</h2>
-            <Link to="/projects" className="view-more-btn">
-              VIEW MORE
-            </Link>
+      {/* ================= FEATURED WORK ================= */}
+      <section className="featured-section">
+        <div className="featured-inner">
+          <div className="featured-text">
+          <ScrollRevealText
+  lines={[
+    ["FEATURED WORK"],
+  ]}
+/>
+            <h3 className="featured-title">SCAFFOLD</h3>
+            <p className="featured-role">
+              LEAD DESIGNER / FRONT-END DEVELOPER
+            </p>
+            <p className="featured-desc">
+              An AI-powered grant app that checks eligibility and assists with
+              applications for apprentices.
+            </p>
+            <button className="featured-btn">VIEW</button>
           </div>
 
-          <div className="projects-grid">
-            <div className="project-card">
-              <div className="project-image"></div>
-              <h3 className="project-title">SCAFFOLD</h3>
-            </div>
-
-            <div className="project-card">
-              <div className="project-image"></div>
-              <h3 className="project-title">PICKI</h3>
-            </div>
-
-            <div className="project-card">
-              <div className="project-image"></div>
-              <h3 className="project-title">DRESS-UP DARLING</h3>
-            </div>
-          </div>
+          <div className="featured-image" />
         </div>
       </section>
 
-      {/* ================= CONTACT ================= */}
-      <section className="contact-section">
-        <h2>CONTACT</h2>
+      {/* ================= TRANSITION ================= */}
+      <section className="transition-section">
+        <div className="transition-star" ref={transitionStarRef} />
       </section>
+
+      {/* ================= FOOTER ================= */}
+      <footer className="footer">
+        <div className="footer-inner">
+          <div className="footer-links">
+            <a href="/" className="footer-link">SITE MAP</a>
+            <a href="/contact" className="footer-link">CONTACT</a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
@@ -171,7 +303,7 @@ export default function App() {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route
           path="/about"
-          element={<div style={{ paddingTop: "140px" }}>About Page</div>}
+          element={<div style={{ paddingTop: 140 }}>About Page</div>}
         />
       </Routes>
     </>
