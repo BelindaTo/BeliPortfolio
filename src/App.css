@@ -529,36 +529,81 @@ body {
 
 /* ================= TRANSITION SECTION ================= */
 
+.transition-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: FFE2ED;
+  z-index: 5;
+}
+
 .transition-section {
   position: relative;
   height: 90vh;
-  background: linear-gradient(
-    to bottom,
-    #FFE2ED 0%,
-    #fffcf2 70%
-  );
+  background-color: #fffcf2; /* cream base */
+  
+  background-image:
+    linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, #FFE2ED 0%, #fffcf2 70%);
+
+  background-size: 80px 80px, 80px 80px, 100% 100%;
+  background-position: 0 0;
   overflow: hidden;
+  z-index: 1;
 }
 /* ================= FOOTER ================= */
 
 .footer {
-  background: #052b6b; /* deep navy */
-  min-height: 55vh;
-  padding: 120px 120px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: block;
+  background-color: #fffcf2; /* cream background */
+  
+  background-image:
+    linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
+
+  background-size: 80px 80px;
+  background-position: 0 -30px;
   position: relative;
+  z-index: 3;
+  overflow: visible;
 }
 
-.footer-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: flex-end;
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #fffcf2;
+  z-index: 5;
+}
+
+.footer-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 10;
 }
 
 .footer-links {
+  position: absolute;
+  top: 50%;
+  right: 120px;
   display: flex;
   gap: 120px;
+  z-index: 10;
+  transform: translateY(-50%);
 }
+
 .footer-link {
   color: #ffffff;
   font-size: 22px;
@@ -571,27 +616,116 @@ body {
 
 .transition-star {
   position: absolute;
-  top: 40%;
-  left: 15%;
 
-  width: 120px;
-  height: 120px;
-
-  background: #5bb0ff; /* bright blue so we can SEE it */
+  background: #5bb0ff;
   z-index: 10;
 
   clip-path: polygon(
     50% 0%,
     61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
+    100% 50%,
+    61% 65%,
+    50% 100%,
+    39% 65%,
+    0% 50%,
     39% 35%
   );
 
   will-change: transform;
+}
+
+.transition-star-1 {
+  top: 40%;
+  left: 10%;
+  width: 250px;
+  height: 250px;
+  background: #0a2a66;
+  animation: floatSpin1 8s ease-in-out infinite;
+}
+
+.transition-star-2 {
+  top: 0%;
+  right: 10%;
+  width: 140px;
+  height: 140px;
+  background: #ff91ba;
+  animation: floatSpin2 10s ease-in-out infinite;
+}
+
+.transition-star-3 {
+  bottom: 70%;
+  left: 45%;
+  width: 70px;
+  height: 70px;
+  background: #6db5e3;
+  animation: floatSpin3 12s ease-in-out infinite;
+}
+
+.transition-star-4 {
+  top: 60%;
+  right: 30%;
+  width: 100px;
+  height: 100px;
+  background: #ff91ba;
+  animation: floatSpin4 9s ease-in-out infinite;
+}
+
+@keyframes floatSpin1 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(30px, -20px) rotate(90deg);
+  }
+  50% {
+    transform: translate(-20px, -35px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-35px, -10px) rotate(270deg);
+  }
+}
+
+@keyframes floatSpin2 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-40px, 25px) rotate(-90deg);
+  }
+  50% {
+    transform: translate(20px, 40px) rotate(-180deg);
+  }
+  75% {
+    transform: translate(35px, 15px) rotate(-270deg);
+  }
+}
+
+@keyframes floatSpin3 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(25px, 30px) rotate(90deg);
+  }
+  50% {
+    transform: translate(-30px, 20px) rotate(180deg);
+  }
+  75% {
+    transform: translate(15px, -25px) rotate(270deg);
+  }
+}
+
+@keyframes floatSpin4 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-30px, -25px) rotate(-90deg);
+  }
+  50% {
+    transform: translate(25px, -40px) rotate(-180deg);
+  }
+  75% {
+    transform: translate(40px, 20px) rotate(-270deg);
+  }
 }
