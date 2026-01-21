@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 568.68 445.85">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#radial-gradient-2);
+      }
+
+      .cls-2 {
+        fill: #fc6582;
+      }
+
+      .cls-3 {
+        fill: url(#New_Gradient_Swatch);
+      }
+
+      .cls-4 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-5 {
+        fill: #432830;
+      }
+
+      .cls-6 {
+        fill: url(#New_Gradient_Swatch-3);
+      }
+
+      .cls-7 {
+        fill: url(#New_Gradient_Swatch-2);
+      }
+
+      .cls-8 {
+        fill: #ffedd5;
+      }
+
+      .cls-9 {
+        fill: #3e0013;
+      }
+    </style>
+    <radialGradient id="New_Gradient_Swatch" data-name="New Gradient Swatch" cx="473.25" cy="79.1" fx="473.25" fy="79.1" r="87.65" gradientTransform="translate(305.13 -370.3) rotate(60)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff80a9"/>
+      <stop offset=".46" stop-color="#ff81ab"/>
+      <stop offset=".71" stop-color="#ff87b3"/>
+      <stop offset=".9" stop-color="#ff90c0"/>
+      <stop offset="1" stop-color="#ff98cb"/>
+    </radialGradient>
+    <radialGradient id="New_Gradient_Swatch-2" data-name="New Gradient Swatch" cx="95.43" cy="83.47" fx="95.43" fy="83.47" r="87.65" gradientTransform="translate(54.52 -36.53) rotate(30)" xlink:href="#New_Gradient_Swatch"/>
+    <radialGradient id="radial-gradient" cx="96.52" cy="82.85" fx="96.52" fy="82.85" r="60.95" gradientTransform="translate(54.35 -37.16) rotate(30)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9dcd"/>
+      <stop offset=".05" stop-color="#ff97c6"/>
+      <stop offset=".21" stop-color="#ff88b2"/>
+      <stop offset=".39" stop-color="#ff7da3"/>
+      <stop offset=".62" stop-color="#ff769b"/>
+      <stop offset="1" stop-color="#ff7599"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="476.57" cy="77.7" fx="476.57" fy="77.7" r="60.95" gradientTransform="translate(305.58 -373.88) rotate(60)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffa3c1"/>
+      <stop offset=".08" stop-color="#ff9cbb"/>
+      <stop offset=".4" stop-color="#ff86a8"/>
+      <stop offset=".72" stop-color="#ff799c"/>
+      <stop offset="1" stop-color="#ff7599"/>
+    </radialGradient>
+    <radialGradient id="New_Gradient_Swatch-3" data-name="New Gradient Swatch" cx="290.06" cy="250.97" fx="290.06" fy="250.97" r="224.85" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#New_Gradient_Swatch"/>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <ellipse class="cls-3" cx="473.25" cy="79.1" rx="69.53" ry="102.59" transform="translate(168.12 449.4) rotate(-60)"/>
+    <ellipse class="cls-7" cx="95.43" cy="83.47" rx="102.59" ry="69.53" transform="translate(-28.95 58.9) rotate(-30)"/>
+    <ellipse class="cls-4" cx="96.52" cy="82.85" rx="74.39" ry="43.5" transform="translate(-28.49 59.36) rotate(-30)"/>
+    <ellipse class="cls-1" cx="476.57" cy="77.7" rx="43.5" ry="74.39" transform="translate(171 451.57) rotate(-60)"/>
+    <ellipse class="cls-6" cx="290.06" cy="250.97" rx="251.28" ry="194.88"/>
+    <circle class="cls-9" cx="236.04" cy="267.16" r="18.13"/>
+    <circle class="cls-9" cx="346.47" cy="267.16" r="18.13"/>
+    <ellipse class="cls-8" cx="290.06" cy="306.05" rx="52.22" ry="43.55"/>
+    <ellipse class="cls-5" cx="290.06" cy="288.17" rx="16.82" ry="8.41"/>
+    <path class="cls-2" d="M271.39,312.29s16.78-14.04,38.35,0c0,0,1.81,20.73-19.17,20.89-17.12.13-19.17-20.89-19.17-20.89Z"/>
+  </g>
+</svg>

@@ -7,6 +7,9 @@ import ProjectsPage from "./ProjectsPage";
 import designerBear from "./assets/designer-bear.png";
 import developerBear from "./assets/developer-bear.png";
 import scaffoldImage from "./assets/Scaffold-image.png";
+import footerImage from "./assets/footer.png";
+import bearHead from "./assets/BearHead.svg";
+import bearHand from "./assets/BearHand.png";
 
 /* =========================
    CUSTOM CURSOR
@@ -323,16 +326,18 @@ function LandingPage() {
 
       {/* ================= TRANSITION ================= */}
       <section className="transition-section">
-        <div className="transition-star" ref={transitionStarRef} />
+        <div className="transition-star transition-star-1" ref={transitionStarRef} />
+        <div className="transition-star transition-star-2" />
+        <div className="transition-star transition-star-3" />
+        <div className="transition-star transition-star-4" />
       </section>
 
       {/* ================= FOOTER ================= */}
       <footer className="footer">
-        <div className="footer-inner">
-          <div className="footer-links">
-            <a href="/" className="footer-link">SITE MAP</a>
-            <a href="/contact" className="footer-link">CONTACT</a>
-          </div>
+        <img src={footerImage} alt="Footer" className="footer-image" />
+        <div className="footer-links">
+          <a href="/" className="footer-link">SITE MAP</a>
+          <a href="/contact" className="footer-link">CONTACT</a>
         </div>
       </footer>
     </>
@@ -359,9 +364,9 @@ function Navbar() {
         </Link>
 
         <div className={`nav-links ${loaded ? "nav-loaded" : ""}`}>
+          <Link to="/" className="nav-link">HOME</Link>
           <Link to="/projects" className="nav-link">PROJECTS</Link>
           <Link to="/about" className="nav-link">ABOUT ME</Link>
-          <Link to="/contact" className="nav-link">CONTACT</Link>
         </div>
       </div>
     </nav>
