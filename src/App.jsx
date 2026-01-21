@@ -3,13 +3,14 @@ import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import logo from "./assets/Logo.svg";
 import ProjectsPage from "./ProjectsPage";
+import WispSodasPage from "./WispSodasPage";
 
-import designerBear from "./assets/designer-bear.png";
-import developerBear from "./assets/developer-bear.png";
-import scaffoldImage from "./assets/Scaffold-image.png";
-import footerImage from "./assets/footer.png";
-import bearHead from "./assets/BearHead.svg";
-import bearHand from "./assets/BearHand.png";
+import designerBear from "./images/designer-bear.png";
+import developerBear from "./images/developer-bear.png";
+import ideatorBear from "./images/ideator-bear.png";
+import scaffoldImage from "./images/Scaffold-image.png";
+import footerImage from "./images/footer.png";
+
 
 /* =========================
    CUSTOM CURSOR
@@ -178,18 +179,19 @@ function LandingPage() {
       className: "card-d",
     },
     {
-      id: "c",
+      id: "ideator",
       className: "card-c",
+      image: ideatorBear,
     },
     {
       id: "developer",
       className: "card-b",
-      image: developerBear, // 👈 MUST EXIST
+      image: developerBear,
     },
     {
       id: "designer",
       className: "card-a",
-      image: designerBear, // 👈 SHOWS FIRST
+      image: designerBear,
     },
   ]);
 
@@ -260,7 +262,6 @@ function LandingPage() {
                   }}
                   onClick={isTop ? handleCardClick : undefined}
                 >
-                  {/* 👇 IMAGE FILLS CARD */}
                   {card.image && (
                     <div className="card-art">
                       <img
@@ -364,9 +365,9 @@ function Navbar() {
         </Link>
 
         <div className={`nav-links ${loaded ? "nav-loaded" : ""}`}>
-          <Link to="/" className="nav-link">HOME</Link>
           <Link to="/projects" className="nav-link">PROJECTS</Link>
           <Link to="/about" className="nav-link">ABOUT ME</Link>
+          <Link to="/contact" className="nav-link">CONTACT</Link>
         </div>
       </div>
     </nav>
@@ -385,6 +386,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/wisp-sodas" element={<WispSodasPage />} />
         <Route
           path="/about"
           element={<div style={{ paddingTop: 140 }}>About Page</div>}
