@@ -18,6 +18,30 @@ body,
 body {
   font-family: "Inter", sans-serif;
   background: #fffcf2;
+  cursor: none; /* Hide default cursor */
+}
+
+/* ================= CUSTOM CURSOR ================= */
+
+.custom-cursor {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-2px, -2px);
+  transition: transform 0.1s ease;
+}
+
+.custom-cursor svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Hide default cursor on ALL elements */
+* {
+  cursor: none !important;
 }
 
 /* ================= NAVBAR ================= */
@@ -314,6 +338,7 @@ body {
   color: #ff91ba;
   font-style: italic;
 }
+
 .intro-star {
   position: absolute;
   top: 160px;
@@ -332,6 +357,60 @@ body {
     0% 50%,
     39% 35%
   );
+
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(30px, -25px) rotate(90deg);
+  }
+  50% {
+    transform: translate(-20px, -40px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-35px, -15px) rotate(270deg);
+  }
+}
+
+.intro-star-2 {
+  position: absolute;
+  top: 420px;
+  left: 200px;
+  width: 110px;
+  height: 110px;
+  background: #ff91ba;
+
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    100% 50%,
+    61% 65%,
+    50% 100%,
+    39% 65%,
+    0% 50%,
+    39% 35%
+  );
+
+  animation: float2 10s ease-in-out infinite;
+}
+
+@keyframes float2 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-40px, 30px) rotate(-90deg);
+  }
+  50% {
+    transform: translate(25px, 45px) rotate(-180deg);
+  }
+  75% {
+    transform: translate(40px, 20px) rotate(-270deg);
+  }
 }
 
 .intro-section::after {
@@ -348,7 +427,6 @@ body {
     rgba(255, 226, 237, 0.65) 55%,
     #FFE2ED 100%
   );
-
 
   pointer-events: none;
   z-index: 2;
@@ -430,9 +508,19 @@ body {
 /* Right image placeholder */
 .featured-image {
   width: 100%;
-  height: 440px;
-  background: #d9d9d9;
+  height: auto;
+  min-height: 600px;
   border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.featured-image img {
+  max-width: 120%;
+  height: auto;
+  display: block;
 }
 .featured-text {
   align-self: flex-start;
@@ -507,6 +595,3 @@ body {
 
   will-change: transform;
 }
-
-
-
