@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ProjectsPage.css';
 
-const ProjectsPage = () => {  // ← Remove setCurrentPage prop
+const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] = useState('FEATURED');
+  const navigate = useNavigate();
 
   const projects = [
     {
@@ -11,7 +13,8 @@ const ProjectsPage = () => {  // ← Remove setCurrentPage prop
       role: 'LEAD DESIGNER / FRONT-END DEVELOPER',
       description: 'An AI-powered grant app that checks eligibility and assists with applications for apprentices.',
       imageAlign: 'right',
-      category: ['FEATURED', 'UX / UI']
+      category: ['FEATURED', 'UX / UI'],
+      link: null
     },
     {
       id: 2,
@@ -19,7 +22,8 @@ const ProjectsPage = () => {  // ← Remove setCurrentPage prop
       role: 'LEAD DESIGNER / FRONT-END DEVELOPER',
       description: 'An event planning app designed for indecisiveness friend groups. Let PICKI decide so you don\'t have to.',
       imageAlign: 'left',
-      category: ['FEATURED', 'UX / UI']
+      category: ['FEATURED', 'UX / UI'],
+      link: null
     },
     {
       id: 3,
@@ -27,21 +31,34 @@ const ProjectsPage = () => {  // ← Remove setCurrentPage prop
       role: 'GRAPHIC DESIGNER',
       description: 'a 90s-inspired browser game where you dress up your avatar. Playful and nostalgic, it captures the charm of your favourite classic dress-up games.',
       imageAlign: 'right',
-      category: ['FEATURED', 'GRAPHIC']
+      category: ['FEATURED', 'GRAPHIC'],
+      link: null
+    },
+    {
+      id: 4,
+      title: 'WISP SODAS',
+      role: 'GRAPHIC DESIGNER',
+      description: 'A vibrant soda brand identity featuring playful illustrations and bold typography for a refreshing beverage line.',
+      imageAlign: 'left',
+      category: ['GRAPHIC'],
+      link: '/wisp-sodas'
     }
   ];
 
   const filters = ['FEATURED', 'GRAPHIC', 'UX / UI'];
 
-  // Filter projects based on active filter
   const filteredProjects = projects.filter(project => 
     project.category.includes(activeFilter)
   );
 
+  const handleViewClick = (link) => {
+    if (link) {
+      navigate(link);
+    }
+  };
+
   return (
     <div className="portfolio" style={{ paddingTop: '100px' }}>
-      {/* ← Removed Navbar component - it's already in App.jsx */}
-
       <div className="filter-container">
         {filters.map(filter => (
           <button
@@ -64,7 +81,12 @@ const ProjectsPage = () => {  // ← Remove setCurrentPage prop
               <h2 className="project-title">{project.title}</h2>
               <p className="project-role">{project.role}</p>
               <p className="project-description">{project.description}</p>
-              <button className="view-btn">VIEW</button>
+              <button 
+                className="view-btn"
+                onClick={() => handleViewClick(project.link)}
+              >
+                VIEW
+              </button>
             </div>
             <div className="project-image">
               {/* Placeholder for project image */}

@@ -215,7 +215,7 @@ body {
 .card-art {
   position: absolute;
   inset: 0;               /* fills the entire card */
-  border-radius: 20px;    /* match card radius */
+  border-radius: 14px;    /* match card radius */
   overflow: hidden;       /* trims edges cleanly */
 }
 
@@ -246,8 +246,6 @@ body {
 
 /* Card colors */
 /* .card-a { background: #ffffff; } */
-.card-b { background: #e5e7eb; }
-.card-c { background: #9ca3af; }
 .card-d { background: #6b7280; }
 
 /* Load-in animation */
@@ -379,7 +377,7 @@ body {
 .intro-star-2 {
   position: absolute;
   top: 420px;
-  left: 200px;
+  right: 400px;
   width: 110px;
   height: 110px;
   background: #ff91ba;
