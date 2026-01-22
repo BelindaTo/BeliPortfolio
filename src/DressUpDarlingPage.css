@@ -1,0 +1,437 @@
+.dress-up-page {
+    min-height: 100vh;
+    background: #fffcf2;
+  }
+  
+  /* ============================= */
+  /* PROJECT INFO SECTION */
+  /* ============================= */
+  
+  .project-info-section {
+    min-height: 100vh;
+    padding-top: 120px;
+    padding-bottom: 80px;
+    background: #fffcf2;
+    background-image:
+      linear-gradient(rgba(255, 145, 186, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 145, 186, 0.15) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-position: 0 0;
+    position: relative;
+  }
+  
+  /* Decorative stars */
+  .project-info-section::before {
+    content: '';
+    position: absolute;
+    top: 180px;
+    left: 280px;
+    width: 70px;
+    height: 70px;
+    background: #6db5e3;
+    clip-path: polygon(
+      50% 0%,
+      61% 35%,
+      100% 50%,
+      61% 65%,
+      50% 100%,
+      39% 65%,
+      0% 50%,
+      39% 35%
+      
+    );
+    animation: wispFloat 10s ease-in-out infinite;
+  }
+  .project-info-image {
+    width: 100%;
+    min-height: 620px;              /* ← THIS is the key */
+    background: #d9d9d9;            /* visible placeholder */
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    position: relative;
+  }
+  
+  
+  .project-info-section::after {
+    content: '';
+    position: absolute;
+    bottom: 180px;
+    left: 180px;
+    width: 80px;
+    height: 80px;
+    background: #0a2a66;
+    clip-path: polygon(
+      50% 0%,
+      61% 35%,
+      100% 50%,
+      61% 65%,
+      50% 100%,
+      39% 65%,
+      0% 50%,
+      39% 35%
+    );
+    animation: wispFloat 10s ease-in-out infinite;
+  }
+  
+  .project-info-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 60px 0 140px;
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 120px;
+    align-items: center;
+    min-height: 85vh;
+  }
+  
+  .project-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+  
+  .project-info-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #ff91ba;
+    line-height: 0.95;
+  }
+  
+  .project-info-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #6db5e3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  
+  .project-info-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* ============================= */
+  /* ABOUT SECTION */
+  /* ============================= */
+  
+  .about-section {
+    padding: 100px 0;
+    background: linear-gradient(
+      to bottom,
+      #fffcf2 0%,
+      #fff8f4 20%,
+      #fff0f0 40%,
+      #ffe9ee 60%,
+      #ffe5ec 80%,
+      #FFE2ED 100%
+    );
+  }
+  
+  .about-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 140px;
+  }
+  
+  .about-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #6db5e3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  
+  /* ============================= */
+  /* SECTIONS THAT SHOULD STAY PINK */
+  /* ============================= */
+  
+  .game-section,
+  .character-section,
+  .clothing-section {
+    background: #FFE2ED;
+  }
+  
+  /* ============================= */
+  /* GAME SECTION */
+  /* ============================= */
+  
+  .game-section-title {
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: #022764;
+  }
+  .game-header {
+    margin-bottom: 68px;
+    text-align: center;
+  }
+
+  
+  .game-section {
+    padding: 80px 0;
+    position: relative;
+  }
+  
+  .game-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 120px;
+  }
+  
+  .game-iframe {
+    width: 100%;
+    height: 80vh;
+    min-height: 600px;
+    border: none;
+    border-radius: 20px;
+  }
+  
+  /* ============================= */
+  /* CHARACTER SECTION */
+  /* ============================= */
+  
+  .character-section {
+    padding: 100px 0 120px;
+  }
+  .character-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #6db5e3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .character-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 140px;
+  }
+  .character-description {
+    margin-bottom: 60px;
+  }
+  .character-label {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color:#022764;
+  }
+  .character-images {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+  }
+  
+  .character-img {
+    height: 300px;
+    image-rendering: pixelated;
+  }
+  
+  /* ============================= */
+  /* CLOTHING SECTION */
+  /* ============================= */
+  
+  .clothing-section {
+    padding: 0px 0 120px;
+  }
+  
+  .clothing-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 140px;
+  }
+  
+  .clothing-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .clothing-img {
+    height: 300px;
+    image-rendering: pixelated;
+  }
+  
+  /* ============================= */
+  /* GRID SECTION */
+  /* ============================= */
+  
+.grid-section {
+  position: relative;
+  min-height: 100vh;
+  margin-top: -200px;          /* ← KEY LINE */
+  padding-top: 200px;          /* preserves spacing */
+  background-color: #fffcf2;
+  background-image:
+    linear-gradient(rgba(255, 183, 203, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 183, 203, 0.35) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .grid-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 240px; /* controls fade depth */
+    background: linear-gradient(
+      to bottom,
+      #FFE2ED 0%,
+      rgba(255, 226, 237, 0.85) 40%,
+      rgba(255, 226, 237, 0.4) 70%,
+      rgba(255, 226, 237, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  /* ============================= */
+  /* MEDIA QUERIES (UNCHANGED) */
+  /* ============================= */
+  
+  @media (max-width: 1024px) {
+    .project-info-section {
+      padding-top: 100px;
+    }
+  
+    .project-info-container {
+      padding: 0 60px;
+      gap: 60px;
+    }
+  
+    .project-info-title {
+      font-size: 4rem;
+    }
+  
+    .game-container {
+      padding: 0 60px;
+    }
+  
+    .about-container {
+      padding: 0 60px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .project-info-section {
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+  
+    .project-info-container {
+      grid-template-columns: 1fr;
+      padding: 0 32px;
+      gap: 40px;
+    }
+  
+    .project-info-title {
+      font-size: 3rem;
+    }
+  
+    .project-info-section::before,
+    .project-info-section::after {
+      display: none;
+    }
+  
+    .game-container {
+      padding: 0 32px;
+    }
+  
+    .about-section {
+      padding: 60px 0;
+    }
+  
+    .about-container {
+      padding: 0 32px;
+    }
+  
+    .about-title {
+      font-size: 1rem;
+    }
+  
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  
+    .game-section-title {
+      font-size: 2rem;
+    }
+  
+    .game-iframe {
+      height: 70vh;
+      min-height: 500px;
+    }
+  
+    .character-container {
+      padding: 0 32px;
+    }
+  
+    .character-images {
+      gap: 40px;
+    }
+  
+    .character-img {
+      height: 250px;
+    }
+  
+    .clothing-container {
+      padding: 0 60px;
+    }
+  
+    .clothing-row {
+      gap: 30px;
+    }
+  
+    .clothing-img {
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .project-info-title {
+      font-size: 2.5rem;
+    }
+  
+    .game-iframe {
+      height: 60vh;
+      min-height: 400px;
+    }
+  
+    .character-section {
+      padding: 60px 0 80px;
+    }
+  
+    .character-images {
+      flex-direction: column;
+      gap: 40px;
+    }
+  
+    .character-img {
+      height: 200px;
+    }
+  
+    .clothing-container {
+      padding: 0 32px;
+    }
+  
+    .clothing-section {
+      padding: 60px 0 80px;
+    }
+  
+    .clothing-row {
+      gap: 20px;
+    }
+  
+    .clothing-img {
+      height: 200px;
+    }
+  }
+  

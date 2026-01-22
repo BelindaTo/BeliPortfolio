@@ -4,6 +4,7 @@ import "./App.css";
 import logo from "./assets/Logo.svg";
 import ProjectsPage from "./ProjectsPage";
 import WispSodasPage from "./WispSodasPage";
+import DressUpDarlingPage from "./DressUpDarlingPage";
 
 import designerBear from "./images/designer-bear.png";
 import developerBear from "./images/developer-bear.png";
@@ -19,35 +20,58 @@ import footerImage from "./images/footer.png";
 function CustomCursor() {
   const cursorRef = useRef(null);
   const [isClicking, setIsClicking] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    // Check if it's a touch device
+    const checkTouchDevice = () => {
+      return (
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        navigator.msMaxTouchPoints > 0
+      );
+    };
+
+    setIsTouchDevice(checkTouchDevice());
+
     const cursor = cursorRef.current;
 
     const onMouseMove = (e) => {
-      if (cursor) {
+      if (cursor && !isTouchDevice) {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
       }
     };
 
     const onMouseDown = () => {
-      setIsClicking(true);
+      if (!isTouchDevice) {
+        setIsClicking(true);
+      }
     };
 
     const onMouseUp = () => {
-      setIsClicking(false);
+      if (!isTouchDevice) {
+        setIsClicking(false);
+      }
     };
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mousedown', onMouseDown);
-    document.addEventListener('mouseup', onMouseUp);
+    if (!isTouchDevice) {
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mousedown', onMouseDown);
+      document.addEventListener('mouseup', onMouseUp);
+    }
 
     return () => {
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mousedown', onMouseDown);
       document.removeEventListener('mouseup', onMouseUp);
     };
-  }, []);
+  }, [isTouchDevice]);
+
+  // Don't render cursor on touch devices
+  if (isTouchDevice) {
+    return null;
+  }
 
   return (
     <div ref={cursorRef} className="custom-cursor">
@@ -387,6 +411,7 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/wisp-sodas" element={<WispSodasPage />} />
+        <Route path="/dress-up-darling" element={<DressUpDarlingPage />} />
         <Route
           path="/about"
           element={<div style={{ paddingTop: 140 }}>About Page</div>}
