@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProjectsPage.css';
+import canMockup from './images/canmockup.png';
 
 const ProjectsPage = () => {
-  const [activeFilter, setActiveFilter] = useState('FEATURED');
+  const [activeFilter, setActiveFilter] = useState('APPS');
   const navigate = useNavigate();
 
   const projects = [
@@ -13,8 +14,10 @@ const ProjectsPage = () => {
       role: 'LEAD DESIGNER / FRONT-END DEVELOPER',
       description: 'An AI-powered grant app that checks eligibility and assists with applications for apprentices.',
       imageAlign: 'right',
-      category: ['FEATURED', 'UX / UI'],
-      link: null
+      category: ['APPS'],
+      link: null,
+      image: null,
+      embedUrl: null
     },
     {
       id: 2,
@@ -22,8 +25,10 @@ const ProjectsPage = () => {
       role: 'LEAD DESIGNER / FRONT-END DEVELOPER',
       description: 'An event planning app designed for indecisiveness friend groups. Let PICKI decide so you don\'t have to.',
       imageAlign: 'left',
-      category: ['FEATURED', 'UX / UI'],
-      link: null
+      category: ['APPS'],
+      link: null,
+      image: null,
+      embedUrl: null
     },
     {
       id: 3,
@@ -31,8 +36,10 @@ const ProjectsPage = () => {
       role: 'GRAPHIC DESIGNER',
       description: 'a 90s-inspired browser game where you dress up your avatar. Playful and nostalgic, it captures the charm of your favourite classic dress-up games.',
       imageAlign: 'right',
-      category: ['FEATURED', 'GRAPHIC'],
-      link: null
+      category: ['INTERACTIVE'],
+      link: '/dress-up-darling',
+      image: null,
+      embedUrl: null
     },
     {
       id: 4,
@@ -41,11 +48,13 @@ const ProjectsPage = () => {
       description: 'A vibrant soda brand identity featuring playful illustrations and bold typography for a refreshing beverage line.',
       imageAlign: 'left',
       category: ['GRAPHIC'],
-      link: '/wisp-sodas'
+      link: '/wisp-sodas',
+      image: canMockup,
+      embedUrl: null
     }
   ];
 
-  const filters = ['FEATURED', 'GRAPHIC', 'UX / UI'];
+  const filters = ['APPS', 'INTERACTIVE', 'GRAPHIC'];
 
   const filteredProjects = projects.filter(project => 
     project.category.includes(activeFilter)
@@ -89,7 +98,9 @@ const ProjectsPage = () => {
               </button>
             </div>
             <div className="project-image">
-              {/* Placeholder for project image */}
+              {project.image && (
+                <img src={project.image} alt={project.title} />
+              )}
             </div>
           </div>
         ))}
