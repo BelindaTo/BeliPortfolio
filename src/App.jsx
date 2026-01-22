@@ -9,7 +9,8 @@ import DressUpDarlingPage from "./DressUpDarlingPage";
 import designerBear from "./images/designer-bear.png";
 import developerBear from "./images/developer-bear.png";
 import ideatorBear from "./images/ideator-bear.png";
-import scaffoldImage from "./images/Scaffold-image.png";
+// import scaffoldImage from "./images/Scaffold-image.png";
+import scaffoldHero from "./images/scaffold-hero.png";
 import footerImage from "./images/footer.png";
 
 
@@ -343,8 +344,10 @@ function LandingPage() {
             <button className="featured-btn">VIEW</button>
           </div>
 
+          <div class="image-wrapper">
           <div className="featured-image">
-            <img src={scaffoldImage} alt="Scaffold App" />
+            <img src={scaffoldHero} alt="Scaffold App" />
+          </div>
           </div>
         </div>
       </section>

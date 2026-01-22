@@ -1,8 +1,8 @@
 import React from "react";
 import "./DressUpDarlingPage.css";
 
-import bodyImage from "./images/body.PNG";
-import pajamasImage from "./images/pajamAs.PNG";
+import bodyImage from "./images/body.png";
+import pajamasImage from "./images/pajamas.PNG";
 import gardenerImage from "./images/gardener.png";
 import sundressImage from "./images/sundress.png";
 import casualImage from "./images/casual.png";
@@ -132,7 +132,6 @@ export default function DressUpDarlingPage() {
 
       {/* Grid */}
       <section className="grid-section" />
-
     </div>
   );
 }

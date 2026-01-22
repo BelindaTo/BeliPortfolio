@@ -622,13 +622,20 @@ body {
 .featured-btn:hover {
   transform: scale(1.05);
 }
+.image-wrapper {
+  border-radius: 24px;
+}
+.image-wrapper img {
+  border-radius: 20px;
+  display: block;
+}
 
 /* Right image placeholder */
 .featured-image {
   width: 100%;
   height: auto;
   min-height: 600px;
-  border-radius: 20px;
+  border-radius: 20px !important;
   display: flex;
   align-items: center;
   justify-content: center;
