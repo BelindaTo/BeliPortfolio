@@ -2,7 +2,7 @@ import React from "react";
 import "./DressUpDarlingPage.css";
 
 import bodyImage from "./images/body.png";
-import pajamasImage from "./images/pajamas.PNG";
+import pajamasImage from "./images/pajamas.png";
 import gardenerImage from "./images/gardener.png";
 import sundressImage from "./images/sundress.png";
 import casualImage from "./images/casual.png";
