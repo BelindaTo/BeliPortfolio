@@ -10,6 +10,7 @@ import PostersPage from "./PostersPage";
 import MusicPlayerPage from "./MusicPlayerPage";
 import AboutPage from "./AboutPage";
 import Footer from "./footer";
+import ContactPage from './ContactPage';
 
 import designerBear from "./images/designer-bear.png";
 import developerBear from "./images/developer-bear.png";
@@ -482,6 +483,7 @@ export default function App() {
         <Route path="/posters" element={<PostersPage />} />
         <Route path="/music-player" element={<MusicPlayerPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </Layout>
   );

@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './MusicPlayerPage.css';
 import Footer from './footer';
 
 const MusicPlayerPage = () => {
+  useEffect(() => {
+    document.title = "Music Player — Belinda To";
+  }, []);
+
   return (
     <div className="music-player-page">
       {/* INTRO SECTION */}

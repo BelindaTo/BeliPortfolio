@@ -147,14 +147,14 @@ body {
   bottom: -8px;
   width: 100%;
   height: 1.5px;
-  background: #6db5e3;
+  background: #76BDFF;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #6db5e3 !important;
+  color: #76BDFF !important;
 }
 
 .nav-link:hover::after {
@@ -180,7 +180,7 @@ body {
 
 
 .nav-link.active {
-  color: #6db5e3 !important;
+  color: #76BDFF !important;
   font-weight: 700;
 }
 
@@ -464,7 +464,7 @@ body {
   right: 180px;
   width: 90px;
   height: 90px;
-  background: #6db5e3;
+  background: #76BDFF;
 
   clip-path: polygon(
     50% 0%,
@@ -664,7 +664,7 @@ body {
 .featured-role {
   font-size: 16px;
   font-weight: 700;
-  color: #5bb0ff;
+  color: #76BDFF;
   margin-bottom: 24px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1001,7 +1001,7 @@ body {
 .transition-star {
   position: absolute;
 
-  background: #5bb0ff;
+  background: #76BDFF;
   z-index: 10;
 
   clip-path: polygon(
@@ -1041,7 +1041,7 @@ body {
   left: 45%;
   width: 70px;
   height: 70px;
-  background: #6db5e3;
+  background: #76BDFF;
   animation: floatSpin3 12s ease-in-out infinite;
 }
 

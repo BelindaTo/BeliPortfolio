@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProjectsPage.css';
 import canMockup from './images/canmockup.png';
 import scaffoldMain from "./images/scaffold-main.png";
 import pickiMain from "./images/picki-main.png";
+import posterMain from './images/poster-main.png';
 
 const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] = useState('APPS');
   const [isAnimating, setIsAnimating] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Projects — Belinda To";
+  }, []);
 
   const projects = [
     {
@@ -74,7 +79,7 @@ const ProjectsPage = () => {
       imageAlign: 'right',
       category: ['GRAPHIC'],
       link: '/posters',
-      image: null,
+      image: posterMain,
       embedUrl: null
     }
   ];

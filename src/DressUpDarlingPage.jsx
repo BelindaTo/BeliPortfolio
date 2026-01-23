@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./DressUpDarlingPage.css";
 import Footer from "./footer";
 
@@ -18,6 +18,10 @@ import pinkImage from "./images/pink.png";
 import greenImage from "./images/green.png";
 
 export default function DressUpDarlingPage() {
+  useEffect(() => {
+    document.title = "Dress-Up Darling — Belinda To";
+  }, []);
+
   return (
     <div className="dress-up-page">
 

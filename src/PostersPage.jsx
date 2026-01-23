@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './PostersPage.css';
 import Footer from './footer';
+import posterMain from './images/poster-main.png';
 
 const PostersPage = () => {
+  useEffect(() => {
+    document.title = "Posters — Belinda To";
+  }, []);
+
   return (
     <div className="posters-page">
       {/* INTRO SECTION */}
@@ -13,14 +18,16 @@ const PostersPage = () => {
         <div className="posters-content">
           <div className="posters-text">
             <h1 className="posters-title">
-              POSTERS
+              FLUFF & FLOUR
             </h1>
             <p className="posters-software">SOFTWARE</p>
             <p className="posters-tools">ADOBE ILLUSTRATOR, ADOBE PHOTOSHOP</p>
           </div>
           
           <div className="posters-image">
-            <div className="image-placeholder">Image Placeholder</div>
+            <div className="image-placeholder">
+            <img src={posterMain} alt="Poster images" />
+            </div>
           </div>
         </div>
       </div>

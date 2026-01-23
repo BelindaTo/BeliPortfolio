@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './WispSodasPage.css';
 import Footer from './footer';
 import soda1 from './images/Soda1.png';
@@ -11,6 +11,10 @@ import canSky from './images/cansky.png';
 import twoCans from './images/2cans.png';
 
 const WispSodasPage = () => {
+  useEffect(() => {
+    document.title = "Wisp Sodas — Belinda To";
+  }, []);
+
   return (
     <div className="wisp-sodas-page">
       {/* INTRO SECTION */}

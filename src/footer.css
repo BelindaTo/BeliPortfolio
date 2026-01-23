@@ -2,29 +2,32 @@
     width: 100%;
     padding: 0;
     margin: 0;
+    margin-top: auto; /* Push footer to bottom */
     display: block;
-    background-color: #fffcf2; /* cream background */
-    
+    background-color: #fffcf2;
     background-image:
       linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
-  
     background-size: 80px 80px;
     background-position: 0 -30px;
     position: relative;
     z-index: 3;
     overflow: visible;
+    flex-shrink: 0; /* Prevent footer from shrinking */
   }
   
   .footer-background {
     width: 100%;
     height: auto;
     display: block;
+    min-height: 300px; /* Ensure minimum height */
+    object-fit: cover;
+    object-position: bottom;
   }
   
   .footer-content {
     position: absolute;
-    bottom: 150px !important;
+    bottom: 150px;
     right: 120px;
     display: flex;
     gap: 150px;
@@ -41,14 +44,14 @@
   .footer-heading {
     font-size: 24px;
     font-weight: 800;
-    color: #ffffff;
+    color: #76BDFF;
     letter-spacing: 0.08em;
     margin: 0 0 10px 0;
   }
   
   .footer-link {
     font-size: 20px;
-    font-weight: 400 !important;
+    font-weight: 400;
     color: #ffffff;
     text-decoration: none;
     transition: opacity 0.3s ease;
@@ -58,17 +61,49 @@
   .footer-link:hover {
     opacity: 0.7;
   }
+  /* =========================
+   ADD THESE TO YOUR App.css
+   (fixes footer gap issue)
+========================= */
+
+/* Make all pages fill viewport and use flexbox */
+.about-page,
+.projects-page,
+.wisp-sodas-page,
+.dress-up-darling-page,
+.posters-page,
+.music-player-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Transition sections grow to fill remaining space */
+.about-transition-section,
+.transition-section {
+  flex-grow: 1;
+  min-height: 150px;
+}
   
   /* Responsive */
   @media (max-width: 1024px) {
     .footer-content {
       gap: 100px;
       right: 80px;
-      bottom: 50px;
+      bottom: 100px;
     }
   }
   
   @media (max-width: 768px) {
+    .site-footer {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .footer-background {
+      min-height: 200px;
+    }
+  
     .footer-content {
       position: relative;
       flex-direction: column;
@@ -78,70 +113,27 @@
       bottom: auto;
       background: #022764;
     }
-    
+  
     .footer-heading {
       font-size: 20px;
     }
-    
+  
     .footer-link {
       font-size: 18px;
     }
   }
-
-  .footer {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    display: block;
-    background-color: #fffcf2; /* cream background */
-    
-    background-image:
-      linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
   
-    background-size: 80px 80px;
-    background-position: 0 -30px;
-    position: relative;
-    z-index: 3;
-    overflow: visible;
+  @media (max-width: 480px) {
+    .footer-content {
+      padding: 30px 20px;
+      gap: 30px;
+    }
+  
+    .footer-heading {
+      font-size: 18px;
+    }
+  
+    .footer-link {
+      font-size: 16px;
+    }
   }
-  
-  .footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #fffcf2;
-    z-index: 5;
-  }
-  
-  .footer-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    position: relative;
-    z-index: 10;
-  }
-  
-  .footer-links {
-    position: absolute;
-    top: 50%;
-    right: 120px;
-    display: flex;
-    gap: 120px;
-    z-index: 100;
-    transform: translateY(-50%);
-  }
-  
-  .footer-link {
-    color: #ffffff;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    position: relative;
-    white-space: nowrap;
-  }
-  
