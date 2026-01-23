@@ -72,7 +72,7 @@ export default function DressUpDarlingPage() {
           <div className="game-header">
             <h2 className="game-section-title">PLAY THE GAME</h2>
             <p className="game-instructions">
-            Please click the game screen once, use WASD to move around as the cat and dress up your darling! Once spawned, please click on the screen once more. Spawn as many variants as you like! Enjoy!            </p>
+            Please click the game screen once, use WASD or arrow keys to move around as the cat and dress up your darling! Once spawned, please click on the screen once more. Spawn as many variants as you like! Enjoy!            </p>
           </div>
 
           <div className="game-embed">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProjectsPage.css';
 import canMockup from './images/canmockup.png';
+import scaffoldMain from "./images/scaffold-main.png";
 
 const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] = useState('APPS');
@@ -17,7 +18,7 @@ const ProjectsPage = () => {
       imageAlign: 'right',
       category: ['APPS'],
       link: null,
-      image: null,
+      image: scaffoldMain,
       embedUrl: null
     },
     {
