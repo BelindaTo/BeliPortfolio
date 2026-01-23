@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './ProjectsPage.css';
 import canMockup from './images/canmockup.png';
 import scaffoldMain from "./images/scaffold-main.png";
+import pickiMain from "./images/picki-main.png";
 
 const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] = useState('APPS');
@@ -17,7 +18,7 @@ const ProjectsPage = () => {
       description: 'An AI-powered grant app that checks eligibility and assists with applications for apprentices.',
       imageAlign: 'right',
       category: ['APPS'],
-      link: null,
+      link: '/scaffold',
       image: scaffoldMain,
       embedUrl: null
     },
@@ -29,7 +30,7 @@ const ProjectsPage = () => {
       imageAlign: 'left',
       category: ['APPS'],
       link: null,
-      image: null,
+      image: pickiMain,
       embedUrl: null
     },
     {
