@@ -114,6 +114,8 @@ body {
   text-decoration: none;
   position: relative;
   align-items: right;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 /* Underline hover */
@@ -124,14 +126,14 @@ body {
   bottom: -8px;
   width: 100%;
   height: 1.5px;
-  background: #ff91ba;
+  background: #6db5e3;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #ff91ba !important;
+  color: #6db5e3 !important;
 }
 
 .nav-link:hover::after {
@@ -153,6 +155,14 @@ body {
     transform 1s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.6s ease;
 }
+
+
+
+.nav-link.active {
+  color: #6db5e3 !important;
+  font-weight: 700;
+}
+
 
 /* Mobile navbar */
 @media (max-width: 768px) {
@@ -560,10 +570,8 @@ body {
 
 .featured-section {
   position: relative;
-  padding: 160px 120px;
-  padding: 150px 120px 150px; /* top | sides | bottom */
-  background: #FFE2ED; /* SOLID */
-
+  padding: 160px 120px 150px;
+  background: #FFE2ED;
 }
 
 .featured-inner {
@@ -574,14 +582,19 @@ body {
   gap: 120px;
   align-items: center;
   min-height: 80vh;
+  position: relative;
+  padding-top: 100px;
 }
 
-.featured-label {
+/* Target the ScrollRevealText wrapper for FEATURED WORK */
+.featured-text > p:first-child {
+  position: absolute;
+  top: -60px;
+  left: 0;
   font-size: 64px;
   font-weight: 800;
   color: #0a2a66;
-  margin-bottom: 40px;
-  margin-top: -60px;   /* ← MOVE UP */
+  text-transform: uppercase;
 }
 
 .featured-title {
@@ -589,7 +602,7 @@ body {
   font-weight: 900;
   color: #ff8fb7;
   margin-bottom: 12px;
-  margin-top: 130px;
+  margin-top: 0;
 }
 
 .featured-role {
@@ -612,7 +625,7 @@ body {
   background: #ff9bbf;
   color: #000;
   border: none;
-  padding: 16px 44px;
+  padding: 20px 60px;
   border-radius: 14px;
   font-weight: 700;
   cursor: pointer;
@@ -648,8 +661,8 @@ body {
   display: block;
 }
 .featured-text {
-  align-self: flex-start;
-  margin-top: -80px;
+  align-self: center;
+  margin-top: 0;
 }
 
 /* Mobile featured section */

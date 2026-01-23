@@ -1,9 +1,9 @@
 import React from 'react';
 import './WispSodasPage.css';
+import Footer from './footer';
 import soda1 from './images/Soda1.png';
 import soda2 from './images/Soda2.png';
 import soda3 from './images/Soda3.png';
-import footerImage from './images/footer.png';
 import canmockup from './images/canmockup.png';
 import canmockup2 from './images/canmockup-2.png';
 import stackedCans from './images/stacked-cans.png';
@@ -110,13 +110,7 @@ const WispSodasPage = () => {
       </div>
 
       {/* FOOTER */}
-      <footer className="footer">
-        <img src={footerImage} alt="Footer" className="footer-image" />
-        <div className="footer-links">
-          <a href="/" className="footer-link">SITE MAP</a>
-          <a href="/contact" className="footer-link">CONTACT</a>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

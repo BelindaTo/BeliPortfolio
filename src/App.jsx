@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import "./App.css";
 import logo from "./assets/Logo.svg";
 import ProjectsPage from "./ProjectsPage";
 import WispSodasPage from "./WispSodasPage";
 import DressUpDarlingPage from "./DressUpDarlingPage";
+import PostersPage from "./PostersPage";
+import MusicPlayerPage from "./MusicPlayerPage";
+import AboutPage from "./AboutPage";
+import Footer from "./footer";
 
 import designerBear from "./images/designer-bear.png";
 import developerBear from "./images/developer-bear.png";
 import ideatorBear from "./images/ideator-bear.png";
-// import scaffoldImage from "./images/Scaffold-image.png";
 import scaffoldHero from "./images/scaffold-hero.png";
-import footerImage from "./images/footer.png";
 
 
 /* =========================
@@ -361,13 +363,7 @@ function LandingPage() {
       </section>
 
       {/* ================= FOOTER ================= */}
-      <footer className="footer">
-        <img src={footerImage} alt="Footer" className="footer-image" />
-        <div className="footer-links">
-          <a href="/" className="footer-link">SITE MAP</a>
-          <a href="/contact" className="footer-link">CONTACT</a>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
@@ -378,11 +374,16 @@ function LandingPage() {
 
 function Navbar() {
   const [loaded, setLoaded] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 120);
     return () => clearTimeout(t);
   }, []);
+
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   return (
     <nav className="navbar">
@@ -392,9 +393,9 @@ function Navbar() {
         </Link>
 
         <div className={`nav-links ${loaded ? "nav-loaded" : ""}`}>
-          <Link to="/projects" className="nav-link">PROJECTS</Link>
-          <Link to="/about" className="nav-link">ABOUT ME</Link>
-          <Link to="/contact" className="nav-link">CONTACT</Link>
+          <Link to="/projects" className={`nav-link ${isActive('/projects') ? 'active' : ''}`}>PROJECTS</Link>
+          <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>ABOUT ME</Link>
+          <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>CONTACT</Link>
         </div>
       </div>
     </nav>
@@ -415,10 +416,9 @@ export default function App() {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/wisp-sodas" element={<WispSodasPage />} />
         <Route path="/dress-up-darling" element={<DressUpDarlingPage />} />
-        <Route
-          path="/about"
-          element={<div style={{ paddingTop: 140 }}>About Page</div>}
-        />
+        <Route path="/posters" element={<PostersPage />} />
+        <Route path="/music-player" element={<MusicPlayerPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </>
   );

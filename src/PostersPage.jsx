@@ -1,5 +1,6 @@
 import React from 'react';
 import './PostersPage.css';
+import Footer from './footer';
 
 const PostersPage = () => {
   return (
@@ -98,15 +99,7 @@ const PostersPage = () => {
       </div>
 
       {/* FOOTER */}
-      <footer className="footer">
-        <div className="footer-image" style={{ height: '400px', background: '#333' }}>
-          {/* Footer placeholder - replace with your footer image */}
-        </div>
-        <div className="footer-links">
-          <a href="/" className="footer-link">SITE MAP</a>
-          <a href="/contact" className="footer-link">CONTACT</a>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
