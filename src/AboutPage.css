@@ -1,0 +1,615 @@
+.about-page {
+    min-height: 100vh;
+    background: #fffcf2;
+    animation: pageEnter 0.6s ease-out;
+  }
+  
+  @keyframes pageEnter {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ================= LICENSE SECTION ================= */
+  
+  .license-section {
+    position: relative;
+    min-height: 100vh;
+    padding: 140px 120px 80px;
+    background: #fffcf2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    animation: fadeInUp 0.3s ease-out backwards;
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .license-container {
+    max-width: 1000px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .license-card {
+    width: 100%;
+    height: auto;
+    border-radius: 51px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    display: block;
+    transition: transform 0.3s ease;
+    animation: scaleIn 1s ease-out 0.3s backwards;
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  .license-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Decorative stars */
+  .license-star {
+    position: absolute;
+    opacity: 0.4;
+    z-index: 1;
+    clip-path: polygon(
+      50% 0%,
+      61% 35%,
+      100% 50%,
+      61% 65%,
+      50% 100%,
+      39% 65%,
+      0% 50%,
+      39% 35%
+    );
+  }
+  
+  .license-star-1 {
+    top: 15%;
+    right: 10%;
+    width: 250px;
+    height: 250px;
+    background: #ffa8d4;
+    transform: rotate(15deg);
+    animation: floatStar1 12s ease-in-out infinite, starAppear 1s ease-out 0.5s backwards;
+  }
+  
+  .license-star-2 {
+    bottom: 20%;
+    left: 8%;
+    width: 200px;
+    height: 200px;
+    background: #a8d5f0;
+    transform: rotate(-20deg);
+    animation: floatStar2 10s ease-in-out infinite, starAppear 1s ease-out 0.6s backwards;
+  }
+  
+  .license-star-3 {
+    top: 50%;
+    right: 15%;
+    width: 150px;
+    height: 150px;
+    background: #d4a5f0;
+    transform: rotate(25deg);
+    animation: floatStar3 14s ease-in-out infinite, starAppear 1s ease-out 0.7s backwards;
+  }
+  
+  @keyframes starAppear {
+    from {
+      opacity: 0;
+      transform: scale(0) rotate(0deg);
+    }
+    to {
+      opacity: 0.4;
+      transform: scale(1) rotate(15deg);
+    }
+  }
+  
+  @keyframes floatStar1 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(15deg);
+    }
+    25% {
+      transform: translate(20px, -20px) rotate(105deg);
+    }
+    50% {
+      transform: translate(-15px, -30px) rotate(195deg);
+    }
+    75% {
+      transform: translate(-25px, -10px) rotate(285deg);
+    }
+  }
+  
+  @keyframes floatStar2 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(-20deg);
+    }
+    25% {
+      transform: translate(-25px, 20px) rotate(-110deg);
+    }
+    50% {
+      transform: translate(20px, 35px) rotate(-200deg);
+    }
+    75% {
+      transform: translate(30px, 15px) rotate(-290deg);
+    }
+  }
+  
+  @keyframes floatStar3 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(25deg);
+    }
+    25% {
+      transform: translate(15px, -25px) rotate(115deg);
+    }
+    50% {
+      transform: translate(-20px, -20px) rotate(205deg);
+    }
+    75% {
+      transform: translate(10, 25px) rotate(295deg);
+    }
+  }
+  
+  /* ================= BIO SECTION ================= */
+  
+  .bio-section {
+    min-height: 90vh;
+    margin-top: 80px;
+    padding: 120px 120px;
+    background: #fffcf2;
+    background-image:
+      linear-gradient(rgba(255, 145, 186, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 145, 186, 0.15) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-position: 0 0;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out 0.3s backwards;
+  }
+  
+  .bio-section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 150px;
+    background: linear-gradient(
+      to bottom,
+      rgba(252, 228, 236, 0) 0%,
+      rgba(252, 228, 236, 0.5) 50%,
+      #fce4ec 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .bio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 3;
+  }
+  
+  .bio-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: #5bb0ff;
+    letter-spacing: 0.02em;
+    margin-bottom: 40px;
+  }
+  
+  .bio-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #022764;
+    margin-bottom: 24px;
+  }
+  
+  /* ================= BEYOND THE SCREEN SECTION ================= */
+  
+  .beyond-section {
+    min-height: 180vh;
+    padding: 120px 120px;
+    background: #fce4ec;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out 0.5s backwards;
+  }
+  
+  .beyond-section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(252, 228, 236, 0) 0%, #fffcf2 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .beyond-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .beyond-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: #5bb0ff;
+    letter-spacing: 0.02em;
+    margin-bottom: 40px;
+  }
+  
+  .beyond-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #022764;
+    margin-bottom: 24px;
+    max-width: 1200px;
+  }
+  
+  .beyond-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 60px;
+  }
+  
+  .beyond-image {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    position: relative;
+    animation: imageSlideIn 0.8s ease-out backwards;
+  }
+  
+  .beyond-image:nth-child(1) {
+    animation-delay: 0.6s;
+  }
+  
+  .beyond-image:nth-child(2) {
+    animation-delay: 0.7s;
+  }
+  
+  .beyond-image:nth-child(3) {
+    animation-delay: 0.8s;
+  }
+  
+  @keyframes imageSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .beyond-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  .beyond-image:hover img {
+    transform: scale(1.05);
+  }
+  
+  /* Hover overlay */
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 145, 186, 0.86);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 40px;
+  }
+  
+  .beyond-image:hover .image-overlay {
+    opacity: 1;
+  }
+  
+  .overlay-text {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.4;
+    margin: 0;
+  }
+  
+  .beyond-image-large {
+    grid-row: span 2;
+  }
+  
+  .beyond-image-small {
+    aspect-ratio: 4 / 3;
+  }
+  
+  /* ================= TRANSITION SECTION ================= */
+  
+  .about-transition-section {
+    height: 35vh;
+    background: #fffcf2;
+    background-image:
+      linear-gradient(rgba(255, 145, 186, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 145, 186, 0.15) 1px, transparent 1px);
+    background-size: 80px 80px;
+    background-position: 0 0;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out 0.7s backwards;
+  }
+  
+  /* ================= TRANSITION STARS ================= */
+  
+  .transition-star {
+    position: absolute;
+    background: #5bb0ff;
+    z-index: 10;
+    clip-path: polygon(
+      50% 0%,
+      61% 35%,
+      100% 50%,
+      61% 65%,
+      50% 100%,
+      39% 65%,
+      0% 50%,
+      39% 35%
+    );
+    will-change: transform;
+  }
+  
+  .transition-star-1 {
+    top: 30%;
+    left: 10%;
+    width: 200px;
+    height: 200px;
+    background: #0a2a66;
+    animation: floatSpin1 8s ease-in-out infinite, transitionStarAppear 1s ease-out 0.8s backwards;
+  }
+  
+  .transition-star-2 {
+    top: 0%;
+    right: 10%;
+    width: 140px;
+    height: 140px;
+    background: #ff91ba;
+    animation: floatSpin2 10s ease-in-out infinite, transitionStarAppear 1s ease-out 0.9s backwards;
+  }
+  
+  .transition-star-3 {
+    bottom: 70%;
+    left: 45%;
+    width: 70px;
+    height: 70px;
+    background: #6db5e3;
+    animation: floatSpin3 12s ease-in-out infinite, transitionStarAppear 1s ease-out 1s backwards;
+  }
+  
+  .transition-star-4 {
+    top: 60%;
+    right: 30%;
+    width: 100px;
+    height: 100px;
+    background: #ff91ba;
+    animation: floatSpin4 9s ease-in-out infinite, transitionStarAppear 1s ease-out 1.1s backwards;
+  }
+  
+  @keyframes transitionStarAppear {
+    from {
+      opacity: 0;
+      transform: scale(0) rotate(0deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+  
+  @keyframes floatSpin1 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(30px, -20px) rotate(90deg);
+    }
+    50% {
+      transform: translate(-20px, -35px) rotate(180deg);
+    }
+    75% {
+      transform: translate(-35px, -10px) rotate(270deg);
+    }
+  }
+  
+  @keyframes floatSpin2 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(-40px, 25px) rotate(-90deg);
+    }
+    50% {
+      transform: translate(20px, 40px) rotate(-180deg);
+    }
+    75% {
+      transform: translate(35px, 15px) rotate(-270deg);
+    }
+  }
+  
+  @keyframes floatSpin3 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(25px, 30px) rotate(90deg);
+    }
+    50% {
+      transform: translate(-30px, 20px) rotate(180deg);
+    }
+    75% {
+      transform: translate(15px, -25px) rotate(270deg);
+    }
+  }
+  
+  @keyframes floatSpin4 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(-30px, -25px) rotate(-90deg);
+    }
+    50% {
+      transform: translate(25px, -40px) rotate(-180deg);
+    }
+    75% {
+      transform: translate(40px, 20px) rotate(-270deg);
+    }
+  }
+  
+  /* ================= RESPONSIVE ================= */
+  
+  @media (max-width: 1024px) {
+    .license-section {
+      padding: 120px 60px 60px;
+    }
+  
+    .license-star-1 {
+      width: 180px;
+      height: 180px;
+    }
+  
+    .license-star-2 {
+      width: 150px;
+      height: 150px;
+    }
+  
+    .license-star-3 {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .bio-section,
+    .beyond-section {
+      padding: 80px 60px;
+    }
+  
+    .bio-title,
+    .beyond-title {
+      font-size: 36px;
+    }
+  
+    .beyond-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .beyond-image-large {
+      grid-row: span 1;
+      aspect-ratio: 4 / 3;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .license-section {
+      padding: 100px 40px 60px;
+    }
+  
+    .license-card {
+      border-radius: 20px;
+    }
+  
+    .license-star-1,
+    .license-star-2,
+    .license-star-3 {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .bio-section,
+    .beyond-section {
+      padding: 60px 40px;
+    }
+  
+    .bio-title,
+    .beyond-title {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+  
+    .bio-text,
+    .beyond-text {
+      font-size: 16px;
+    }
+  
+    .beyond-grid {
+      margin-top: 40px;
+      gap: 16px;
+    }
+  
+    .overlay-text {
+      font-size: 18px;
+      padding: 20px;
+    }
+  
+    .about-transition-section {
+      height: 40vh;
+    }
+  
+    .transition-star-1 {
+      width: 120px;
+      height: 120px;
+      left: 5%;
+    }
+  
+    .transition-star-2 {
+      width: 80px;
+      height: 80px;
+      right: 5%;
+    }
+  
+    .transition-star-3 {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .transition-star-4 {
+      width: 70px;
+      height: 70px;
+      right: 15%;
+    }
+  }

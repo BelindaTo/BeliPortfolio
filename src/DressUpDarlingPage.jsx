@@ -1,5 +1,6 @@
 import React from "react";
 import "./DressUpDarlingPage.css";
+import Footer from "./footer";
 
 import bodyImage from "./images/body.png";
 import pajamasImage from "./images/pajamas.png";
@@ -61,6 +62,12 @@ export default function DressUpDarlingPage() {
 
       {/* Game */}
       <section className="game-section">
+        {/* Large decorative stars behind the game */}
+        <div className="game-star game-star-1" />
+        <div className="game-star game-star-2" />
+        <div className="game-star game-star-3" />
+        <div className="game-star game-star-4" />
+        
         <div className="game-container">
           <div className="game-header">
             <h2 className="game-section-title">PLAY THE GAME</h2>
@@ -132,6 +139,8 @@ export default function DressUpDarlingPage() {
 
       {/* Grid */}
       <section className="grid-section" />
+      {/* FOOTER */}
+      <Footer />
     </div>
   );
 }
