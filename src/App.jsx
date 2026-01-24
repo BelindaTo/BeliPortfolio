@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
+import Lenis from "lenis";
 import "./App.css";
 import logo from "./assets/Logo.svg";
 import ProjectsPage from "./ProjectsPage";
@@ -9,12 +10,66 @@ import PostersPage from "./PostersPage";
 import MusicPlayerPage from "./MusicPlayerPage";
 import AboutPage from "./AboutPage";
 import Footer from "./footer";
+import ContactPage from './ContactPage';
 
 import designerBear from "./images/designer-bear.png";
 import developerBear from "./images/developer-bear.png";
 import ideatorBear from "./images/ideator-bear.png";
 import scaffoldHero from "./images/scaffold-hero.png";
+import scaffoldMain from "./images/scaffold-main.png";
 
+
+/* =========================
+   SMOOTH SCROLL (LENIS)
+========================= */
+
+function SmoothScroll({ children }) {
+  const lenisRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    lenisRef.current = lenis;
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
+  // Scroll to top on route change
+  useLayoutEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+  }, [location.pathname]);
+
+  return children;
+}
+
+
+/* =========================
+   LAYOUT WRAPPER
+========================= */
+
+function Layout({ children }) {
+  return (
+    <SmoothScroll>
+      {children}
+    </SmoothScroll>
+  );
+}
 
 /* =========================
    CUSTOM CURSOR
@@ -197,7 +252,6 @@ function ScrollRevealText({ lines }) {
 
 function LandingPage() {
   const [loaded, setLoaded] = useState(false);
-  const transitionStarRef = useRef(null);
 
   // 👇 LAST ITEM = TOP CARD ON LOAD
   const [cards, setCards] = useState([
@@ -232,21 +286,32 @@ function LandingPage() {
   }, []);
 
   /* =========================
-     STAR PARALLAX
-  ========================= */
-  useEffect(() => {
-    const onScroll = () => {
-      if (!transitionStarRef.current) return;
+   FEATURED SECTION SCROLL ANIMATION
+========================= */
+useEffect(() => {
+  const featuredSection = document.querySelector('.featured-section');
+  
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        featuredSection.classList.add('in-view');
+      } else {
+        featuredSection.classList.remove('in-view');
+      }
+    },
+    { threshold: 0.2 }
+  );
 
-      transitionStarRef.current.style.transform = `
-        translateY(${window.scrollY * 0.15}px)
-        rotate(-8deg)
-      `;
-    };
+  if (featuredSection) {
+    observer.observe(featuredSection);
+  }
 
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  return () => {
+    if (featuredSection) {
+      observer.unobserve(featuredSection);
+    }
+  };
+}, []);
 
   const handleCardClick = (e) => {
     e.stopPropagation();
@@ -328,35 +393,34 @@ function LandingPage() {
 
       {/* ================= FEATURED WORK ================= */}
       <section className="featured-section">
-        <div className="featured-inner">
-          <div className="featured-text">
-          <ScrollRevealText
-  lines={[
-    ["FEATURED WORK"],
-  ]}
-/>
-            <h3 className="featured-title">SCAFFOLD</h3>
-            <p className="featured-role">
-              LEAD DESIGNER / FRONT-END DEVELOPER
-            </p>
-            <p className="featured-desc">
-              An AI-powered grant app that checks eligibility and assists with
-              applications for apprentices.
-            </p>
-            <button className="featured-btn">VIEW</button>
-          </div>
+        <div className="featured-background-text">SCAFFOLD</div>
+        
+        <div className="featured-container">
+          <h2 className="featured-label">FEATURED WORK</h2>
+          
+          <div className="featured-inner">
+            <div className="featured-text">
+              <h3 className="featured-title">SCAFFOLD</h3>
+              <p className="featured-role">
+                LEAD DESIGNER / FRONT-END DEVELOPER
+              </p>
+              <p className="featured-desc">
+                An AI-powered grant app that checks eligibility and assists with
+                applications for apprentices.
+              </p>
+              <button className="featured-btn">VIEW CASE STUDY</button>
+            </div>
 
-          <div class="image-wrapper">
-          <div className="featured-image">
-            <img src={scaffoldHero} alt="Scaffold App" />
-          </div>
+            <div className="featured-image">
+              <img src={scaffoldMain} alt="Scaffold App" />
+            </div>
           </div>
         </div>
       </section>
 
       {/* ================= TRANSITION ================= */}
       <section className="transition-section">
-        <div className="transition-star transition-star-1" ref={transitionStarRef} />
+        <div className="transition-star transition-star-1" />
         <div className="transition-star transition-star-2" />
         <div className="transition-star transition-star-3" />
         <div className="transition-star transition-star-4" />
@@ -408,7 +472,7 @@ function Navbar() {
 
 export default function App() {
   return (
-    <>
+    <Layout>
       <CustomCursor />
       <Navbar />
       <Routes>
@@ -419,7 +483,8 @@ export default function App() {
         <Route path="/posters" element={<PostersPage />} />
         <Route path="/music-player" element={<MusicPlayerPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
-    </>
+    </Layout>
   );
 }

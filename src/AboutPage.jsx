@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './AboutPage.css';
 import Footer from './footer';
 import licenseImage from './images/license.jpg';
@@ -7,6 +7,10 @@ import coachingImage from './images/coaching.jpg';
 import blackpinkImage from './images/blackpink.jpg';
 
 const AboutPage = () => {
+  useEffect(() => {
+    document.title = "About — Belinda To";
+  }, []);
+
   return (
     <div className="about-page">
       {/* HERO SECTION - License Card */}
