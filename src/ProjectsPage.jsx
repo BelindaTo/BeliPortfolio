@@ -73,7 +73,7 @@ const ProjectsPage = () => {
     },
     {
       id: 6,
-      title: 'POSTERS',
+      title: 'FLUFF & FLOUR',
       role: 'GRAPHIC DESIGNER',
       description: 'A collection of poster designs showcasing creative concepts and visual storytelling.',
       imageAlign: 'right',

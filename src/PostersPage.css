@@ -179,6 +179,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 24px;
   }
   
   .about-image-placeholder {
@@ -195,15 +196,15 @@
   }
   
   .about-title {
-    font-size: 48px;
+    font-size: 48px !important;
     font-weight: 800;
-    color: #5bb0ff;
+    color: #76BDFF;
     letter-spacing: 0.02em;
     margin: 0 0 16px 0;
   }
   
   .about-paragraph {
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.7;
     color: #000;
     margin: 0;
@@ -229,24 +230,25 @@
   
   .gallery-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1800px;
     display: flex;
-    flex-direction: column;
-    gap: 60px;
-    padding: 0 120px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 60px;
     position: relative;
     z-index: 5;
   }
   
   .poster-card {
-    width: 100%;
+    flex: 1 1 360px; /* grow + preferred size */
+    max-width: 650px;
     display: flex;
     justify-content: center;
   }
   
   .poster-image {
     width: 100%;
-    max-width: 100%;
     height: auto;
     background: transparent;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
@@ -254,12 +256,14 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-radius: 12px;
   }
   
   .poster-image img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 12px;
   }
   
   .poster-placeholder {
@@ -368,6 +372,7 @@
   }
   
   .mockup-large {
+    aspect-ratio: 4 / 5;
     grid-row: span 2;
     background: #f0f0f0;
     border-radius: 16px;
@@ -411,7 +416,7 @@
   
   .mockup-small:last-child {
     flex: 1;
-    min-height: 400px;
+    min-height: 380px;
   }
   
   .mockup-small img {
@@ -508,8 +513,12 @@
     }
   
     .gallery-container {
-      gap: 40px;
-      padding: 0 60px;
+      gap: 30px;
+      padding: 0 40px;
+    }
+
+    .poster-card {
+      max-width: 250px;
     }
   
     .gallery-star-1,
@@ -554,8 +563,14 @@
     }
   
     .gallery-container {
+      flex-direction: column;
+      align-items: center;
       gap: 30px;
       padding: 0 40px;
+    }
+
+    .poster-card {
+      max-width: 280px;
     }
   
     .poster-placeholder {
