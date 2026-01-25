@@ -12,11 +12,14 @@ import AboutPage from "./AboutPage";
 import Footer from "./footer";
 import ContactPage from './ContactPage';
 
+
 import designerBear from "./images/designer-bear.png";
+import makerBear from "./images/maker-bear.png";
 import developerBear from "./images/developer-bear.png";
 import ideatorBear from "./images/ideator-bear.png";
 import scaffoldHero from "./images/scaffold-hero.png";
 import scaffoldMain from "./images/scaffold-main.png";
+import ScaffoldPage from './ScaffoldPage';
 
 
 /* =========================
@@ -256,8 +259,9 @@ function LandingPage() {
   // 👇 LAST ITEM = TOP CARD ON LOAD
   const [cards, setCards] = useState([
     {
-      id: "d",
+      id: "maker",
       className: "card-d",
+      image: makerBear,
     },
     {
       id: "ideator",
@@ -408,7 +412,9 @@ useEffect(() => {
                 An AI-powered grant app that checks eligibility and assists with
                 applications for apprentices.
               </p>
-              <button className="featured-btn">VIEW CASE STUDY</button>
+              <Link to="/scaffold">
+                  <button className="featured-btn">VIEW CASE STUDY</button>
+              </Link>
             </div>
 
             <div className="featured-image">
@@ -484,6 +490,7 @@ export default function App() {
         <Route path="/music-player" element={<MusicPlayerPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/scaffold" element={<ScaffoldPage />} />
       </Routes>
     </Layout>
   );
