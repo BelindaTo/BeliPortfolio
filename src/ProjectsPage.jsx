@@ -5,6 +5,7 @@ import canMockup from './images/canmockup.png';
 import scaffoldMain from "./images/scaffold-main.png";
 import pickiMain from "./images/picki-main.png";
 import posterMain from './images/poster-main.png';
+import playlistMockup from './images/playlist-mockup.png';
 
 const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] = useState('APPS');
@@ -46,7 +47,7 @@ const ProjectsPage = () => {
       imageAlign: 'left',
       category: ['INTERACTIVE'],
       link: '/music-player',
-      image: null,
+      image: playlistMockup,
       embedUrl: null
     },
     {

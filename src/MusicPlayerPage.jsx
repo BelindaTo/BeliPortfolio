@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import './MusicPlayerPage.css';
 import Footer from './footer';
+import playlistMockup from './images/playlist-mockup.png';
+
 
 const MusicPlayerPage = () => {
   useEffect(() => {
@@ -24,7 +26,7 @@ const MusicPlayerPage = () => {
           </div>
           
           <div className="music-image">
-            <div className="image-placeholder">Image Placeholder</div>
+            <img src={playlistMockup} alt="Playlist Mockup" />
           </div>
         </div>
       </div>
