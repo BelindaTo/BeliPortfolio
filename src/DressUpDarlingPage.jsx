@@ -16,6 +16,7 @@ import braidImage from "./images/braid.png";
 import purpleImage from "./images/purple.png";
 import pinkImage from "./images/pink.png";
 import greenImage from "./images/green.png";
+import dressUpMockup from "./images/dress-up-mockup.png";
 
 export default function DressUpDarlingPage() {
   useEffect(() => {
@@ -46,21 +47,29 @@ export default function DressUpDarlingPage() {
             </div>
           </div>
 
-          <div className="project-info-image" />
+          <div className="project-info-image">
+            <img src={dressUpMockup} alt="Dress-Up Darling Mockup" />
+          </div>
         </div>
       </section>
 
       {/* About */}
       <section className="about-section pink-bg">
         <div className="about-container">
-          <h2 className="about-title">ABOUT DRESS-UP DARLING</h2>
-          <p className="about-text">
-            Dress Up Darling is a 90s-inspired browser game designed to bring back the simple joy
-            of classic dress-up games through a playful and nostalgic experience. The challenge
-            was to create an interface that felt comforting and intuitive while still appealing
-            to a modern audience. The final solution focuses on creative self-expression through
-            soft visuals and gentle interactions.
-          </p>
+          <div className="about-image">
+            <div className="about-image-placeholder">Image Placeholder</div>
+          </div>
+          
+          <div className="about-text-container">
+            <h2 className="about-title">ABOUT DRESS-UP DARLING</h2>
+            <p className="about-text">
+              Dress Up Darling is a 90s-inspired browser game designed to bring back the simple joy
+              of classic dress-up games through a playful and nostalgic experience. The challenge
+              was to create an interface that felt comforting and intuitive while still appealing
+              to a modern audience. The final solution focuses on creative self-expression through
+              soft visuals and gentle interactions.
+            </p>
+          </div>
         </div>
       </section>
 

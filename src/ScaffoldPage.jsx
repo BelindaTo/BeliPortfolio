@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import './ScaffoldPage.css';
 import Footer from './footer';
-import scaffoldMain from './images/scaffold-main.png';
 import constructionWorker from './images/construction-worker_1.png';
 import moneyGrant from './images/money-grant_1.png';
 import scaffoldPhone from './images/scaffold-phone.png';
@@ -9,6 +8,10 @@ import talia from './images/talia.png';
 import lofi from './images/lofi.png';
 import midfi from './images/midfi.png';
 import hifi from './images/hi-fi.png';
+import styleguide from './images/styleguide.png';
+import userFlow from './images/user-flow.png';
+import logo1 from './images/logo1.png';
+import logo2 from './images/logo2.png';
 
 const ScaffoldPage = () => {
   useEffect(() => {
@@ -42,7 +45,7 @@ const ScaffoldPage = () => {
           </div>
           
           <div className="scaffold-intro-image">
-            <img src={scaffoldMain} alt="Scaffold Main" />
+            {/* Add your image here */}
           </div>
         </div>
       </section>
@@ -247,6 +250,16 @@ const ScaffoldPage = () => {
         </div>
       </section>
 
+      {/* USER FLOW SECTION */}
+      <section className="scaffold-userflow-section">
+        <div className="scaffold-userflow-content">
+          <h2 className="scaffold-userflow-title">USER FLOW</h2>
+          <div className="scaffold-userflow-image">
+            <img src={userFlow} alt="Scaffold User Flow" />
+          </div>
+        </div>
+      </section>
+
       {/* DESIGN PROCESSES SECTION */}
       <section className="scaffold-design-section">
         <div className="scaffold-design-content">
@@ -270,6 +283,49 @@ const ScaffoldPage = () => {
             <div className="scaffold-fidelity-item">
               <img src={hifi} alt="Hi-Fi Design" className="scaffold-fidelity-img" />
               <p className="scaffold-fidelity-label">Hi-Fi</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STYLEGUIDE SECTION */}
+      <section className="scaffold-styleguide-section">
+        <div className="scaffold-styleguide-content">
+          <h2 className="scaffold-styleguide-title">STYLEGUIDE</h2>
+          
+          <p className="scaffold-styleguide-paragraph">
+            The colour palette pairs orange and purple to reflect both familiarity and personality. Orange was kept because of its strong connection to construction and trade environments, where it's widely recognized and easy to associate with hands-on work. To balance this, a bright purple was introduced to bring in a more vibrant, modern edge. Instead of pairing orange with blue, a combination commonly seen in construction branding, purple was chosen to help the brand stand out while still maintaining high contrast and visual clarity.
+          </p>
+          
+          <p className="scaffold-styleguide-paragraph">
+            Typography supports the idea of structure and support that defines Scaffold. <em>Akira Expanded</em> is used for titles and key headings to communicate strength and stability, with wide, bold letterforms that visually echo the idea of scaffolding. <em>Montserrat</em> is used for body text to keep longer content clean, legible, and approachable. Together, the type choices create a balance between strong visual impact and everyday usability.
+          </p>
+          
+          <div className="scaffold-styleguide-image">
+            <img src={styleguide} alt="Scaffold Styleguide" />
+          </div>
+        </div>
+      </section>
+
+      {/* LOGO SECTION */}
+      <section className="scaffold-logo-section">
+        <div className="scaffold-logo-content">
+          <h2 className="scaffold-logo-title">LOGO</h2>
+          
+          <div className="scaffold-logo-layout">
+            <div className="scaffold-logo-text">
+              <p className="scaffold-logo-paragraph">
+                The Scaffold logo combines a stylized "S" made of interlocking bars, representing the layered structure of scaffolding and the step-by-step support the app provides. The rounded container shape keeps the mark approachable and app-friendly, while the orange and purple color scheme ties it back to the brand identity.
+              </p>
+              
+              <p className="scaffold-logo-paragraph">
+                Two versions were developed: a standalone icon for app use and compact spaces, and a lockup with the wordmark for broader brand applications.
+              </p>
+            </div>
+            
+            <div className="scaffold-logo-images">
+              <img src={logo1} alt="Scaffold Logo Icon" className="scaffold-logo-img logo-large" />
+              <img src={logo2} alt="Scaffold Logo with Wordmark" className="scaffold-logo-img logo-small" />
             </div>
           </div>
         </div>

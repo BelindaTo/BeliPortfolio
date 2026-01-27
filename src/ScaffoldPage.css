@@ -561,6 +561,38 @@
   margin-bottom: 6px;
 }
 
+/* ================= USER FLOW SECTION ================= */
+
+.scaffold-userflow-section {
+  padding: 100px 120px;
+  background: #fce4ec;
+}
+
+.scaffold-userflow-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.scaffold-userflow-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #6DB5E3;
+  letter-spacing: 0.05em;
+  margin: 0 0 40px 0;
+}
+
+.scaffold-userflow-image {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.scaffold-userflow-image img {
+  width: 100%;
+  height: auto;
+  min-width: 800px;
+}
+
 /* ================= DESIGN PROCESSES SECTION ================= */
 
 .scaffold-design-section {
@@ -587,7 +619,7 @@
   line-height: 1.8;
   color: #333;
   margin: 0 0 60px 0;
-  max-width: 1400px;
+  max-width: 1100px;
 }
 
 .scaffold-fidelity-container {
@@ -618,6 +650,111 @@
   font-weight: 600;
   color: #0a2a66;
   margin: 0;
+}
+
+/* ================= STYLEGUIDE SECTION ================= */
+
+.scaffold-styleguide-section {
+  padding: 100px 120px;
+  background: #fce4ec;
+}
+
+.scaffold-styleguide-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.scaffold-styleguide-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #6DB5E3;
+  letter-spacing: 0.05em;
+  margin: 0 0 30px 0;
+}
+
+.scaffold-styleguide-paragraph {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+.scaffold-styleguide-paragraph em {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.scaffold-styleguide-image {
+  margin-top: 50px;
+}
+
+.scaffold-styleguide-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+}
+
+/* ================= LOGO SECTION ================= */
+
+.scaffold-logo-section {
+  padding: 100px 120px;
+  background: #fce4ec;
+}
+
+.scaffold-logo-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.scaffold-logo-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #6DB5E3;
+  letter-spacing: 0.05em;
+  margin: 0 0 30px 0;
+}
+
+.scaffold-logo-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.scaffold-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.scaffold-logo-paragraph {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  margin: 0;
+}
+
+.scaffold-logo-images {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  align-items: flex-end;
+}
+
+.scaffold-logo-img {
+  object-fit: contain;
+}
+
+.scaffold-logo-img.logo-large {
+  height: 250px;
+  width: auto;
+}
+
+.scaffold-logo-img.logo-small {
+  height: 250px;
+  width: auto;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -684,6 +821,10 @@
     gap: 60px;
   }
   
+  .scaffold-userflow-section {
+    padding: 100px 60px;
+  }
+  
   .scaffold-design-section {
     padding: 100px 60px;
   }
@@ -694,6 +835,31 @@
   
   .scaffold-fidelity-img {
     max-width: 220px;
+  }
+  
+  .scaffold-styleguide-section {
+    padding: 100px 60px;
+  }
+  
+  .scaffold-logo-section {
+    padding: 100px 60px;
+  }
+  
+  .scaffold-logo-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .scaffold-logo-images {
+    gap: 40px;
+  }
+  
+  .scaffold-logo-img.logo-large {
+    height: 160px;
+  }
+  
+  .scaffold-logo-img.logo-small {
+    height: 120px;
   }
 }
 
@@ -795,5 +961,27 @@
   
   .scaffold-fidelity-img {
     max-width: 250px;
+  }
+  
+  .scaffold-styleguide-section {
+    padding: 80px 40px;
+  }
+  
+  .scaffold-logo-section {
+    padding: 80px 40px;
+  }
+  
+  .scaffold-logo-images {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .scaffold-logo-img.logo-large {
+    height: 140px;
+  }
+  
+  .scaffold-logo-img.logo-small {
+    height: 100px;
   }
 }
