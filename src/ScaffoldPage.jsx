@@ -4,6 +4,7 @@ import Footer from './footer';
 import constructionWorker from './images/construction-worker_1.png';
 import moneyGrant from './images/money-grant_1.png';
 import scaffoldPhone from './images/scaffold-phone.png';
+import scaffoldMain from './images/scaffold-main.png';
 import talia from './images/talia.png';
 import lofi from './images/lofi.png';
 import midfi from './images/midfi.png';
@@ -45,7 +46,7 @@ const ScaffoldPage = () => {
           </div>
           
           <div className="scaffold-intro-image">
-            {/* Add your image here */}
+            <img src={scaffoldMain} alt="Scaffold App" />
           </div>
         </div>
       </section>
@@ -76,26 +77,38 @@ const ScaffoldPage = () => {
         </div>
       </section>
 
-      {/* PROBLEM/SOLUTION SECTION */}
+      {/* PROBLEM SECTION */}
       <section className="scaffold-problem-section">
         <div className="scaffold-problem-content">
-          <div className="scaffold-phone-container">
-            <img src={scaffoldPhone} alt="Scaffold App" className="scaffold-phone-img" />
-          </div>
+          <p className="scaffold-section-label">02 – PROBLEM</p>
           
-          <div className="scaffold-problem-text">
-            <div className="scaffold-problem-block">
-              <h3 className="scaffold-problem-title">THE DECLINE IN TRADES WORKERS</h3>
-              <p className="scaffold-problem-paragraph">
-                Many apprentices struggle to access financial support due to confusing eligibility requirements and complex application systems. Limited time, long workdays, and unclear information cause many to miss out on funding entirely.
-              </p>
+          <div className="scaffold-problem-layout">
+            <div className="scaffold-stats-container">
+              <div className="scaffold-stat-card stat-blue">
+                <span className="stat-number">33%</span>
+                <span className="stat-label">of eligible apprentices apply</span>
+              </div>
+              
+              <div className="scaffold-stat-card stat-navy">
+                <span className="stat-number">66%</span>
+                <span className="stat-label">gain awareness post deadline</span>
+              </div>
             </div>
             
-            <div className="scaffold-problem-block">
-              <h3 className="scaffold-problem-title">HOW SCAFFOLD HELPS SOLVE THIS</h3>
-              <p className="scaffold-problem-paragraph">
-                Scaffold simplifies access to grants by checking eligibility upfront and guiding users through applications step by step. Clear language and structured flows reduce friction, making funding easier to understand and complete.
-              </p>
+            <div className="scaffold-problem-text">
+              <div className="scaffold-problem-block">
+                <h3 className="scaffold-problem-title">THE DECLINE IN TRADES WORKERS</h3>
+                <p className="scaffold-problem-paragraph">
+                  Many apprentices struggle to access financial support due to confusing eligibility requirements and complex application systems. Limited time, long workdays, and unclear information cause many to miss out on funding entirely.
+                </p>
+              </div>
+              
+              <div className="scaffold-problem-block">
+                <h3 className="scaffold-problem-title solution">HOW SCAFFOLD HELPS SOLVE THIS</h3>
+                <p className="scaffold-problem-paragraph">
+                  Scaffold simplifies access to grants by checking eligibility upfront and guiding users through applications step by step. Clear language and structured flows reduce friction, making funding easier to understand and complete.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -104,7 +117,7 @@ const ScaffoldPage = () => {
       {/* CORE FEATURES SECTION */}
       <section className="scaffold-features-section">
         <div className="scaffold-features-header">
-          <p className="scaffold-section-label">02 – CORE FEATURES</p>
+          <p className="scaffold-section-label">03 – CORE FEATURES</p>
           <h2 className="scaffold-features-title">
             TO ADDRESS THIS CHALLENGE, SCAFFOLD IS BUILT<br />
             AROUND <span className="highlight-italic">THREE CORE FEATURES.</span>
@@ -159,7 +172,7 @@ const ScaffoldPage = () => {
         <div className="scaffold-insights-content">
           {/* Left Column - Insights */}
           <div className="scaffold-insights-left">
-            <p className="scaffold-section-label">03 – USER INSIGHTS</p>
+            <p className="scaffold-section-label">04 – USER INSIGHTS</p>
             
             <h3 className="scaffold-insights-subtitle">WHO WE DESIGNED FOR</h3>
             <p className="scaffold-insights-paragraph">
@@ -263,7 +276,7 @@ const ScaffoldPage = () => {
       {/* DESIGN PROCESSES SECTION */}
       <section className="scaffold-design-section">
         <div className="scaffold-design-content">
-          <h2 className="scaffold-design-title">04 – DESIGN PROCESSES</h2>
+          <h2 className="scaffold-design-title">05 – DESIGN PROCESSES</h2>
           
           <p className="scaffold-design-paragraph">
             Based on user research and insights, Scaffold's design strategy focused on reducing cognitive load and guiding users through complex funding processes with clarity and confidence. The interface prioritizes simplicity, plain language, and a mobile-first approach to support apprentices balancing work, school, and limited time. By breaking applications into manageable steps and surfacing only relevant information, Scaffold helps users move forward without feeling overwhelmed.

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import './MusicPlayerPage.css';
 import Footer from './footer';
-import playlistMockup from './images/playlist-mockup.png'
+import playlistMockup from './images/playlist-mockup.png';
+import darkMode from './images/dark-mode.png';
+import lightMode from './images/light-mode.png';
 
 const MusicPlayerPage = () => {
   useEffect(() => {
@@ -95,29 +97,14 @@ const MusicPlayerPage = () => {
           </p>
           
           <div className="music-design-images">
-            <div className="music-design-placeholder">Dark Theme Screenshot</div>
-            <div className="music-design-placeholder">Light Theme Screenshot</div>
+            <img src={darkMode} alt="Dark Mode" />
+            <img src={lightMode} alt="Light Mode" />
           </div>
         </div>
       </div>
 
-      {/* MOCKUPS SECTION */}
-      <div className="music-mockups-section">
-        <div className="mockups-grid">
-          <div className="mockup-large">
-            <div className="mockup-placeholder">Large Mockup</div>
-          </div>
-          
-          <div className="mockup-small-container">
-            <div className="mockup-small">
-              <div className="mockup-placeholder">Small Mockup 1</div>
-            </div>
-            <div className="mockup-small">
-              <div className="mockup-placeholder">Small Mockup 2</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* GRID SECTION */}
+      <div className="music-grid-section" />
 
       {/* FOOTER */}
       <Footer />

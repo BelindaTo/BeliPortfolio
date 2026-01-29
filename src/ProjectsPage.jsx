@@ -36,7 +36,7 @@ const ProjectsPage = () => {
       description: 'An event planning app designed for indecisiveness friend groups. Let PICKI decide so you don\'t have to.',
       imageAlign: 'left',
       category: ['APPS'],
-      link: null,
+      link: '/picki',
       image: pickiMain,
       embedUrl: null
     },
