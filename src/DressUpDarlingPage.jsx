@@ -17,6 +17,7 @@ import purpleImage from "./images/purple.png";
 import pinkImage from "./images/pink.png";
 import greenImage from "./images/green.png";
 import dressUpMockup from "./images/dress-up-mockup.png";
+import blondBlack from "./images/blond-black.png";
 
 export default function DressUpDarlingPage() {
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function DressUpDarlingPage() {
       <section className="about-section pink-bg">
         <div className="about-container">
           <div className="about-image">
-            <div className="about-image-placeholder">Image Placeholder</div>
+            <img src={blondBlack} alt="Blond and Black hair girl" />
           </div>
           
           <div className="about-text-container">
@@ -103,7 +104,7 @@ export default function DressUpDarlingPage() {
         <div className="character-container">
           <h2 className="character-title">CHARACTER DESIGN</h2>
           <p className="character-description">
-          Inspired by 90s pixel games, Dress-Up Darling was designed with the goal to bring nostalgia and familiarity. Built for those who adored playing games with your older sister.           </p>
+          Inspired by 90s pixel games, Dress-Up Darling draws from the quiet joy of dressing characters on a shared screen. The character designs embrace soft proportions, expressive eyes, and simple silhouettes to evoke comfort and familiarity. Each character is designed to feel approachable and timeless—like a game remembered, not rediscovered.</p>
 
           <div className="character-images">
             <div className="character-item">

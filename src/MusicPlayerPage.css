@@ -366,7 +366,79 @@
   display: block;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
+.music-design-section {
+  padding: 100px 120px;
+  background: #fce4ec;
+  position: relative;
+  overflow: hidden;
+}
 
+.music-design-section {
+  padding: 100px 120px;
+  background: #fce4ec;
+  position: relative;
+  overflow: hidden;
+}
+
+.music-design-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.music-design-star {
+  position: absolute;
+  opacity: 0.35;
+  z-index: 1;
+  
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    100% 50%,
+    61% 65%,
+    50% 100%,
+    39% 65%,
+    0% 50%,
+    39% 35%
+  );
+}
+
+.music-design-star-1 {
+  top: 0%;
+  right: 0%;
+  width: 800px;
+  height: 800px;
+  background: #a8d5f0;
+  transform: rotate(15deg);
+}
+
+.music-design-star-2 {
+  top: 5%;
+  left: 0%;
+  width: 350px;
+  height: 350px;
+  background: #d4a5f0;
+  transform: rotate(-20deg);
+}
+
+.music-design-star-3 {
+  bottom: 10%;
+  right: 10%;
+  width: 380px;
+  height: 380px;
+  background: #ffa8d4;
+  transform: rotate(25deg);
+}
+
+.music-design-star-4 {
+  bottom: 30%;
+  left: 5%;
+  width: 400px;
+  height: 400px;
+  background: #89c7e8;
+  transform: rotate(-95deg);
+}
 /* ================= GRID SECTION ================= */
 
 .music-grid-section {

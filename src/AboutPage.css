@@ -186,7 +186,7 @@
     background-image:
       linear-gradient(rgba(255, 145, 186, 0.15) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255, 145, 186, 0.15) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-size: 80px 80px;
     background-position: 0 0;
     position: relative;
     animation: fadeInUp 0.8s ease-out 0.3s backwards;

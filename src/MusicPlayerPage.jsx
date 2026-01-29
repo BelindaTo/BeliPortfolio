@@ -4,6 +4,7 @@ import Footer from './footer';
 import playlistMockup from './images/playlist-mockup.png';
 import darkMode from './images/dark-mode.png';
 import lightMode from './images/light-mode.png';
+import lightModeMockup from './images/light-mode-mockup.png';
 
 const MusicPlayerPage = () => {
   useEffect(() => {
@@ -48,7 +49,7 @@ const MusicPlayerPage = () => {
       <div className="music-about-section">
         <div className="about-content">
           <div className="about-image">
-            <div className="about-image-placeholder">Image Placeholder</div>
+            <img src={lightModeMockup} alt="Light Mode Mockup" />
           </div>
           
           <div className="about-text">
@@ -84,24 +85,29 @@ const MusicPlayerPage = () => {
       </div>
 
       {/* DESIGN SECTION */}
-      <div className="music-design-section">
-        <div className="music-design-content">
-          <h2 className="music-design-title">DESIGN</h2>
-          
-          <p className="music-design-paragraph">
-            The interface was inspired by Spotify's use of gradients to create atmosphere and mood, rather than relying on heavy visual elements. Building on this idea, the design uses soft gradient transitions to give the playlist a sense of depth and focus without becoming distracting.
-          </p>
-          
-          <p className="music-design-paragraph">
-            The playlist is visualized as a single, centered space that can be comfortably looked at for long periods of time, making it suitable for studying or background listening. By keeping the layout minimal and the colours smooth and ambient, the design encourages focus while still maintaining a sense of movement and life through subtle visual shifts.
-          </p>
-          
-          <div className="music-design-images">
-            <img src={darkMode} alt="Dark Mode" />
-            <img src={lightMode} alt="Light Mode" />
-          </div>
-        </div>
-      </div>
+<div className="music-design-section">
+  <div className="music-design-star music-design-star-1" />
+  <div className="music-design-star music-design-star-2" />
+  <div className="music-design-star music-design-star-3" />
+  <div className="music-design-star music-design-star-4" />
+  
+  <div className="music-design-content">
+    <h2 className="music-design-title">DESIGN</h2>
+    
+    <p className="music-design-paragraph">
+      The interface was inspired by Spotify's use of gradients to create atmosphere and mood, rather than relying on heavy visual elements. Building on this idea, the design uses soft gradient transitions to give the playlist a sense of depth and focus without becoming distracting.
+    </p>
+    
+    <p className="music-design-paragraph">
+      The playlist is visualized as a single, centered space that can be comfortably looked at for long periods of time, making it suitable for studying or background listening. By keeping the layout minimal and the colours smooth and ambient, the design encourages focus while still maintaining a sense of movement and life through subtle visual shifts.
+    </p>
+    
+    <div className="music-design-images">
+      <img src={darkMode} alt="Dark Mode" />
+      <img src={lightMode} alt="Light Mode" />
+    </div>
+  </div>
+</div>
 
       {/* GRID SECTION */}
       <div className="music-grid-section" />

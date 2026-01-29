@@ -5,6 +5,7 @@ import pickiCharacter from './images/picki-character.png';
 import pickiPhones from './images/pickiphones.png';
 import blobs from './images/blobs.png';
 import phone2 from './images/phone2.png';
+import pickiMain from "./images/picki-main.png";
 
 const PickiPage = () => {
   useEffect(() => {
@@ -38,7 +39,7 @@ const PickiPage = () => {
           </div>
           
           <div className="picki-intro-image">
-            {/* Add your hero image here */}
+            <img src={pickiMain} alt="Picki Main App View" />
           </div>
         </div>
       </section>
@@ -102,7 +103,7 @@ const PickiPage = () => {
           <div className="picki-concept-points">
             <div className="picki-concept-point">
               <h4 className="picki-point-title">Everyone Contributes</h4>
-              <p className="picki-point-text">All voices are heard equally—no hierarchy, no veto power.</p>
+              <p className="picki-point-text">Every voice matters—no one person calls the shots.</p>
             </div>
             
             <div className="picki-concept-point">
