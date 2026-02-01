@@ -13,6 +13,16 @@ import styleguide from './images/styleguide.png';
 import userFlow from './images/user-flow.png';
 import logo1 from './images/logo1.png';
 import logo2 from './images/logo2.png';
+import scaffold1 from './images/Scaffold-1.jpg';
+import scaffold2 from './images/Scaffold-2.jpg';
+import scaffold3 from './images/Scaffold-3.jpg';
+import smartProfile from './images/smart-profile.png';
+import checker from './images/checker.png';
+import aiAssist from './images/ai-assist.png';
+import scaffoldApplication from './images/scaffold-application.mp4';
+import scaffoldLaptop from './images/scaffold-laptop.mp4';
+
+
 
 const ScaffoldPage = () => {
   useEffect(() => {
@@ -116,6 +126,10 @@ const ScaffoldPage = () => {
 
       {/* CORE FEATURES SECTION */}
       <section className="scaffold-features-section">
+        <div className="scaffold-features-star scaffold-features-star-1" />
+  <div className="scaffold-features-star scaffold-features-star-2" />
+  <div className="scaffold-features-star scaffold-features-star-3" />
+  <div className="scaffold-features-star scaffold-features-star-4" />
         <div className="scaffold-features-header">
           <p className="scaffold-section-label">03 – CORE FEATURES</p>
           <h2 className="scaffold-features-title">
@@ -127,14 +141,15 @@ const ScaffoldPage = () => {
         {/* Feature 01 */}
         <div className="scaffold-feature-row">
           <div className="scaffold-feature-phone">
-            <div className="scaffold-phone-placeholder">Phone Mockup</div>
+            <img src={smartProfile} alt="Smart Profile Feature" />
           </div>
           <div className="scaffold-feature-text">
             <p className="scaffold-feature-number">01</p>
             <h3 className="scaffold-feature-name">SMART PROFILE</h3>
             <p className="scaffold-feature-description">
-              Users build a profile once with key details like trade, location, and training status. Scaffold uses this to match them with relevant grants automatically, saving time and reducing guesswork.
-            </p>
+Smart Profile gathers the key information required for most trade grants in one place.
+Users can upload a document to automatically fill their profile, then easily edit or update details using manual or voice input.<br />
+Once complete, the profile enables faster eligibility checks and pre-filled applications.</p>
           </div>
         </div>
 
@@ -148,31 +163,79 @@ const ScaffoldPage = () => {
             </p>
           </div>
           <div className="scaffold-feature-phone">
-            <div className="scaffold-phone-placeholder">Phone Mockup</div>
+            <img src={checker} alt="Eligibility Checker Feature" />
           </div>
         </div>
 
         {/* Feature 03 */}
         <div className="scaffold-feature-row">
           <div className="scaffold-feature-phone">
-            <div className="scaffold-phone-placeholder">Phone Mockup</div>
+            <img src={aiAssist} alt="AI Application Assistant Feature" />
           </div>
           <div className="scaffold-feature-text">
             <p className="scaffold-feature-number">03</p>
             <h3 className="scaffold-feature-name">AI APPLICATION ASSISTANT</h3>
             <p className="scaffold-feature-description">
-              Scaffold's AI assistant helps users complete applications by suggesting answers, explaining requirements, and ensuring nothing is missed. It turns a complex process into a guided, step-by-step experience.
-            </p>
+Application Generator cross-checks your profile with grant requirements to automatically create a tailored application.
+A built-in progress tracker guides users step by step, outlining required documents and next actions.<br />
+Once eligible, Scaffold generates a complete application template and can assist with longer written responses when needed.            </p>
           </div>
         </div>
       </section>
+
+      {/* HOW IT WORKS SECTION */}
+<section className="scaffold-howitworks-section">
+    <div className="scaffold-howitworks-star scaffold-howitworks-star-1" />
+  <div className="scaffold-howitworks-star scaffold-howitworks-star-2" />
+  <div className="scaffold-howitworks-star scaffold-howitworks-star-3" />
+  <div className="scaffold-howitworks-star scaffold-howitworks-star-4" />
+  <div className="scaffold-howitworks-content">
+    <p className="scaffold-section-label">04 – HOW IT WORKS</p>
+    
+    <p className="scaffold-howitworks-paragraph">
+      Scaffold built both a mobile and web supplement to help solve this issue. The mobile app provides on-the-go access for busy apprentices, while the web platform offers a more detailed experience for complex applications.
+    </p>
+    
+    <div className="scaffold-howitworks-demos">
+      <div className="scaffold-demo-block">
+        <h3 className="scaffold-demo-title">MOBILE APP</h3>
+        <div className="scaffold-demo-phone">
+          <video 
+            className="scaffold-demo-video"
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+          >
+            <source src={scaffoldApplication} type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      
+      <div className="scaffold-demo-block">
+        <h3 className="scaffold-demo-title">WEB SUPPLEMENT</h3>
+        <div className="scaffold-demo-web">
+              <video 
+      className="scaffold-demo-laptop-video"
+      autoPlay 
+      loop 
+      muted 
+      playsInline
+    >
+      <source src={scaffoldLaptop} type="video/mp4" />
+    </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* USER INSIGHTS SECTION */}
       <section className="scaffold-insights-section">
         <div className="scaffold-insights-content">
           {/* Left Column - Insights */}
           <div className="scaffold-insights-left">
-            <p className="scaffold-section-label">04 – USER INSIGHTS</p>
+            <p className="scaffold-section-label">05 – USER INSIGHTS</p>
             
             <h3 className="scaffold-insights-subtitle">WHO WE DESIGNED FOR</h3>
             <p className="scaffold-insights-paragraph">
@@ -276,7 +339,7 @@ const ScaffoldPage = () => {
       {/* DESIGN PROCESSES SECTION */}
       <section className="scaffold-design-section">
         <div className="scaffold-design-content">
-          <h2 className="scaffold-design-title">05 – DESIGN PROCESSES</h2>
+          <h2 className="scaffold-design-title">06 – DESIGN PROCESSES</h2>
           
           <p className="scaffold-design-paragraph">
             Based on user research and insights, Scaffold's design strategy focused on reducing cognitive load and guiding users through complex funding processes with clarity and confidence. The interface prioritizes simplicity, plain language, and a mobile-first approach to support apprentices balancing work, school, and limited time. By breaking applications into manageable steps and surfacing only relevant information, Scaffold helps users move forward without feeling overwhelmed.
@@ -343,6 +406,55 @@ const ScaffoldPage = () => {
           </div>
         </div>
       </section>
+
+{/* PROMOTIONAL MATERIAL SECTION */}
+<section className="scaffold-promo-section">
+  <div className="scaffold-promo-content">
+    <p className="scaffold-section-label">07 – PROMOTIONAL MATERIAL</p>
+    
+    <div className="scaffold-promo-grid">
+      <div className="scaffold-promo-item promo-large"></div>
+      <div className="scaffold-promo-item promo-small"></div>
+      <div className="scaffold-promo-item promo-tall"></div>
+      <div className="scaffold-promo-item promo-medium"></div>
+    </div>
+    
+    <div className="scaffold-promo-video">
+      <h3 className="scaffold-promo-video-title">PROMOTIONAL VIDEO</h3>
+      <div className="scaffold-promo-video-placeholder"></div>
+    </div>
+  </div>
+</section>
+{/* OUTCOME SECTION */}
+<section className="scaffold-outcome-section">
+  <div className="scaffold-outcome-content">
+    <p className="scaffold-section-label">08 – OUTCOME</p>
+    
+    <div className="scaffold-outcome-header">
+      <h2 className="scaffold-outcome-title">TEAM SCAFFOLD PLACED</h2>
+      <p className="scaffold-outcome-place">3RD</p>
+      <p className="scaffold-outcome-event">at BCIT's D3 and FSWD x ConnectHer Technology Showcase</p>
+    </div>
+    
+    <p className="scaffold-outcome-paragraph">
+      After spending 3 consecutive months preparing, team Scaffold placed 3rd out of 10 teams at the showcase! What a true pleasure to be working with such wonderful people.
+    </p>
+    
+    <div className="scaffold-outcome-grid">
+      <div className="scaffold-outcome-img outcome-large">
+        <img src={scaffold1} alt="Scaffold Image 1" />
+      </div>
+      <div className="scaffold-outcome-img outcome-small">
+        <img src={scaffold2} alt="Scaffold Image 2" />
+      </div>
+      <div className="scaffold-outcome-img outcome-tall">
+        <img src={scaffold3} alt="Scaffold Image 3" />
+      </div>
+    </div>
+  </div>
+</section>
+{/* GRID SECTION */}
+<div className="scaffold-grid-section" />
 
       {/* FOOTER */}
       <Footer />
