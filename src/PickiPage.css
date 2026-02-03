@@ -1,0 +1,868 @@
+.picki-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fffcf2;
+}
+
+/* ================= INTRO SECTION ================= */
+
+.picki-intro-section {
+  min-height: 100vh;
+  padding: 140px 120px 80px;
+  background-color: #fffcf2;
+  
+  /* Grid pattern */
+  background-image:
+    linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
+  
+  background-size: 80px 80px;
+  background-position: 0 0;
+  
+  display: flex;
+  align-items: center;
+}
+
+.picki-intro-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.picki-intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.picki-title {
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 900;
+  color: #FF91BA;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px 0;
+}
+
+.picki-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.picki-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #6DB5E3;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.picki-value {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.picki-btn {
+  align-self: flex-start;
+  margin-top: 20px;
+  padding: 16px 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #FF91BA;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.picki-btn:focus {
+  outline: none;
+}
+
+/* Shine effect */
+.picki-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.picki-btn:hover::before {
+  left: 100%;
+}
+
+.picki-btn:hover {
+  background-color: #ff7aa3;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 143, 181, 0.4);
+}
+
+.picki-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(255, 143, 181, 0.3);
+}
+
+.picki-intro-image {
+  width: 100%;
+  height: 450px;
+  background: #d9d9d9;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 3px solid #FF91BA;
+}
+
+.picki-intro-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+}
+
+/* ================= OVERVIEW SECTION ================= */
+
+.picki-overview-section {
+  padding: 100px 120px 80px;
+  background: linear-gradient(to bottom, #fffcf2 0%, #fce4ec 100%);
+  
+  /* Grid pattern */
+  background-image:
+    linear-gradient(to bottom, #fffcf2 0%, #fce4ec 100%),
+    linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
+  
+  background-size: 100% 100%, 80px 80px, 80px 80px;
+  background-position: 0 0;
+}
+
+.picki-overview-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.picki-overview-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.picki-section-label {
+  font-size: 24px;
+  font-weight: 800;
+  color: #FF91BA;
+  letter-spacing: 0.05em;
+  margin: 0;
+  display: inline-block;
+}
+
+.picki-overview-title {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: #0a2a66;
+  line-height: 1.3;
+  margin: 40px 0 0 0;
+  letter-spacing: 0.01em;
+}
+
+.picki-overview-title .highlight-italic {
+  color: #FF91BA;
+  font-style: italic;
+}
+
+.picki-overview-paragraph {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0 0 60px 0;
+}
+
+.picki-overview-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.picki-overview-card {
+  background: linear-gradient(135deg, #FF91BA 0%, #FFB5D3 100%);
+  padding: 40px 30px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.picki-overview-card:nth-child(2) {
+  background: linear-gradient(135deg, #6DB5E3 0%, #8FCBF0 100%);
+}
+
+.picki-overview-card:nth-child(3) {
+  background: linear-gradient(135deg, #9B87F5 0%, #B5A3F7 100%);
+}
+
+.picki-overview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.picki-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.picki-card-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #fff;
+  margin: 0;
+}
+
+.picki-overview-image {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.picki-overview-image img {
+  width: 110%;
+  height: auto;
+  object-fit: contain;
+  transform: scale(1.1);
+}
+
+/* ================= THE CHALLENGE SECTION ================= */
+
+.picki-challenge-section {
+  padding: 140px 120px 160px;
+  background: #fce4ec;
+}
+
+.picki-challenge-content {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.picki-challenge-layout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 120px;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.picki-challenge-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 650px;
+  min-width: 650px;
+}
+
+.picki-character-img {
+  width: 100% !important;
+  max-width: 650px !important;
+  height: auto !important;
+}
+
+.picki-challenge-text {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.picki-challenge-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.picki-challenge-subtitle {
+  font-size: 20px;
+  font-weight: 800;
+  color: #6DB5E3;
+  letter-spacing: 0.05em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.picki-challenge-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #6DB5E3;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.picki-challenge-title.solution {
+  color: #FF91BA;
+}
+
+.picki-challenge-paragraph {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin: 0;
+}
+
+/* ================= THE CONCEPT SECTION ================= */
+
+.picki-concept-section {
+  padding: 80px 120px 180px;
+  background: #fce4ec;
+}
+
+.picki-concept-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.picki-concept-content .picki-section-label {
+  text-align: left;
+}
+
+.picki-concept-title {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: #0a2a66;
+  line-height: 1.3;
+  margin: 60px 0 30px 0;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.picki-concept-title .highlight-italic {
+  color: #FF91BA;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.picki-concept-paragraph {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0 0 100px 0;
+  text-align: center;
+}
+
+.picki-concept-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  margin-top: 80px;
+}
+
+.picki-concept-point {
+  background: linear-gradient(135deg, #FF91BA 0%, #FFB5D3 100%);
+  padding: 50px 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.picki-concept-point:nth-child(2) {
+  background: linear-gradient(135deg, #6DB5E3 0%, #8FCBF0 100%);
+}
+
+.picki-concept-point:nth-child(3) {
+  background: linear-gradient(135deg, #9B87F5 0%, #B5A3F7 100%);
+}
+
+.picki-concept-point:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.picki-point-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.picki-point-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #fff;
+  margin: 0;
+}
+/* ================= DEMO SECTION ================= */
+
+.picki-demo-section {
+  padding: 180px 120px;
+  background: #fce4ec;
+}
+
+.picki-demo-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.picki-demo-title {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: #0a2a66;
+  line-height: 1.3;
+  margin: 40px 0 30px 0;
+  letter-spacing: 0.01em;
+}
+
+.picki-demo-title .highlight-italic {
+  color: #FF91BA;
+  font-style: italic;
+  font-weight: 800;
+
+}
+.picki-demo-content .picki-section-label {
+  text-align: left;
+  display: block;
+}
+
+.picki-demo-paragraph {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0 auto 60px;
+  max-width: 800px;
+}
+
+.picki-demo-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.picki-demo-placeholder {
+  width: 100%;
+  max-width: 900px;
+  height: 500px;
+  background: #d9d9d9;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #666;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Add responsive styles */
+@media (max-width: 1200px) {
+  .picki-demo-section {
+    padding: 140px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .picki-demo-section {
+    padding: 100px 40px;
+  }
+  
+  .picki-demo-placeholder {
+    height: 300px;
+  }
+}
+/* ================= DESIGN PROCESS SECTION ================= */
+
+.picki-design-section {
+  padding: 180px 120px;
+  background: #fce4ec;
+}
+
+.picki-design-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.picki-design-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #FF91BA;
+  letter-spacing: 0.02em;
+  margin: 0 0 30px 0;
+  
+}
+
+.picki-design-paragraph {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #333;
+  margin: 0 0 60px 0;
+  max-width: 1100px;
+}
+
+.picki-fidelity-container {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  align-items: flex-end;
+}
+
+.picki-fidelity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.picki-fidelity-placeholder {
+  width: 280px;
+  height: 550px;
+  background: #d9d9d9;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+}
+
+.picki-fidelity-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0a2a66;
+  margin: 0;
+}
+
+/* ================= HOW IT WORKS SECTION ================= */
+
+.picki-features-section {
+  padding: 180px 120px;
+  background: #fce4ec;
+}
+
+.picki-features-header {
+  max-width: 1400px;
+  margin: 0 auto 100px;
+}
+
+.picki-features-header .picki-section-label {
+  text-align: left;
+  margin-bottom: 40px;
+  display: block;
+}
+
+.picki-features-title {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: #0a2a66;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center;
+}
+
+.picki-features-title .highlight-italic {
+  color: #FF91BA;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.picki-features-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+  align-items: flex-start;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.picki-features-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.picki-features-list {
+margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  margin-left: 40px;
+}
+
+.picki-feature-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.picki-feature-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #FF91BA;
+  margin: 0;
+  line-height: 1;
+}
+
+.picki-feature-name {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0a2a66;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.picki-feature-description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+}
+
+.picki-features-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  min-height: 600px;
+}
+
+.picki-blobs-img {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+  display: block;
+}
+
+/* ================= OUTCOME SECTION ================= */
+
+.picki-outcome-section {
+  padding: 180px 120px;
+  background: #fce4ec;
+}
+
+.picki-outcome-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.picki-outcome-title {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: #0a2a66;
+  line-height: 1.3;
+  margin: 40px 0 30px 0;
+  letter-spacing: 0.01em;
+}
+
+.picki-outcome-title .highlight-italic {
+  color: #FF91BA;
+  font-style: italic;
+}
+
+.picki-outcome-paragraph {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0 0 60px 0;
+}
+
+.picki-next-steps {
+  background: #fff;
+  padding: 50px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.picki-next-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0a2a66;
+  margin: 0 0 24px 0;
+}
+
+.picki-next-list {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.picki-next-list li {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1200px) {
+  .picki-intro-section {
+    padding: 140px 60px 80px;
+  }
+  
+  .picki-intro-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .picki-intro-image {
+    height: 400px;
+  }
+  
+  .picki-overview-section {
+    padding: 100px 60px;
+  }
+  
+  .picki-overview-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .picki-challenge-section {
+    padding: 140px 60px;
+  }
+  
+  .picki-challenge-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .picki-concept-section {
+    padding: 140px 60px;
+  }
+  
+  .picki-concept-points {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .picki-design-section {
+    padding: 140px 60px;
+  }
+  
+  .picki-fidelity-container {
+    gap: 40px;
+  }
+  
+  .picki-features-section {
+    padding: 140px 60px;
+  }
+  
+  .picki-feature-row {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .picki-outcome-section {
+    padding: 140px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .picki-intro-section {
+    padding: 120px 40px 60px;
+  }
+  
+  .picki-title {
+    font-size: 3rem;
+  }
+  
+  .picki-intro-image {
+    height: 300px;
+  }
+  
+  .picki-btn {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .picki-overview-section {
+    padding: 80px 40px;
+  }
+  
+  .picki-overview-title {
+    font-size: 1.8rem;
+  }
+  
+  .picki-challenge-section {
+    padding: 100px 40px;
+  }
+  
+  .picki-concept-section {
+    padding: 100px 40px;
+  }
+  
+  .picki-design-section {
+    padding: 100px 40px;
+  }
+  
+  .picki-fidelity-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .picki-fidelity-placeholder {
+    max-width: 250px;
+  }
+  
+  .picki-features-section {
+    padding: 100px 40px;
+  }
+  
+  .picki-phone-placeholder {
+    width: 220px;
+    height: 440px;
+  }
+  
+  .picki-feature-number {
+    font-size: 2.5rem;
+  }
+  
+  .picki-feature-name {
+    font-size: 18px;
+  }
+  
+  .picki-outcome-section {
+    padding: 100px 40px;
+  }
+  
+  .picki-next-steps {
+    padding: 30px;
+  }
+}

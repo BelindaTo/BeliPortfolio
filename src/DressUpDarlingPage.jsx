@@ -16,6 +16,8 @@ import braidImage from "./images/braid.png";
 import purpleImage from "./images/purple.png";
 import pinkImage from "./images/pink.png";
 import greenImage from "./images/green.png";
+import dressUpMockup from "./images/dress-up-mockup.png";
+import blondBlack from "./images/blond-black.png";
 
 export default function DressUpDarlingPage() {
   useEffect(() => {
@@ -46,21 +48,29 @@ export default function DressUpDarlingPage() {
             </div>
           </div>
 
-          <div className="project-info-image" />
+          <div className="project-info-image">
+            <img src={dressUpMockup} alt="Dress-Up Darling Mockup" />
+          </div>
         </div>
       </section>
 
       {/* About */}
       <section className="about-section pink-bg">
         <div className="about-container">
-          <h2 className="about-title">ABOUT DRESS-UP DARLING</h2>
-          <p className="about-text">
-            Dress Up Darling is a 90s-inspired browser game designed to bring back the simple joy
-            of classic dress-up games through a playful and nostalgic experience. The challenge
-            was to create an interface that felt comforting and intuitive while still appealing
-            to a modern audience. The final solution focuses on creative self-expression through
-            soft visuals and gentle interactions.
-          </p>
+          <div className="about-image">
+            <img src={blondBlack} alt="Blond and Black hair girl" />
+          </div>
+          
+          <div className="about-text-container">
+            <h2 className="about-title">ABOUT DRESS-UP DARLING</h2>
+            <p className="about-text">
+              Dress Up Darling is a 90s-inspired browser game designed to bring back the simple joy
+              of classic dress-up games through a playful and nostalgic experience. The challenge
+              was to create an interface that felt comforting and intuitive while still appealing
+              to a modern audience. The final solution focuses on creative self-expression through
+              soft visuals and gentle interactions.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -94,7 +104,7 @@ export default function DressUpDarlingPage() {
         <div className="character-container">
           <h2 className="character-title">CHARACTER DESIGN</h2>
           <p className="character-description">
-          Inspired by 90s pixel games, Dress-Up Darling was designed with the goal to bring nostalgia and familiarity. Built for those who adored playing games with your older sister.           </p>
+          Inspired by 90s pixel games, Dress-Up Darling draws from the quiet joy of dressing characters on a shared screen. The character designs embrace soft proportions, expressive eyes, and simple silhouettes to evoke comfort and familiarity. Each character is designed to feel approachable and timeless—like a game remembered, not rediscovered.</p>
 
           <div className="character-images">
             <div className="character-item">

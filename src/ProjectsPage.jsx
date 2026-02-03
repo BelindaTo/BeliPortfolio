@@ -6,6 +6,7 @@ import scaffoldMain from "./images/scaffold-main.png";
 import pickiMain from "./images/picki-main.png";
 import posterMain from './images/poster-main.png';
 import playlistMockup from './images/playlist-mockup.png';
+import dressUpMockup from "./images/dress-up-mockup.png";
 
 const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] = useState('APPS');
@@ -35,14 +36,14 @@ const ProjectsPage = () => {
       description: 'An event planning app designed for indecisiveness friend groups. Let PICKI decide so you don\'t have to.',
       imageAlign: 'left',
       category: ['APPS'],
-      link: null,
+      link: '/picki',
       image: pickiMain,
       embedUrl: null
     },
     {
       id: 3,
       title: 'MUSIC PLAYER',
-      role: 'FRONT-END DEVELOPER',
+      role: 'DESIGNER / FRONT-END DEVELOPER',
       description: 'An interactive music player with custom controls and playlist management.',
       imageAlign: 'left',
       category: ['INTERACTIVE'],
@@ -58,7 +59,7 @@ const ProjectsPage = () => {
       imageAlign: 'right',
       category: ['INTERACTIVE'],
       link: '/dress-up-darling',
-      image: null,
+      image: dressUpMockup,
       embedUrl: null
     },
     {

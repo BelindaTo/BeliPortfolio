@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import './MusicPlayerPage.css';
 import Footer from './footer';
 import playlistMockup from './images/playlist-mockup.png';
-
+import darkMode from './images/dark-mode.png';
+import lightMode from './images/light-mode.png';
+import lightModeMockup from './images/light-mode-mockup.png';
 
 const MusicPlayerPage = () => {
   useEffect(() => {
@@ -21,8 +23,20 @@ const MusicPlayerPage = () => {
             <h1 className="music-title">
               MUSIC<br />PLAYER
             </h1>
-            <p className="music-software">SOFTWARE</p>
-            <p className="music-tools">REACT, CSS, JAVASCRIPT</p>
+            
+            <div className="music-info-group">
+              <p className="music-label">ROLE</p>
+              <p className="music-value">DESIGNER / FRONT-END DEVELOPER</p>
+            </div>
+            
+            <div className="music-info-group">
+              <p className="music-label">SOFTWARE</p>
+              <p className="music-value">REACT, CSS, JAVASCRIPT</p>
+            </div>
+            
+            <a href="https://comp3170-project-45pa.vercel.app/" target="_blank" rel="noopener noreferrer" className="music-btn">
+              Try Music Player
+            </a>
           </div>
           
           <div className="music-image">
@@ -35,7 +49,7 @@ const MusicPlayerPage = () => {
       <div className="music-about-section">
         <div className="about-content">
           <div className="about-image">
-            <div className="about-image-placeholder">Image Placeholder</div>
+            <img src={lightModeMockup} alt="Light Mode Mockup" />
           </div>
           
           <div className="about-text">
@@ -57,52 +71,46 @@ const MusicPlayerPage = () => {
         </div>
       </div>
 
-      {/* FEATURES SECTION */}
-      <div className="music-features-section">
-        {/* Floating stars behind the content */}
-        <div className="features-star features-star-1" />
-        <div className="features-star features-star-2" />
-        <div className="features-star features-star-3" />
-        <div className="features-star features-star-4" />
-        
-        <div className="features-container">
-          <div className="feature-card">
-            <div className="feature-image">
-              <div className="feature-placeholder">Feature 1</div>
-            </div>
-          </div>
-          
-          <div className="feature-card">
-            <div className="feature-image">
-              <div className="feature-placeholder">Feature 2</div>
-            </div>
-          </div>
-          
-          <div className="feature-card">
-            <div className="feature-image">
-              <div className="feature-placeholder">Feature 3</div>
-            </div>
-          </div>
+      {/* VIDEO SECTION */}
+      <div className="music-video-section">
+        <div className="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/gKTwX7GvwJ8"
+            title="Music Player Demo"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
 
-      {/* MOCKUPS SECTION */}
-      <div className="music-mockups-section">
-        <div className="mockups-grid">
-          <div className="mockup-large">
-            <div className="mockup-placeholder">Large Mockup</div>
-          </div>
-          
-          <div className="mockup-small-container">
-            <div className="mockup-small">
-              <div className="mockup-placeholder">Small Mockup 1</div>
-            </div>
-            <div className="mockup-small">
-              <div className="mockup-placeholder">Small Mockup 2</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* DESIGN SECTION */}
+<div className="music-design-section">
+  <div className="music-design-star music-design-star-1" />
+  <div className="music-design-star music-design-star-2" />
+  <div className="music-design-star music-design-star-3" />
+  <div className="music-design-star music-design-star-4" />
+  
+  <div className="music-design-content">
+    <h2 className="music-design-title">DESIGN</h2>
+    
+    <p className="music-design-paragraph">
+      The interface was inspired by Spotify's use of gradients to create atmosphere and mood, rather than relying on heavy visual elements. Building on this idea, the design uses soft gradient transitions to give the playlist a sense of depth and focus without becoming distracting.
+    </p>
+    
+    <p className="music-design-paragraph">
+      The playlist is visualized as a single, centered space that can be comfortably looked at for long periods of time, making it suitable for studying or background listening. By keeping the layout minimal and the colours smooth and ambient, the design encourages focus while still maintaining a sense of movement and life through subtle visual shifts.
+    </p>
+    
+    <div className="music-design-images">
+      <img src={darkMode} alt="Dark Mode" />
+      <img src={lightMode} alt="Light Mode" />
+    </div>
+  </div>
+</div>
+
+      {/* GRID SECTION */}
+      <div className="music-grid-section" />
 
       {/* FOOTER */}
       <Footer />

@@ -11,6 +11,7 @@ import MusicPlayerPage from "./MusicPlayerPage";
 import AboutPage from "./AboutPage";
 import Footer from "./footer";
 import ContactPage from './ContactPage';
+import PickiPage from './PIckiPage';
 
 
 import designerBear from "./images/designer-bear.png";
@@ -491,6 +492,7 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/scaffold" element={<ScaffoldPage />} />
+        <Route path="/picki" element={<PickiPage />} />
       </Routes>
     </Layout>
   );
