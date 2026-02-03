@@ -41,7 +41,7 @@
 }
 
 .scaffold-title {
-  font-size: clamp(3.5rem, 7vw, 5rem);
+  font-size: clamp(4rem, 8vw, 8rem);
   font-weight: 900;
   color: #FF91BA;
   letter-spacing: -0.02em;
@@ -124,14 +124,15 @@
 }
 
 .scaffold-intro-image {
-  width: 100%;
-  height: 450px;
-  background: #d9d9d9;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+    width: 100%;
+    height: 550px;
+    background: linear-gradient(135deg, #e8b4d4 0%, #d4a5c9 100%);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .scaffold-intro-image img {
@@ -140,11 +141,46 @@
   object-fit: cover;
   display: block;
 }
+.wisp-star {
+    position: absolute;
+    background: #5bb0ff;
+    z-index: 3;
+    
+    clip-path: polygon(
+      50% 0%,
+      61% 35%,
+      100% 50%,
+      61% 65%,
+      50% 100%,
+      39% 65%,
+      0% 50%,
+      39% 35%
+    );
+    
+    animation: wispFloat 10s ease-in-out infinite;
+  }
+  
+  .wisp-star-1 {
+    top: 15%;
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    background: #6db5e3;
+  }
+  
+  .wisp-star-2 {
+    bottom: 20%;
+    left: 30%;
+    width: 100px;
+    height: 100px;
+    background: #0a2a66;
+    animation-delay: -3s;
+  }
 
 /* ================= WHAT'S SCAFFOLD SECTION ================= */
 
 .scaffold-whats-section {
-  padding: 100px 120px;
+  padding: 150px 120px;
   background: linear-gradient(to bottom, #fffcf2 0%, #fce4ec 100%);
   
   /* Grid pattern */
@@ -174,16 +210,16 @@
 }
 
 .scaffold-section-label {
-  font-size: 24px;
+  font-size: clamp(18px, 3vw, 24px);
   font-weight: 800;
   color: #FF91BA;
   letter-spacing: 0.05em;
-  margin: 0;
+  margin: 0 0 40px 0;
   display: inline-block;
 }
 
 .scaffold-whats-title {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.8rem);
   font-weight: 800;
   color: #0a2a66;
   line-height: 1.3;
@@ -197,7 +233,7 @@
 }
 
 .scaffold-whats-paragraph {
-  font-size: 17px;
+  font-size: clamp(15px, 2vw, 17px);
   line-height: 1.7;
   color: #333;
   margin: 0;
@@ -230,7 +266,7 @@
 /* ================= PROBLEM/SOLUTION SECTION ================= */
 
 .scaffold-problem-section {
-  padding: 180px 120px;
+  padding: 200px 120px;
   background: #fce4ec;
 }
 
@@ -281,7 +317,7 @@
 }
 
 .stat-number {
-  font-size: 5rem;
+  font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 900;
   color: #ffffff;
   line-height: 1;
@@ -289,7 +325,7 @@
 }
 
 .stat-label {
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 700;
   color: #ffffff;
   line-height: 1.3;
@@ -321,7 +357,7 @@
 }
 
 .scaffold-problem-title {
-  font-size: 20px;
+  font-size: clamp(16px, 2vw, 20px);
   font-weight: 700;
   color: #6DB5E3;
   letter-spacing: 0.02em;
@@ -333,7 +369,7 @@
 }
 
 .scaffold-problem-paragraph {
-  font-size: 17px;
+  font-size: clamp(15px, 2vw, 17px);
   line-height: 1.7;
   color: #333;
   margin: 0;
@@ -342,7 +378,7 @@
 /* ================= CORE FEATURES SECTION ================= */
 
 .scaffold-features-section {
-  padding: 100px 120px;
+  padding: 200px 120px;
   background: #fce4ec;
   position: relative;
   overflow: hidden;
@@ -353,6 +389,7 @@
   margin: 0 0 80px;
   padding-left: 0;
 }
+
 .scaffold-features-header,
 .scaffold-feature-row {
   position: relative;
@@ -365,7 +402,7 @@
 }
 
 .scaffold-features-title {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.8rem);
   font-weight: 800;
   color: #0a2a66;
   line-height: 1.4;
@@ -425,7 +462,7 @@
 }
 
 .scaffold-feature-number {
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 900;
   color: #FF91BA;
   margin: 0;
@@ -433,7 +470,7 @@
 }
 
 .scaffold-feature-name {
-  font-size: 22px;
+  font-size: clamp(18px, 2.5vw, 22px);
   font-weight: 800;
   color: #0a2a66;
   letter-spacing: 0.02em;
@@ -441,11 +478,12 @@
 }
 
 .scaffold-feature-description {
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
   line-height: 1.7;
   color: #333;
   margin: 0;
 }
+
 .scaffold-feature-phone img {
   width: 280px;
   height: auto;
@@ -506,25 +544,11 @@
   background: #89c7e8;
   transform: rotate(-95deg);
 }
+
 /* ================= HOW IT WORKS SECTION ================= */
 
-.scaffold-demo-video {
-  width: 280px;
-  height: auto;
-  border-radius: 50px;
-  display: block;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
-}
-.scaffold-demo-laptop-video {
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-  border-radius: 16px;
-  display: block;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
-}
 .scaffold-howitworks-section {
-  padding: 100px 120px;
+  padding: 200px 120px;
   background: #fce4ec;
   position: relative;
   overflow: hidden;
@@ -534,14 +558,16 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .scaffold-howitworks-paragraph {
-  font-size: 17px;
+  font-size: clamp(15px, 2vw, 17px);
   line-height: 1.8;
   color: #333;
   margin: 40px 0 60px 0;
-  max-width: 1100px;
+  max-width: 1400px;
 }
 
 .scaffold-howitworks-demos {
@@ -558,7 +584,7 @@
 }
 
 .scaffold-demo-title {
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 700;
   color: #6DB5E3;
   letter-spacing: 0.05em;
@@ -590,6 +616,24 @@
   font-weight: 600;
   color: #666;
 }
+
+.scaffold-demo-video {
+  width: 280px;
+  height: auto;
+  border-radius: 50px;
+  display: block;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+}
+
+.scaffold-demo-laptop-video {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+}
+
 .scaffold-howitworks-star {
   position: absolute;
   opacity: 0.35;
@@ -643,47 +687,23 @@
   transform: rotate(-120deg);
 }
 
-.scaffold-howitworks-content {
-  position: relative;
-  z-index: 2;
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-  .scaffold-howitworks-section {
-    padding: 100px 60px;
-  }
-}
-
-@media (max-width: 768px) {
-  .scaffold-howitworks-section {
-    padding: 80px 40px;
-  }
-  
-  .scaffold-web-placeholder {
-    height: 300px;
-  }
-}
 /* ================= USER INSIGHTS SECTION ================= */
 
 .scaffold-insights-section {
-  padding: 100px 120px;
+  padding: 200px 120px;
   background: #fce4ec;
-  height: 110vh;
+  height: auto;
 }
 
 .scaffold-insights-content {
-  margin-top: 100px !important;
+  margin-top: 60px;
   width: 100%;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 60px auto 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: start;
-}
-.scaffold-section-label {
-  margin-bottom: 40px;
 }
 
 .scaffold-insights-left {
@@ -693,7 +713,7 @@
 }
 
 .scaffold-insights-subtitle {
-  font-size: 18px;
+  font-size: clamp(16px, 2vw, 18px);
   font-weight: 700;
   color: #0a2a66;
   margin: 20px 0 0 0;
@@ -705,7 +725,7 @@
 }
 
 .scaffold-insights-paragraph {
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
   line-height: 1.7;
   color: #333;
   margin: 0;
@@ -717,21 +737,21 @@
 }
 
 .scaffold-insight-title {
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
   font-weight: 700;
   color: #0a2a66;
   margin: 0 0 8px 0;
 }
 
 .scaffold-insight-text {
-  font-size: 15px;
+  font-size: clamp(13px, 1.8vw, 15px);
   line-height: 1.6;
   color: #333;
   margin: 0 0 12px 0;
 }
 
 .scaffold-design-response {
-  font-size: 14px;
+  font-size: clamp(12px, 1.6vw, 14px);
   font-weight: 600;
   color: #FF91BA;
   font-style: italic;
@@ -739,7 +759,7 @@
 }
 
 .scaffold-design-response-text {
-  font-size: 14px;
+  font-size: clamp(12px, 1.6vw, 14px);
   line-height: 1.6;
   color: #333;
   font-style: italic;
@@ -758,6 +778,7 @@
   padding: 50px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   max-width: 580px;
+  width: 100%;
 }
 
 .scaffold-persona-header {
@@ -771,6 +792,7 @@
   height: 120px;
   border-radius: 12px;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .scaffold-persona-info {
@@ -778,14 +800,14 @@
 }
 
 .scaffold-persona-name {
-  font-size: 24px;
+  font-size: clamp(18px, 2.5vw, 24px);
   font-weight: 800;
   color: #0a2a66;
   margin: 0 0 16px 0;
 }
 
 .scaffold-persona-details p {
-  font-size: 14px;
+  font-size: clamp(12px, 1.6vw, 14px);
   line-height: 1.6;
   color: #333;
   margin: 0 0 4px 0;
@@ -807,7 +829,7 @@
 }
 
 .scaffold-persona-quote p {
-  font-size: 15px;
+  font-size: clamp(13px, 1.8vw, 15px);
   font-style: italic;
   color: #333;
   line-height: 1.6;
@@ -817,7 +839,7 @@
 }
 
 .quote-mark {
-  font-size: 32px;
+  font-size: clamp(24px, 3vw, 32px);
   font-weight: 700;
   color: #FF91BA;
   line-height: 1;
@@ -828,7 +850,7 @@
 }
 
 .persona-section-title {
-  font-size: 14px;
+  font-size: clamp(12px, 1.6vw, 14px);
   font-weight: 700;
   color: #6DB5E3;
   letter-spacing: 0.05em;
@@ -841,7 +863,7 @@
 }
 
 .persona-list li {
-  font-size: 14px;
+  font-size: clamp(12px, 1.6vw, 14px);
   line-height: 1.7;
   color: #333;
   margin-bottom: 6px;
@@ -861,7 +883,7 @@
 }
 
 .scaffold-userflow-title {
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 700;
   color: #6DB5E3;
   letter-spacing: 0.05em;
@@ -877,13 +899,13 @@
 .scaffold-userflow-image img {
   width: 100%;
   height: auto;
-  min-width: 800px;
+  min-width: 600px;
 }
 
 /* ================= DESIGN PROCESSES SECTION ================= */
 
 .scaffold-design-section {
-  padding: 100px 120px;
+  padding: 200px 120px;
   background: #fce4ec;
 }
 
@@ -894,7 +916,7 @@
 }
 
 .scaffold-design-title {
-  font-size: 24px;
+  font-size: clamp(18px, 3vw, 24px);
   font-weight: 800;
   color: #FF91BA;
   letter-spacing: 0.02em;
@@ -902,11 +924,11 @@
 }
 
 .scaffold-design-paragraph {
-  font-size: 17px;
+  font-size: clamp(15px, 2vw, 17px);
   line-height: 1.8;
   color: #333;
   margin: 0 0 60px 0;
-  max-width: 1100px;
+  max-width: 1400px;
 }
 
 .scaffold-fidelity-container {
@@ -914,6 +936,7 @@
   justify-content: center;
   gap: 60px;
   align-items: flex-end;
+  flex-wrap: wrap;
 }
 
 .scaffold-fidelity-item {
@@ -933,7 +956,7 @@
 }
 
 .scaffold-fidelity-label {
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 600;
   color: #0a2a66;
   margin: 0;
@@ -953,7 +976,7 @@
 }
 
 .scaffold-styleguide-title {
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 700;
   color: #6DB5E3;
   letter-spacing: 0.05em;
@@ -962,7 +985,7 @@
 }
 
 .scaffold-styleguide-paragraph {
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
   line-height: 1.8;
   color: #333;
   margin: 0 0 20px 0;
@@ -997,7 +1020,7 @@
 }
 
 .scaffold-logo-title {
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 700;
   color: #6DB5E3;
   letter-spacing: 0.05em;
@@ -1019,7 +1042,7 @@
 }
 
 .scaffold-logo-paragraph {
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
   line-height: 1.8;
   color: #333;
   margin: 0;
@@ -1030,6 +1053,7 @@
   justify-content: center;
   gap: 80px;
   align-items: flex-end;
+  flex-wrap: wrap;
 }
 
 .scaffold-logo-img {
@@ -1039,17 +1063,19 @@
 .scaffold-logo-img.logo-large {
   height: 250px;
   width: auto;
+  max-width: 100%;
 }
 
 .scaffold-logo-img.logo-small {
   height: 250px;
   width: auto;
+  max-width: 100%;
 }
 
 /* ================= PROMOTIONAL MATERIAL SECTION ================= */
 
 .scaffold-promo-section {
-  padding: 100px 120px;
+  padding: 200px 120px;
   background: #fce4ec;
 }
 
@@ -1092,55 +1118,39 @@
   grid-row: 3;
 }
 
-@media (max-width: 1200px) {
-  .scaffold-promo-section {
-    padding: 100px 60px;
-  }
-}
-
-@media (max-width: 768px) {
-  .scaffold-promo-section {
-    padding: 80px 40px;
-  }
-  
-  .scaffold-promo-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-  
-  .scaffold-promo-item.promo-large,
-  .scaffold-promo-item.promo-small,
-  .scaffold-promo-item.promo-tall,
-  .scaffold-promo-item.promo-medium {
-    grid-column: 1;
-    grid-row: auto;
-    min-height: 250px;
-  }
-}
-
 .scaffold-promo-video {
   margin-top: 80px;
 }
 
 .scaffold-promo-video-title {
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 700;
   color: #6DB5E3;
   letter-spacing: 0.05em;
   margin: 0 0 30px 0;
 }
 
-.scaffold-promo-video-placeholder {
+.scaffold-promo-video-container {
+  position: relative;
   width: 100%;
-  height: 800px;
-  background: #d9d9d9;
+  padding-bottom: 50%;
   border-radius: 16px;
+  overflow: hidden;
+}
+
+.scaffold-promo-video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 /* ================= OUTCOME SECTION ================= */
 
 .scaffold-outcome-section {
-  padding: 100px 120px;
+  padding: 200px 120px;
   background: #fce4ec;
 }
 
@@ -1156,7 +1166,7 @@
 }
 
 .scaffold-outcome-title {
-  font-size: 28px;
+  font-size: clamp(20px, 3vw, 28px);
   font-weight: 900;
   color: #0a2a66;
   letter-spacing: 0.02em;
@@ -1164,7 +1174,7 @@
 }
 
 .scaffold-outcome-place {
-  font-size: 120px;
+  font-size: clamp(60px, 12vw, 120px);
   font-weight: 900;
   color: #6DB5E3;
   margin: 0;
@@ -1172,14 +1182,14 @@
 }
 
 .scaffold-outcome-event {
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 700;
   color: #0a2a66;
   margin: 20px 0 0 0;
 }
 
 .scaffold-outcome-paragraph {
-  font-size: 17px;
+  font-size: clamp(15px, 2vw, 17px);
   line-height: 1.8;
   color: #333;
   text-align: center;
@@ -1222,38 +1232,6 @@
   grid-row: 2;
 }
 
-@media (max-width: 1200px) {
-  .scaffold-outcome-section {
-    padding: 100px 60px;
-  }
-  
-  .scaffold-outcome-place {
-    font-size: 80px;
-  }
-}
-
-@media (max-width: 768px) {
-  .scaffold-outcome-section {
-    padding: 80px 40px;
-  }
-  
-  .scaffold-outcome-place {
-    font-size: 60px;
-  }
-  
-  .scaffold-outcome-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-  
-  .scaffold-outcome-img.outcome-large,
-  .scaffold-outcome-img.outcome-small,
-  .scaffold-outcome-img.outcome-tall {
-    grid-column: 1;
-    grid-row: auto;
-    min-height: 250px;
-  }
-}
 /* ================= GRID SECTION ================= */
 
 .scaffold-grid-section {
@@ -1283,6 +1261,7 @@
   pointer-events: none;
   z-index: 2;
 }
+
 /* ================= RESPONSIVE ================= */
 
 @media (max-width: 1200px) {
@@ -1300,7 +1279,7 @@
   }
   
   .scaffold-whats-section {
-    padding: 100px 60px;
+    padding: 120px 60px;
   }
   
   .scaffold-whats-content {
@@ -1313,7 +1292,7 @@
   }
   
   .scaffold-problem-section {
-    padding: 100px 60px;
+    padding: 150px 60px;
   }
   
   .scaffold-problem-layout {
@@ -1324,6 +1303,11 @@
   .scaffold-stats-container {
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .scaffold-stat-card {
+    min-width: 240px;
   }
   
   .scaffold-phone-img {
@@ -1331,7 +1315,7 @@
   }
   
   .scaffold-features-section {
-    padding: 100px 60px;
+    padding: 150px 60px;
   }
   
   .scaffold-feature-row {
@@ -1343,8 +1327,16 @@
     direction: ltr;
   }
   
+  .scaffold-features-header .scaffold-section-label {
+    margin-left: 0;
+  }
+  
+  .scaffold-howitworks-section {
+    padding: 150px 60px;
+  }
+  
   .scaffold-insights-section {
-    padding: 100px 60px;
+    padding: 150px 60px;
   }
   
   .scaffold-insights-content {
@@ -1357,7 +1349,7 @@
   }
   
   .scaffold-design-section {
-    padding: 100px 60px;
+    padding: 150px 60px;
   }
   
   .scaffold-fidelity-container {
@@ -1386,74 +1378,138 @@
   }
   
   .scaffold-logo-img.logo-large {
-    height: 160px;
+    height: 180px;
   }
   
   .scaffold-logo-img.logo-small {
-    height: 120px;
+    height: 140px;
+  }
+  
+  .scaffold-promo-section {
+    padding: 150px 60px;
+  }
+  
+  .scaffold-promo-grid {
+    grid-template-rows: 300px 300px 350px;
+  }
+  
+  .scaffold-outcome-section {
+    padding: 150px 60px;
+  }
+  
+  .scaffold-outcome-grid {
+    grid-template-rows: 350px 350px;
+  }
+}
+
+@media (max-width: 900px) {
+  .scaffold-stats-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .scaffold-stat-card {
+    min-width: 100%;
+    max-width: 350px;
+  }
+  
+  .scaffold-stat-card.stat-blue,
+  .scaffold-stat-card.stat-navy {
+    min-height: auto;
+    padding: 50px 40px;
+  }
+  
+  .scaffold-promo-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  
+  .scaffold-promo-item.promo-large,
+  .scaffold-promo-item.promo-small,
+  .scaffold-promo-item.promo-tall,
+  .scaffold-promo-item.promo-medium {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 300px;
+  }
+  
+  .scaffold-outcome-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  
+  .scaffold-outcome-img.outcome-large,
+  .scaffold-outcome-img.outcome-small,
+  .scaffold-outcome-img.outcome-tall {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 300px;
   }
 }
 
 @media (max-width: 768px) {
   .scaffold-intro-section {
-    padding: 120px 40px 60px;
+    padding: 120px 30px 60px;
+    min-height: auto;
   }
   
-  .scaffold-title {
-    font-size: 3rem;
+  .scaffold-intro-content {
+    gap: 40px;
   }
   
   .scaffold-intro-image {
-    height: 300px;
+    height: 280px;
   }
   
   .scaffold-btn {
     width: 100%;
     text-align: center;
+    padding: 14px 40px;
   }
   
   .scaffold-whats-section {
-    padding: 80px 40px;
+    padding: 100px 30px;
   }
   
-  .scaffold-whats-title {
-    font-size: 1.8rem;
+  .scaffold-whats-images {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .scaffold-worker-img {
-    width: 120px;
+    width: 150px;
   }
   
   .scaffold-grant-img {
-    width: 140px;
-    margin-left: 60px;
+    width: 180px;
+    margin-top: -50px;
+    margin-left: 100px;
   }
   
   .scaffold-problem-section {
-    padding: 80px 40px;
+    padding: 120px 30px;
   }
   
-  .scaffold-stats-container {
-    flex-direction: column;
+  .scaffold-problem-layout {
+    gap: 50px;
+    margin-top: 60px;
   }
   
-  .scaffold-stat-card {
-    min-width: 100%;
-  }
-  
-  .scaffold-phone-img {
-    max-width: 300px;
-  }
-  
-  .scaffold-problem-title {
-    font-size: 18px;
+  .scaffold-problem-text {
+    gap: 50px;
   }
   
   .scaffold-features-section {
-    padding: 80px 40px;
+    padding: 120px 30px;
   }
   
   .scaffold-features-header {
+    margin-bottom: 60px;
+  }
+  
+  .scaffold-feature-row {
+    gap: 30px;
     margin-bottom: 60px;
   }
   
@@ -1462,20 +1518,29 @@
     height: 440px;
   }
   
-  .scaffold-feature-number {
-    font-size: 2.5rem;
+  .scaffold-feature-phone img {
+    width: 220px;
   }
   
-  .scaffold-feature-name {
-    font-size: 18px;
+  .scaffold-howitworks-section {
+    padding: 120px 30px;
+  }
+  
+  .scaffold-demo-video {
+    width: 220px;
+    border-radius: 40px;
   }
   
   .scaffold-insights-section {
-    padding: 80px 40px;
+    padding: 120px 30px;
+  }
+  
+  .scaffold-insights-content {
+    margin-top: 40px;
   }
   
   .scaffold-persona-card {
-    padding: 24px;
+    padding: 30px;
   }
   
   .scaffold-persona-header {
@@ -1484,12 +1549,25 @@
     text-align: center;
   }
   
+  .scaffold-persona-img {
+    width: 100px;
+    height: 100px;
+  }
+  
   .scaffold-persona-name {
     text-align: center;
   }
   
+  .scaffold-persona-details {
+    text-align: left;
+  }
+  
+  .scaffold-userflow-section {
+    padding: 80px 30px;
+  }
+  
   .scaffold-design-section {
-    padding: 80px 40px;
+    padding: 120px 30px;
   }
   
   .scaffold-fidelity-container {
@@ -1499,15 +1577,19 @@
   }
   
   .scaffold-fidelity-img {
-    max-width: 250px;
+    max-width: 200px;
   }
   
   .scaffold-styleguide-section {
-    padding: 80px 40px;
+    padding: 80px 30px;
+  }
+  
+  .scaffold-styleguide-image img {
+    border-radius: 16px;
   }
   
   .scaffold-logo-section {
-    padding: 80px 40px;
+    padding: 80px 30px;
   }
   
   .scaffold-logo-images {
@@ -1522,5 +1604,146 @@
   
   .scaffold-logo-img.logo-small {
     height: 100px;
+  }
+  
+  .scaffold-promo-section {
+    padding: 120px 30px;
+  }
+  
+  .scaffold-promo-video {
+    margin-top: 60px;
+  }
+  
+  .scaffold-outcome-section {
+    padding: 120px 30px;
+  }
+  
+  .scaffold-outcome-header {
+    margin: 40px 0 30px;
+  }
+  
+  .scaffold-grid-section {
+    min-height: 30vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .scaffold-intro-section {
+    padding: 100px 20px 50px;
+  }
+  
+  .scaffold-intro-image {
+    height: 220px;
+    border-radius: 16px;
+  }
+  
+  .scaffold-whats-section {
+    padding: 80px 20px;
+  }
+  
+  .scaffold-worker-img {
+    width: 120px;
+  }
+  
+  .scaffold-grant-img {
+    width: 140px;
+    margin-left: 60px;
+    margin-top: -40px;
+  }
+  
+  .scaffold-problem-section {
+    padding: 100px 20px;
+  }
+  
+  .scaffold-stat-card {
+    padding: 40px 30px;
+  }
+  
+  .scaffold-features-section {
+    padding: 100px 20px;
+  }
+  
+  .scaffold-phone-placeholder {
+    width: 180px;
+    height: 360px;
+  }
+  
+  .scaffold-feature-phone img {
+    width: 180px;
+  }
+  
+  .scaffold-howitworks-section {
+    padding: 100px 20px;
+  }
+  
+  .scaffold-demo-video {
+    width: 180px;
+    border-radius: 30px;
+  }
+  
+  .scaffold-insights-section {
+    padding: 100px 20px;
+  }
+  
+  .scaffold-persona-card {
+    padding: 20px;
+  }
+  
+  .scaffold-persona-img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .scaffold-userflow-section {
+    padding: 60px 20px;
+  }
+  
+  .scaffold-design-section {
+    padding: 100px 20px;
+  }
+  
+  .scaffold-fidelity-img {
+    max-width: 160px;
+  }
+  
+  .scaffold-styleguide-section {
+    padding: 60px 20px;
+  }
+  
+  .scaffold-logo-section {
+    padding: 60px 20px;
+  }
+  
+  .scaffold-logo-img.logo-large {
+    height: 100px;
+  }
+  
+  .scaffold-logo-img.logo-small {
+    height: 70px;
+  }
+  
+  .scaffold-promo-section {
+    padding: 100px 20px;
+  }
+  
+  .scaffold-promo-item.promo-large,
+  .scaffold-promo-item.promo-small,
+  .scaffold-promo-item.promo-tall,
+  .scaffold-promo-item.promo-medium {
+    min-height: 220px;
+  }
+  
+  .scaffold-outcome-section {
+    padding: 100px 20px;
+  }
+  
+  .scaffold-outcome-img.outcome-large,
+  .scaffold-outcome-img.outcome-small,
+  .scaffold-outcome-img.outcome-tall {
+    min-height: 220px;
+  }
+  
+  .scaffold-grid-section {
+    min-height: 25vh;
   }
 }

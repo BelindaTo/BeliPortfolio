@@ -33,6 +33,8 @@ const ScaffoldPage = () => {
     <div className="scaffold-page">
       {/* INTRO SECTION */}
       <section className="scaffold-intro-section">
+        <div className="wisp-star wisp-star-1" />
+        <div className="wisp-star wisp-star-2" />
         <div className="scaffold-intro-content">
           <div className="scaffold-intro-text">
             <h1 className="scaffold-title">SCAFFOLD</h1>
@@ -193,8 +195,8 @@ Once eligible, Scaffold generates a complete application template and can assist
     <p className="scaffold-section-label">04 – HOW IT WORKS</p>
     
     <p className="scaffold-howitworks-paragraph">
-      Scaffold built both a mobile and web supplement to help solve this issue. The mobile app provides on-the-go access for busy apprentices, while the web platform offers a more detailed experience for complex applications.
-    </p>
+Scaffold is designed as a mobile-first experience, with a focused web supplement for applications.
+Users complete their profile, eligibility checks, and grant discovery directly in the mobile app. When it’s time to apply, they can seamlessly switch to desktop if preferred. The web supplement is intentionally limited to the application stage only, allowing users to copy and paste their pre-filled information from the app into grant forms. This flexible setup supports both on-the-go use and longer, more detailed application workflows without duplicating features or disrupting the user experience.    </p>
     
     <div className="scaffold-howitworks-demos">
       <div className="scaffold-demo-block">
@@ -421,7 +423,15 @@ Once eligible, Scaffold generates a complete application template and can assist
     
     <div className="scaffold-promo-video">
       <h3 className="scaffold-promo-video-title">PROMOTIONAL VIDEO</h3>
-      <div className="scaffold-promo-video-placeholder"></div>
+      <div className="scaffold-promo-video-container">
+    <iframe
+      src="https://www.youtube.com/embed/gHZ8CcOKJxo"
+      title="Scaffold Promotional Video"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  </div>
     </div>
   </div>
 </section>
