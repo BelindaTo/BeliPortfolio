@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PostersPage.css';
 import Footer from './footer';
 import posterMain from './images/poster-main.png';
@@ -12,12 +13,21 @@ import originalPoster from './images/original-poster.png';
 
 
 const PostersPage = () => {
+  const navigate = useNavigate();
+  const projectTab = 'graphic';
+  
   useEffect(() => {
     document.title = "Posters — Belinda To";
   }, []);
 
   return (
     <div className="posters-page">
+      {/* BACK ARROW */}
+      <button className="back-arrow" onClick={() => navigate(`/projects?tab=${projectTab}`)}>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
       {/* INTRO SECTION */}
       <div className="posters-intro-section">
         <div className="posters-star posters-star-1" />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './ProjectsPage.css';
 import canMockup from './images/canmockup.png';
 import scaffoldMain from "./images/scaffold-main.png";
@@ -9,7 +9,8 @@ import playlistMockup from './images/playlist-mockup.png';
 import dressUpMockup from "./images/dress-up-mockup.png";
 
 const ProjectsPage = () => {
-  const [activeFilter, setActiveFilter] = useState('APPS');
+  const [searchParams] = useSearchParams();
+  const [activeFilter, setActiveFilter] = useState(searchParams.get('tab')?.toUpperCase() || 'APPS');
   const [isAnimating, setIsAnimating] = useState(false);
   const navigate = useNavigate();
 

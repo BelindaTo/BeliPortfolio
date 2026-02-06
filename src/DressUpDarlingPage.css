@@ -169,7 +169,7 @@
 }
 
 .about-title {
-  font-size: 48px;
+  font-size: clamp(4rem, 8vw, 8rem);
   font-weight: 800;
   color: #5bb0ff;
   letter-spacing: 0.02em;

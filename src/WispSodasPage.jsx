@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './WispSodasPage.css';
 import Footer from './footer';
 import soda1 from './images/Soda1.png';
@@ -11,12 +12,23 @@ import canSky from './images/cansky.png';
 import twoCans from './images/2cans.png';
 
 const WispSodasPage = () => {
+  const navigate = useNavigate();
+  const projectTab = 'graphic'; // This project belongs to GRAPHIC tab
+
   useEffect(() => {
     document.title = "Wisp Sodas — Belinda To";
   }, []);
 
   return (
     <div className="wisp-sodas-page">
+      {/* BACK ARROW */}
+      <button className="back-arrow" onClick={() => navigate(`/projects?tab=${projectTab}`)}>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      
+      {/* rest of your page stays the same */}
       {/* INTRO SECTION */}
       <div className="wisp-intro-section">
         <div className="wisp-star wisp-star-1" />
@@ -48,16 +60,12 @@ const WispSodasPage = () => {
             <h2 className="about-title">ABOUT WISP</h2>
             
             <p className="about-paragraph">
-              Wisp explores how an emotional narrative can be translated into a 
-              physical product within beverage branding, where storytelling is often 
-              overlooked.
+            Wisp explores how emotion and storytelling can show up in a physical product, especially in a space like beverage branding where story is often missing. Created as a conceptual sub-brand within the world of Studio Ghibli, Wisp imagines what a soda brand from the studio might feel like.
             </p>
             
             <p className="about-paragraph">
-              Wisp explores how an emotional narrative can be translated into a physical product within branding, where storytelling is often overlooked. Designed as a conceptual sub-brand within the world of Studio Ghibli, Wisp imagines what a soda brand created by the studio might look and feel like.
-
-Drawing directly from Ghibli’s existing characters and visual language, the brand expresses nostalgia and comfort through soft gradients, nature-inspired palettes, and gentle illustrations that feel warm and familiar. A consistent layout system is used to create a sense of lightness and cohesion across flavours. Together, these elements position Wisp as more than just a soda brand—it becomes a small, comforting moment that celebrates everyday magic.
-            </p>
+              Using Ghibli’s existing characters and visual language, the brand leans into nostalgia and comfort through soft gradients, nature-inspired colours, and gentle illustrations that feel warm and familiar. A consistent layout ties the flavours together and keeps everything feeling light and cohesive. The goal is for Wisp to feel like more than just soda. It is meant to capture a small, comforting moment of everyday magic.
+              </p>
           </div>
         </div>
       </div>

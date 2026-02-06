@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PickiPage.css';
 import Footer from './footer';
 import pickiCharacter from './images/picki-character.png';
@@ -8,12 +9,21 @@ import phone2 from './images/phone2.png';
 import pickiMain from "./images/picki-main.png";
 
 const PickiPage = () => {
+  const navigate = useNavigate();
+  const projectTab = 'apps';
+  
   useEffect(() => {
     document.title = "Picki — Belinda To";
   }, []);
 
   return (
     <div className="picki-page">
+      {/* BACK ARROW */}
+      <button className="back-arrow" onClick={() => navigate(`/projects?tab=${projectTab}`)}>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
       {/* INTRO SECTION */}
       <section className="picki-intro-section">
         <div className="picki-intro-content">
