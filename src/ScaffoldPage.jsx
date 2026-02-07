@@ -27,6 +27,7 @@ import banner from './images/banner.png';
 import stickers from './images/stickers.png';
 import scaffoldBrochure from './images/scaffold-brochure.png';
 import tableSign from './images/table-sign.png';
+import businessCard from './images/business-card.png';
 
 
 
@@ -469,7 +470,9 @@ Users complete their profile, eligibility checks, and grant discovery directly i
       <section className="scaffold-promo-section">
         <div className="scaffold-promo-content">
           <p className="scaffold-section-label">07 – PROMOTIONAL MATERIAL</p>
-          
+           <div className="scaffold-promo-full">
+            <img src={banner} alt="Scaffold Promotional Banner" />
+          </div>
           <div className="scaffold-promo-grid">
             <div className="scaffold-promo-item promo-large">
               <img src={stickers} alt="Scaffold Stickers" />
@@ -478,15 +481,11 @@ Users complete their profile, eligibility checks, and grant discovery directly i
               <img src={tableSign} alt="Scaffold Table Sign" />
             </div>
             <div className="scaffold-promo-item promo-tall">
-
+              <img src={businessCard} alt="Scaffold Business Card" />
             </div>
             <div className="scaffold-promo-item promo-medium">
               <img src={scaffoldBrochure} alt="Scaffold Brochure" />
             </div>
-          </div>
-          
-          <div className="scaffold-promo-full">
-            <img src={banner} alt="Scaffold Promotional Banner" />
           </div>
           
           <div className="scaffold-promo-video">

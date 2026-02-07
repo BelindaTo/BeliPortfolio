@@ -7,6 +7,11 @@ import pickiPhones from './images/pickiphones.png';
 import blobs from './images/blobs.png';
 import phone2 from './images/phone2.png';
 import pickiMain from "./images/picki-main.png";
+import pickiCore from "./images/picki-core.png";
+import pickiColour from './images/picki-colour.png';
+import pickiLogo from './images/Picki-Logo.png';
+import pickiTypography from './images/picki-typography.png';
+import animation from './images/animation.mp4';
 
 const PickiPage = () => {
   const navigate = useNavigate();
@@ -129,99 +134,181 @@ const PickiPage = () => {
         </div>
       </section>
 
-      {/* HOW IT WORKS SECTION */}
-      <section className="picki-features-section">
-        <div className="picki-features-header">
-          <p className="picki-section-label">04 – HOW IT WORKS</p>
-          <h2 className="picki-features-title">
-            TO REMOVE THE PRESSURE OF DECISION-MAKING, PICKI IS BUILT AROUND <span className="highlight-italic">THREE CORE FEATURES.</span>
-          </h2>
+ {/* HOW IT WORKS SECTION */}
+<section className="picki-features-section">
+  <div className="picki-features-header">
+    <p className="picki-section-label">04 – HOW IT WORKS</p>
+    <h2 className="picki-features-title">
+      TO REMOVE THE PRESSURE OF DECISION-MAKING, PICKI IS BUILT AROUND <span className="highlight-italic">THREE CORE FEATURES.</span>
+    </h2>
+  </div>
+  
+  <div className="picki-features-layout">
+    <div className="picki-features-left">
+      <div className="picki-features-list">
+        <div className="picki-feature-item">
+          <p className="picki-feature-number">01</p>
+          <h3 className="picki-feature-name">HOST-LED PLANNING</h3>
+          <p className="picki-feature-description">
+            One person sets the event details and invites participants.
+          </p>
         </div>
         
-        <div className="picki-features-layout">
-          <div className="picki-features-left">
-            <div className="picki-features-list">
-              <div className="picki-feature-item">
-                <p className="picki-feature-number">01</p>
-                <h3 className="picki-feature-name">HOST-LED PLANNING</h3>
-                <p className="picki-feature-description">
-                  One person sets the event details and invites participants.
-                </p>
-              </div>
-              
-              <div className="picki-feature-item">
-                <p className="picki-feature-number">02</p>
-                <h3 className="picki-feature-name">SHARED PICKS</h3>
-                <p className="picki-feature-description">
-                  Each participant submits one pick they're happy with.
-                </p>
-              </div>
-              
-              <div className="picki-feature-item">
-                <p className="picki-feature-number">03</p>
-                <h3 className="picki-feature-name">RANDOMIZED OUTCOME</h3>
-                <p className="picki-feature-description">
-                  Picki selects one option and finalizes the plan.
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="picki-features-right">
-            <img src={blobs} alt="Picki Characters" className="picki-blobs-img" />
-          </div>
-        </div>
-      </section>
-
-      {/* DEMO SECTION */}
-      <section className="picki-demo-section">
-        <div className="picki-demo-content">
-          <p className="picki-section-label">05 – DEMO</p>
-          
-          <h2 className="picki-demo-title">
-            SEE PICKI <span className="highlight-italic">IN ACTION</span>
-          </h2>
-          
-          <p className="picki-demo-paragraph">
-            Watch how Picki transforms group decision-making from a frustrating experience into a fun, seamless process.
+        <div className="picki-feature-item">
+          <p className="picki-feature-number">02</p>
+          <h3 className="picki-feature-name">SHARED PICKS</h3>
+          <p className="picki-feature-description">
+            Each participant submits one pick they're happy with.
           </p>
-          
-          <div className="picki-demo-video">
-            {/* Add your demo video or GIF here */}
-            <div className="picki-demo-placeholder">
-              Demo Video
-            </div>
-          </div>
         </div>
-      </section>
-
-      {/* DESIGN PROCESS SECTION */}
-      <section className="picki-design-section">
-        <div className="picki-design-content">
-          <p className="picki-section-label">06 – DESIGN PROCESS</p>
-          
-          <p className="picki-design-paragraph">
-            The design strategy focused on creating an interface that feels approachable and playful without sacrificing clarity. The visual language needed to communicate that decisions are low-stakes while still being functional and intuitive. Typography, color, and interactions were all crafted to reduce cognitive load and encourage quick, confident use.
+        
+        <div className="picki-feature-item">
+          <p className="picki-feature-number">03</p>
+          <h3 className="picki-feature-name">RANDOMIZED OUTCOME</h3>
+          <p className="picki-feature-description">
+            Picki selects one option and finalizes the plan.
           </p>
+        </div>
+      </div>
+    </div>
+    
+    <div className="picki-features-right">
+  <div className="picki-features-media">
+    <img src={blobs} alt="Picki Characters" className="picki-blobs-img" />
+    <video 
+  className="picki-demo-video" 
+  autoPlay 
+  loop 
+  muted 
+  playsInline
+  src={animation}
+>
+</video>
+  </div>
+</div>
+  </div>
+</section>
+{/* USER FLOW SECTION */}
+<section className="picki-userflow-section">
+  <div className="picki-userflow-content">
+    <p className="picki-section-label">05 – USER FLOW</p>
+    
+    <h2 className="picki-userflow-title">
+      MAPPING THE <span className="highlight-italic">JOURNEY</span> FROM INDECISION TO PLAN
+    </h2>
+    
+    <p className="picki-userflow-paragraph">
+      The user flow was designed to minimize friction at every step. From creating an event to receiving the final decision, each interaction was mapped to ensure clarity and maintain the playful tone that defines Picki's experience.
+    </p>
+    
+    <div className="picki-userflow-embed">
+      <iframe 
+        style={{border: '1px solid rgba(0, 0, 0, 0.1)'}} 
+        width="800" 
+        height="450" 
+        src="https://embed.figma.com/board/77uCMus34bkrrxgC85gOn9/Picki-user-flows?node-id=0-1&embed-host=share" 
+        allowFullScreen
+      />
+    </div>
+  </div>
+</section>
+
+{/* DESIGN PROCESS SECTION */}
+<section className="picki-design-section">
+  <div className="picki-design-content">
+    <p className="picki-section-label">07 – DESIGN PROCESS</p>
+    
+    <p className="picki-design-paragraph">
+      The design strategy focused on creating an interface that feels approachable and playful without sacrificing clarity. The visual language needed to communicate that decisions are low-stakes while still being functional and intuitive. Typography, color, and interactions were all crafted to reduce cognitive load and encourage quick, confident use.
+    </p>
+    
+    {/* STYLEGUIDE SUBSECTION */}
+    <div className="picki-styleguide-section">
+      <h2 className="picki-styleguide-header">STYLEGUIDE</h2>
+      
+      <div className="picki-styleguide-grid">
+        {/* LEFT COLUMN */}
+        <div className="picki-styleguide-left">
+          <div className="picki-styleguide-block">
+            <h3 className="picki-styleguide-subtitle">COLOURS</h3>
+            <p className="picki-styleguide-description">
+PICKI’s palette combines playful, vibrant colours that feel warm and modern. Soft pink creates friendliness, green adds a fresh and calming balance, deep purple brings contrast and depth, and yellow adds a sense of energy and brightness. Together, they create an approachable and lively look. </p>           
+<img src={pickiColour} alt="Picki Color Palette" className="picki-styleguide-img" />
+          </div>
           
-          <div className="picki-fidelity-container">
-            <div className="picki-fidelity-item">
-              <div className="picki-fidelity-placeholder">Low-Fi</div>
-              <p className="picki-fidelity-label">Low-Fi</p>
-            </div>
-            
-            <div className="picki-fidelity-item">
-              <div className="picki-fidelity-placeholder">Mid-Fi</div>
-              <p className="picki-fidelity-label">Mid-Fi</p>
-            </div>
-            
-            <div className="picki-fidelity-item">
-              <div className="picki-fidelity-placeholder">Hi-Fi</div>
-              <p className="picki-fidelity-label">Hi-Fi</p>
-            </div>
+          <div className="picki-styleguide-block">
+            <h3 className="picki-styleguide-subtitle">LOGO</h3>
+            <p className="picki-styleguide-description">
+The primary PICKI logo features an arrow in place of the first ‘I’. 
+This arrow signifies a cursor or selector, incorporating the main idea of the PICKI app which is to collaborate among friends and group members to select an event. The typeface for the logo is Inter, a strong and clear typeface that allows the use of numerous fonts and sizes without the loss of readability and function.            </p>
           </div>
         </div>
-      </section>
+        
+        {/* RIGHT COLUMN */}
+        <div className="picki-styleguide-right">
+          <div className="picki-styleguide-block">
+            <h3 className="picki-styleguide-subtitle">TYPOGRAPHY</h3>
+            <p className="picki-styleguide-description">
+PICKI uses the Inter typeface for its versatility and readability across both digital and print. Its extensive Latin character set supports multiple languages, while the sharp letterforms create a nice contrast with the app’s rounded visual style.</p>
+            <img src={pickiTypography} alt="Picki Typography" className="picki-styleguide-img" />
+          </div>
+          
+          <div className="picki-styleguide-block">
+            <img src={pickiLogo} alt="Picki Logo" className="picki-styleguide-img" />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {/* WIREFRAMES SUBSECTION */}
+    <div className="picki-wireframes-section">
+      <h2 className="picki-wireframes-header">WIREFRAMES</h2>
+      
+      <div className="picki-design-screens">
+        <img src={pickiCore} alt="Picki App Screens" className="picki-design-image" />
+        
+        <div className="picki-design-labels">
+          <p className="picki-design-label">Host-Led Planning</p>
+          <p className="picki-design-label">Shared Picks</p>
+          <p className="picki-design-label">Randomized Outcome</p>
+        </div>
+      </div>
+      
+      <div className="picki-figma-embed">
+        <iframe 
+          style={{border: '1px solid rgba(0, 0, 0, 0.1)'}} 
+          width="800" 
+          height="450" 
+        src="https://embed.figma.com/design/Ph43MP7u4CTx9Kkd3imj1U/PICKI-A4-Mockup?node-id=0-1&embed-host=share"
+          allowFullScreen
+        />
+      </div>
+    </div>
+  </div>
+</section>
+  {/* DEMO SECTION */}
+<section className="picki-demo-section">
+  <div className="picki-demo-content">
+    <p className="picki-section-label">08 – DEMO</p>
+    
+    <h2 className="picki-demo-title">
+      SEE PICKI <span className="highlight-italic">IN ACTION</span>
+    </h2>
+    
+    <p className="picki-demo-paragraph">
+      Watch how Picki transforms group decision-making from a frustrating experience into a fun, seamless process.
+    </p>
+    
+    <div className="picki-demo-container">
+      {/* Add your demo video or GIF here */}
+      <div className="picki-demo-placeholder">
+        Demo Video
+      </div>
+    </div>
+  </div>
+</section>
+        {/* GRID SECTION */}
+      <div className="picki-grid-section" />
 
       {/* FOOTER */}
       <Footer />

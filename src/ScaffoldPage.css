@@ -1343,7 +1343,14 @@ width: 100%;
 
 .scaffold-promo-item.promo-tall {
   grid-column: 2;
-grid-row: 2 / 4;}
+grid-row: 2 / 4;
+overflow: hidden;
+}
+.scaffold-promo-item.promo-tall img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .scaffold-promo-item.promo-medium img {
   width: 100%;
   height: 100%;
