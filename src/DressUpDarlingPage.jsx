@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./DressUpDarlingPage.css";
 import Footer from "./footer";
 
@@ -20,13 +21,21 @@ import dressUpMockup from "./images/dress-up-mockup.png";
 import blondBlack from "./images/blond-black.png";
 
 export default function DressUpDarlingPage() {
+  const navigate = useNavigate();
+  const projectTab = 'interactive';
+  
   useEffect(() => {
     document.title = "Dress-Up Darling — Belinda To";
   }, []);
 
   return (
     <div className="dress-up-page">
-
+      {/* BACK ARROW */}
+      <button className="back-arrow" onClick={() => navigate(`/projects?tab=${projectTab}`)}>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
       {/* Project Info */}
       <section className="project-info-section pink-bg">
         <div className="project-info-container">

@@ -368,6 +368,7 @@
   }
   
   .mockup-large {
+    aspect-ratio: 3.93 / 5 !important;
     grid-row: span 2;
     background: #f0f0f0;
     border-radius: 16px;

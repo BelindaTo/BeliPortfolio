@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PostersPage.css';
 import Footer from './footer';
 import posterMain from './images/poster-main.png';
@@ -12,12 +13,21 @@ import originalPoster from './images/original-poster.png';
 
 
 const PostersPage = () => {
+  const navigate = useNavigate();
+  const projectTab = 'graphic';
+  
   useEffect(() => {
     document.title = "Posters — Belinda To";
   }, []);
 
   return (
     <div className="posters-page">
+      {/* BACK ARROW */}
+      <button className="back-arrow" onClick={() => navigate(`/projects?tab=${projectTab}`)}>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
       {/* INTRO SECTION */}
       <div className="posters-intro-section">
         <div className="posters-star posters-star-1" />
@@ -46,12 +56,12 @@ const PostersPage = () => {
           </div>
           
           <div className="about-text">
-            <h2 className="about-title">ABOUT THE POSTERS</h2>
+            <h2 className="about-title">ABOUT FLUFF & FLOUR</h2>
             
             <p className="about-paragraph">
-This project explores how a single set of visual assets can be applied across multiple designs for <em>Fluff & Flour</em> while maintaining a cohesive brand identity. The challenge was to create three distinct poster designs using different imagery, each highlighting a different offering, without losing visual consistency.</p>        
+Fluff & Flour is a bakery and café made for people who want something soft, sweet, and easy to grab on the go. The menu focuses on light pastries that feel airy and comforting without being heavy, perfect for busy mornings or a small treat between errands. In a market filled with pastry shops that feel old and predictable, Fluff & Flour brings a fresh, modern energy that feels bright, playful, and inviting.</p>        
             <p className="about-paragraph">
-Cohesion is maintained through a shared layout structure, typographic hierarchy, and recurring graphic elements, while variation is introduced through changes in colour, imagery, and visual emphasis. This balance allows each poster to stand on its own while still feeling connected as part of <em>Fluff & Flour's</em> overall visual system.</p>
+The posters help introduce the range of offerings while keeping the look recognizable across each design. Together, they support the idea that Fluff & Flour is not just about pastries, but about making everyday moments feel a little lighter and more enjoyable.</p>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MusicPlayerPage.css';
 import Footer from './footer';
 import playlistMockup from './images/playlist-mockup.png';
@@ -7,12 +8,22 @@ import lightMode from './images/light-mode.png';
 import lightModeMockup from './images/light-mode-mockup.png';
 
 const MusicPlayerPage = () => {
+  const navigate = useNavigate();
+  const projectTab = 'interactive';
+
   useEffect(() => {
     document.title = "Music Player — Belinda To";
   }, []);
 
   return (
     <div className="music-player-page">
+    {/* BACK ARROW */}
+    <button className="back-arrow" onClick={() => navigate(`/projects?tab=${projectTab}`)}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </button>
+      
       {/* INTRO SECTION */}
       <div className="music-intro-section">
         <div className="music-star music-star-1" />
@@ -56,17 +67,10 @@ const MusicPlayerPage = () => {
             <h2 className="about-title">ABOUT THE MUSIC PLAYER</h2>
             
             <p className="about-paragraph">
-              Add your description about the music player project here. This section can 
-              explain the concept, inspiration, and design approach behind your 
-              interactive music player.
-            </p>
+This interactive music player was built to make studying feel calmer and more focused, using soft visuals and a clean layout that students can comfortably keep open while working.            </p>
             
             <p className="about-paragraph">
-              You can add more details about the features, user experience, 
-              or any other relevant information that helps tell the story of this 
-              project. Include any special interactions or design decisions that make this 
-              work unique.
-            </p>
+Powered by the YouTube API, the player allows access to almost any song, including live performances and unreleased tracks, while supporting easy playlist creation and switching for free. It acts as a flexible study companion that keeps sessions flowing.            </p>
           </div>
         </div>
       </div>
