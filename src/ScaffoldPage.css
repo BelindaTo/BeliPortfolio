@@ -196,12 +196,37 @@
   
   .wisp-star-2 {
     bottom: 20%;
-    left: 30%;
+    left: 40%;
     width: 100px;
     height: 100px;
     background: #0a2a66;
     animation-delay: -3s;
   }
+  .scaffold-btn-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.scaffold-btn-secondary {
+  background: #6DB5E3;
+}
+
+.scaffold-btn-secondary:hover {
+  background-color: #5aa3d1;
+  box-shadow: 0 8px 20px rgba(109, 181, 227, 0.4);
+}
+
+@media (max-width: 768px) {
+  .scaffold-btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .scaffold-btn {
+    width: 100%;
+  }
+}
 
 /* ================= WHAT'S SCAFFOLD SECTION ================= */
 

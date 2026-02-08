@@ -68,7 +68,21 @@ const ScaffoldPage = () => {
               <p className="scaffold-value">3 MONTHS</p>
             </div>
             
-            <button className="scaffold-btn">Prototype</button>
+            <div className="scaffold-btn-group">
+  <button 
+    className="scaffold-btn" 
+    onClick={() => window.open('https://www.figma.com/proto/Hkbo33gLzuQ4EbrgS5urfF/UI-design?node-id=1878-6366&t=SCeP6zD7s9SX9six-1&scaling=scale-down&content-scaling=fixed&page-id=1878%3A3978&starting-point-node-id=1878%3A6387', '_blank')}
+  >
+    View Prototype
+  </button>
+  
+  <button 
+    className="scaffold-btn scaffold-btn-secondary" 
+    onClick={() => window.open('https://scaffold-self-eta.vercel.app/', '_blank')}
+  >
+    View App
+  </button>
+</div>
           </div>
           
           <div className="scaffold-intro-image">

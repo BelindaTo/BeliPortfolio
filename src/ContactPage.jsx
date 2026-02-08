@@ -4,6 +4,7 @@ import './ContactPage.css';
 import Footer from './footer';
 import emailIcon from './assets/email-logo.svg';
 import linkedinIcon from './assets/linkedin-logo.svg';
+import baby from './images/baby.jpg';
 
 const ContactPage = () => {
     
@@ -146,7 +147,7 @@ const ContactPage = () => {
 
             {/* Placeholder for image/illustration */}
             <div className="contact-image-placeholder">
-              {/* You can add an image here later */}
+              <img src={baby} alt="Contact Illustration" className="contact-image" />
             </div>
           </div>
         </div>

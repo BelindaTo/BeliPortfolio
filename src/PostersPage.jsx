@@ -56,10 +56,10 @@ const PostersPage = () => {
           </div>
           
           <div className="about-text">
-            <h2 className="about-title">ABOUT THE POSTERS</h2>
+            <h2 className="about-title">ABOUT FLUFF & FLOUR</h2>
             
             <p className="about-paragraph">
-Fluff & Flour is a bakery and café made for people who want something soft, sweet, and easy to grab on the go. The menu focuses on light pastries that feel airy and comforting without being heavy, perfect for busy mornings, quick study breaks, or a small treat between errands. In a market filled with pastry shops that feel old and predictable, Fluff & Flour brings a fresh, modern energy that feels bright, playful, and inviting.</p>        
+Fluff & Flour is a bakery and café made for people who want something soft, sweet, and easy to grab on the go. The menu focuses on light pastries that feel airy and comforting without being heavy, perfect for busy mornings or a small treat between errands. In a market filled with pastry shops that feel old and predictable, Fluff & Flour brings a fresh, modern energy that feels bright, playful, and inviting.</p>        
             <p className="about-paragraph">
 The posters help introduce the range of offerings while keeping the look recognizable across each design. Together, they support the idea that Fluff & Flour is not just about pastries, but about making everyday moments feel a little lighter and more enjoyable.</p>
           </div>

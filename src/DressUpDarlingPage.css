@@ -316,12 +316,12 @@
 }
 
 .character-title {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 700;
-  color: #6db5e3;
-  letter-spacing: 0.08em;
+  color: #6DB5E3;
+  letter-spacing: 0.05em;
+  margin: 0 0 30px 0;
   text-transform: uppercase;
-  margin-bottom: 20px;
 }
 
 .character-description {

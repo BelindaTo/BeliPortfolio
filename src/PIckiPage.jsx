@@ -50,7 +50,12 @@ const PickiPage = () => {
               <p className="picki-value">5 MONTHS</p>
             </div>
             
-            <button className="picki-btn">View Prototype</button>
+            <button 
+  className="picki-btn" 
+  onClick={() => window.open('https://www.figma.com/proto/Ph43MP7u4CTx9Kkd3imj1U/PICKI-A4-Mockup?node-id=1210-1363&t=2ddgigaxMLN05OBY-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A57', '_blank')}
+>
+  View Prototype
+</button>
           </div>
           
           <div className="picki-intro-image">
@@ -286,23 +291,39 @@ PICKI uses the Inter typeface for its versatility and readability across both di
     </div>
   </div>
 </section>
-  {/* DEMO SECTION */}
+{/* CHALLENGES SECTION */}
 <section className="picki-demo-section">
   <div className="picki-demo-content">
-    <p className="picki-section-label">08 – DEMO</p>
+    <p className="picki-section-label">08 – CHALLENGES</p>
     
     <h2 className="picki-demo-title">
-      SEE PICKI <span className="highlight-italic">IN ACTION</span>
+      NAVIGATING <span className="highlight-italic">DESIGN CHALLENGES</span>
     </h2>
     
     <p className="picki-demo-paragraph">
-      Watch how Picki transforms group decision-making from a frustrating experience into a fun, seamless process.
+      Throughout the development of Picki, several challenges emerged that required creative problem-solving and iterative refinement.
     </p>
     
-    <div className="picki-demo-container">
-      {/* Add your demo video or GIF here */}
-      <div className="picki-demo-placeholder">
-        Demo Video
+    <div className="picki-challenges-grid">
+      <div className="picki-challenge-card">
+        <h3 className="picki-challenge-card-title">Balancing Randomness with Control</h3>
+        <p className="picki-challenge-card-text">
+          Users wanted the app to feel spontaneous but also needed enough control to ensure suggestions matched their preferences. The solution involved implementing filters for event type, location radius, and budget before randomization occurs.
+        </p>
+      </div>
+      
+   <div className="picki-challenge-card">
+  <h3 className="picki-challenge-card-title">Supporting Indecisive Users</h3>
+  <p className="picki-challenge-card-text">
+    Some users struggled with submitting their own pick, unsure of what to choose. To address this, Picki offers a quiz feature that asks questions about preferences and mood, then generates personalized suggestions to help users make their selection.
+  </p>
+</div>
+      
+      <div className="picki-challenge-card">
+        <h3 className="picki-challenge-card-title">Maintaining Playful Tone</h3>
+        <p className="picki-challenge-card-text">
+          The app needed to feel fun without seeming childish. Through iterative testing, the blob characters, typography, and interactions were refined to strike a balance between playful and polished.
+        </p>
       </div>
     </div>
   </div>

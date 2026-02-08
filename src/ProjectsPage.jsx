@@ -28,7 +28,8 @@ const ProjectsPage = () => {
       category: ['APPS'],
       link: '/scaffold',
       image: scaffoldMain,
-      embedUrl: null
+      embedUrl: null,
+      buttonText: 'VIEW CASE STUDY'
     },
     {
       id: 2,
@@ -39,7 +40,8 @@ const ProjectsPage = () => {
       category: ['APPS'],
       link: '/picki',
       image: pickiMain,
-      embedUrl: null
+      embedUrl: null,
+      buttonText: 'VIEW'
     },
     {
       id: 3,
@@ -50,7 +52,8 @@ const ProjectsPage = () => {
       category: ['INTERACTIVE'],
       link: '/music-player',
       image: playlistMockup,
-      embedUrl: null
+      embedUrl: null,
+      buttonText: 'VIEW'
     },
     {
       id: 4,
@@ -61,7 +64,8 @@ const ProjectsPage = () => {
       category: ['INTERACTIVE'],
       link: '/dress-up-darling',
       image: dressUpMockup,
-      embedUrl: null
+      embedUrl: null,
+      buttonText: 'VIEW'
     },
     {
       id: 5,
@@ -72,7 +76,8 @@ const ProjectsPage = () => {
       category: ['GRAPHIC'],
       link: '/wisp-sodas',
       image: canMockup,
-      embedUrl: null
+      embedUrl: null,
+      buttonText: 'VIEW'
     },
     {
       id: 6,
@@ -83,7 +88,8 @@ const ProjectsPage = () => {
       category: ['GRAPHIC'],
       link: '/posters',
       image: posterMain,
-      embedUrl: null
+      embedUrl: null,
+      buttonText: 'VIEW'
     }
   ];
 
@@ -150,7 +156,7 @@ const ProjectsPage = () => {
                   }
                 }}
               >
-                VIEW
+                {project.buttonText || 'VIEW'}
               </button>
             </div>
             <div className="project-image">
@@ -161,8 +167,6 @@ const ProjectsPage = () => {
           </div>
         ))}
       </div>
-
-  
     </div>
   );
 };

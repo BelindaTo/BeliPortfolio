@@ -67,17 +67,10 @@ const MusicPlayerPage = () => {
             <h2 className="about-title">ABOUT THE MUSIC PLAYER</h2>
             
             <p className="about-paragraph">
-              Add your description about the music player project here. This section can 
-              explain the concept, inspiration, and design approach behind your 
-              interactive music player.
-            </p>
+This interactive music player was built to make studying feel calmer and more focused, using soft visuals and a clean layout that students can comfortably keep open while working.            </p>
             
             <p className="about-paragraph">
-              You can add more details about the features, user experience, 
-              or any other relevant information that helps tell the story of this 
-              project. Include any special interactions or design decisions that make this 
-              work unique.
-            </p>
+Powered by the YouTube API, the player allows access to almost any song, including live performances and unreleased tracks, while supporting easy playlist creation and switching for free. It acts as a flexible study companion that keeps sessions flowing.            </p>
           </div>
         </div>
       </div>
