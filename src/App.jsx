@@ -12,6 +12,7 @@ import AboutPage from "./AboutPage";
 import Footer from "./footer";
 import ContactPage from './ContactPage';
 import PickiPage from './PIckiPage';
+import Play from './play';
 
 
 import designerBear from "./images/designer-bear.png";
@@ -464,10 +465,11 @@ function Navbar() {
         </Link>
 
         <div className={`nav-links ${loaded ? "nav-loaded" : ""}`}>
-          <Link to="/projects" className={`nav-link ${isActive('/projects') ? 'active' : ''}`}>PROJECTS</Link>
-          <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>ABOUT ME</Link>
-          <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>CONTACT</Link>
-        </div>
+  <Link to="/projects" className={`nav-link ${isActive('/projects') ? 'active' : ''}`}>PROJECTS</Link>
+  <Link to="/play" className={`nav-link ${isActive('/play') ? 'active' : ''}`}>PLAYGROUND</Link>
+  <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>ABOUT ME</Link>
+  <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>CONTACT</Link>
+</div>
       </div>
     </nav>
   );
@@ -493,6 +495,7 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/scaffold" element={<ScaffoldPage />} />
         <Route path="/picki" element={<PickiPage />} />
+        <Route path="/play" element={<Play />} />
       </Routes>
     </Layout>
   );

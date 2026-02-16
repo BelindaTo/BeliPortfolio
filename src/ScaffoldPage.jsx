@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ScaffoldPage.css';
 import Footer from './footer';
 import constructionWorker from './images/construction-worker_1.png';
@@ -28,13 +28,46 @@ import stickers from './images/stickers.png';
 import scaffoldBrochure from './images/scaffold-brochure.png';
 import tableSign from './images/table-sign.png';
 import businessCard from './images/business-card.png';
+import per1 from './images/per1.png';
+import per2 from './images/per2.png';
 
 
 
 const ScaffoldPage = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+
   useEffect(() => {
     document.title = "Scaffold — Belinda To";
   }, []);
+
+  const handleImageClick = (imageSrc) => {
+    setSelectedImage(imageSrc);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedImage('');
+  };
+
+  const handleModalClick = (e) => {
+    if (e.target.className === 'persona-modal') {
+      closeModal();
+    }
+  };
+
+  // Close modal with Escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && modalOpen) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [modalOpen]);
 
   return (
     <div className="scaffold-page">
@@ -221,7 +254,7 @@ Once eligible, Scaffold generates a complete application template and can assist
           <div className="scaffold-research-block">
             <h3 className="scaffold-research-subtitle">BARRIERS TO ENTRY AND PARTICIPATION</h3>
             <p className="scaffold-research-paragraph">
-              Research from SkilledTradesBC’s 2023/24 and 2024/25 service plans shows that women and gender-diverse people still face major barriers when trying to enter the skilled trades. Women make up only 5% of the workforce, and many report a lack of mentors, role models, networks, and clear access to resources throughout the apprenticeship journey. Recent data also revealed a 36.98% drop in new women apprenticeship registrations in under-represented trades and a slight decline in overall representation. This decrease is partly connected to the end of the Canadian Apprenticeship Service grant, which had encouraged employers to hire apprentices from equity-deserving groups.
+              Research from SkilledTradesBC's 2023/24 and 2024/25 service plans shows that women and gender-diverse people still face major barriers when trying to enter the skilled trades. Women make up only 5% of the workforce, and many report a lack of mentors, role models, networks, and clear access to resources throughout the apprenticeship journey. Recent data also revealed a 36.98% drop in new women apprenticeship registrations in under-represented trades and a slight decline in overall representation. This decrease is partly connected to the end of the Canadian Apprenticeship Service grant, which had encouraged employers to hire apprentices from equity-deserving groups.
             </p>
           </div>
           
@@ -281,63 +314,51 @@ While classroom training environments are improving, workplace experiences are n
             </div>
           </div>
           
-          {/* Right Column - Persona */}
+          {/* Right Column - Personas */}
           <div className="scaffold-insights-right">
-            <div className="scaffold-persona-card">
-              <div className="scaffold-persona-header">
-                <img src={talia} alt="Talia Redsky" className="scaffold-persona-img" />
-                <div className="scaffold-persona-info">
-                  <h3 className="scaffold-persona-name">TALIA REDSKY</h3>
-                  <div className="scaffold-persona-details">
-                    <p><span className="detail-label">Age:</span> 28</p>
-                    <p><span className="detail-label">Occupation:</span> Carpentry Apprentice / Student</p>
-                    <p><span className="detail-label">Location:</span> Williams Lake, British Columbia</p>
-                    <p><span className="detail-label">Income:</span> $48,000</p>
-                    <p><span className="detail-label">Relationship:</span> Married, supports family members</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="scaffold-persona-quote">
-                <span className="quote-mark">"</span>
-                <p>I want to keep learning and supporting my community, but the system makes it hard to get started.</p>
-                <span className="quote-mark">"</span>
-              </div>
-              
-              <div className="scaffold-persona-section">
-                <h4 className="persona-section-title">PAIN POINTS</h4>
-                <ul className="persona-list">
-                  <li>Grant information is scattered across multiple government sites.</li>
-                  <li>Applications are filled with confusing or repetitive questions.</li>
-                  <li>Missed deadlines due to lack of reminders.</li>
-                  <li>Limited awareness of what she actually qualifies for.</li>
-                </ul>
-              </div>
-              
-              <div className="scaffold-persona-section">
-                <h4 className="persona-section-title">GOALS AND MOTIVATION</h4>
-                <ul className="persona-list">
-                  <li>Access funding programs for indigenous apprentices.</li>
-                  <li>Save time by using a tool that explains eligibility in plain language.</li>
-                  <li>Get reminders and track progress easily.</li>
-                  <li>Build financial stability while staying focused on her work.</li>
-                  <li>Use technology that respects and reflects her community values.</li>
-                </ul>
-              </div>
+            <div className="scaffold-personas-container">
+              <img 
+                src={per1} 
+                alt="Mateo Alvarez - Plumbing Apprentice Persona"
+                className="scaffold-persona-image"
+                onClick={() => handleImageClick(per1)}
+              />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Modal for zoomed persona images */}
+      {modalOpen && (
+        <div 
+          className="persona-modal"
+          style={{ display: 'flex' }}
+          onClick={handleModalClick}
+        >
+          <span className="persona-modal-close" onClick={closeModal}>&times;</span>
+          <img 
+            className="persona-modal-content" 
+            src={selectedImage} 
+            alt="Zoomed persona" 
+          />
+        </div>
+      )}
 
       {/* USER FLOW SECTION */}
       <section className="scaffold-userflow-section">
         <div className="scaffold-userflow-content">
           <h2 className="scaffold-userflow-title">USER FLOW</h2>
           <div className="scaffold-userflow-image">
-            <img src={userFlow} alt="Scaffold User Flow" />
+            <img 
+              src={userFlow} 
+              alt="Scaffold User Flow"
+              onClick={() => handleImageClick(userFlow)}
+              style={{ cursor: 'pointer' }}
+            />
           </div>
         </div>
       </section>
+
 
       {/* 05 - DESIGN PROCESSES SECTION */}
       <section className="scaffold-design-section">
@@ -486,19 +507,24 @@ Users complete their profile, eligibility checks, and grant discovery directly i
           <p className="scaffold-section-label">07 – PROMOTIONAL MATERIAL</p>
            <div className="scaffold-promo-full">
             <img src={banner} alt="Scaffold Promotional Banner" />
+            <span className="promo-label">Promotional Banner</span>
           </div>
           <div className="scaffold-promo-grid">
             <div className="scaffold-promo-item promo-large">
               <img src={stickers} alt="Scaffold Stickers" />
+              <span className="promo-label">Stickers</span>
             </div>
             <div className="scaffold-promo-item promo-small">
               <img src={tableSign} alt="Scaffold Table Sign" />
+              <span className="promo-label">Table Sign</span>
             </div>
             <div className="scaffold-promo-item promo-tall">
               <img src={businessCard} alt="Scaffold Business Card" />
+              <span className="promo-label">Business Card</span>
             </div>
             <div className="scaffold-promo-item promo-medium">
               <img src={scaffoldBrochure} alt="Scaffold Brochure" />
+              <span className="promo-label">Brochure</span>
             </div>
           </div>
           
