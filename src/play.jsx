@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import './Play.css';
+import './play.css';
 
 const GOOD_ITEMS = ['🫐', '🍓', '🍇', '🍒', '🍑', '🍎', '🍉', '🍊'];
 const BAD_ITEMS = ['👹', '👺', '👿', '☠️', '🤡', '💩'];
