@@ -446,6 +446,7 @@ useEffect(() => {
 
 function Navbar() {
   const [loaded, setLoaded] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -453,9 +454,12 @@ function Navbar() {
     return () => clearTimeout(t);
   }, []);
 
-  const isActive = (path) => {
-    return location.pathname === path;
-  };
+  // Close menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location]);
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <nav className="navbar">
@@ -464,12 +468,23 @@ function Navbar() {
           <img src={logo} alt="Belinda To Logo" />
         </Link>
 
-        <div className={`nav-links ${loaded ? "nav-loaded" : ""}`}>
-  <Link to="/projects" className={`nav-link ${isActive('/projects') ? 'active' : ''}`}>PROJECTS</Link>
-  <Link to="/play" className={`nav-link ${isActive('/play') ? 'active' : ''}`}>PLAYGROUND</Link>
-  <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>ABOUT ME</Link>
-  <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>CONTACT</Link>
-</div>
+        {/* Hamburger button */}
+        <button
+          className={`hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <div className={`nav-links ${loaded ? "nav-loaded" : ""} ${menuOpen ? "nav-open" : ""}`}>
+          <Link to="/projects" className={`nav-link ${isActive('/projects') ? 'active' : ''}`}>PROJECTS</Link>
+          <Link to="/play" className={`nav-link ${isActive('/play') ? 'active' : ''}`}>PLAYGROUND</Link>
+          <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>ABOUT ME</Link>
+          <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>CONTACT</Link>
+        </div>
       </div>
     </nav>
   );
