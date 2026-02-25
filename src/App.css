@@ -86,8 +86,6 @@ body {
   width: 100%;
   height: 96px;
   background: rgba(255, 252, 242, 0.7);
-
-  /* blur effect */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 0.25px solid rgba(0, 0, 0, 0.25);
@@ -100,7 +98,7 @@ body {
   padding: 0 56px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* THIS pushes logo left, links right */
+  justify-content: space-between;
 }
 
 /* LOGO (LEFT) */
@@ -117,13 +115,17 @@ body {
 /* LINKS (RIGHT) */
 .nav-links {
   display: flex;
-  gap: 80px;
-  transform: translateY(-40px); /* inside navbar */
+  gap: 48px;
+  transform: translateY(-40px);
   opacity: 0;
-
   transition:
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.6s ease;
+}
+
+.nav-links.nav-loaded {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* LINK STYLE */
@@ -133,8 +135,6 @@ body {
   letter-spacing: 0.12em;
   color: #111;
   text-decoration: none;
-  position: relative;
-  align-items: right;
   position: relative;
   transition: all 0.3s ease;
 }
@@ -161,31 +161,48 @@ body {
   transform: scaleX(1);
 }
 
-.nav-links.nav-loaded {
-  transform: translateY(0);
-  opacity: 1;
-}
-.nav-links {
-  display: flex;
-  gap: 48px;
-
-  transform: translateY(-40px);
-  opacity: 0;
-
-  transition:
-    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.6s ease;
-}
-
-
-
 .nav-link.active {
   color: #76BDFF !important;
   font-weight: 700;
 }
 
+/* ================= HAMBURGER ================= */
 
-/* Mobile navbar */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #111;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ================= MOBILE ================= */
+
 @media (max-width: 768px) {
   .navbar {
     height: 70px;
@@ -199,23 +216,64 @@ body {
     height: 36px;
   }
 
+  .hamburger {
+    display: flex;
+  }
+
   .nav-links {
-    gap: 24px;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    background: rgba(255, 252, 242, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 0.25px solid rgba(0, 0, 0, 0.15);
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(0) !important;
+
+    transition:
+      max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.3s ease;
+  }
+
+  .nav-links.nav-loaded {
+    transform: translateY(0) !important;
+    opacity: 0;
+  }
+
+  .nav-links.nav-open {
+    max-height: 400px;
+    opacity: 1 !important;
   }
 
   .nav-link {
     font-size: 14px;
+    letter-spacing: 0.1em;
+    padding: 18px 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 0.25px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .nav-link::after {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .nav-links {
-    gap: 16px;
+  .nav-container {
+    padding: 0 16px;
   }
 
-  .nav-link {
-    font-size: 12px;
-    letter-spacing: 0.08em;
+  .logo img {
+    height: 32px;
   }
 }
 
@@ -879,21 +937,21 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: FFE2ED;
+  background: #FFE2ED;
   z-index: 5;
 }
 
 .transition-section {
   position: relative;
   height: 47vh;
-  background-color: #fffcf2; /* cream base */
-  
-  background-image:
-    linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-    linear-gradient(to bottom, #FFE2ED 0%, #fffcf2 70%);
+  background-color: #fffcf2;
 
-  background-size: 80px 80px, 80px 80px, 100% 100%;
+  background-image:
+    linear-gradient(to bottom, #FFE2ED 0%, transparent 70%),
+    linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
+
+  background-size: 100% 100%, 80px 80px, 80px 80px;
   background-position: 0 0;
   overflow: hidden;
   z-index: 1;
@@ -1019,7 +1077,7 @@ body {
 }
 
 .transition-star-1 {
-  top: 40%;
+  top: 80%;
   left: 10%;
   width: 250px;
   height: 250px;
