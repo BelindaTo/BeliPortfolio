@@ -273,7 +273,7 @@ While classroom training environments are improving, workplace experiences are n
           <div className="scaffold-insights-left">
             <p className="scaffold-section-label">04 – USER INSIGHTS</p>
             
-            <h3 className="scaffold-insights-subtitle">WHO WE DESIGNED FOR</h3>
+            <h3 className="scaffold-insights-subtitle">WHO SCAFFOLD DESIGNED FOR</h3>
             <p className="scaffold-insights-paragraph">
               Scaffold was designed for apprentices and early-career tradespeople juggling work, training, and limited time often navigating funding systems not built for them.
             </p>
