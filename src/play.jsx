@@ -7,7 +7,7 @@ const GOOD_ITEMS = ['🫐', '🍓', '🍇', '🍒', '🍑', '🍎', '🍉', '�
 const BAD_ITEMS = ['👹', '👺', '👿', '☠️', '🤡', '💩'];
 
 export default function Play() {
-  const [gameState, setGameState] = useState('start'); // 'start' | 'playing' | 'win' | 'lose'
+  const [gameState, setGameState] = useState('start'); 
   const [items, setItems] = useState([]);
   const [jarCount, setJarCount] = useState(0);
   const [jarItems, setJarItems] = useState([]);
@@ -20,9 +20,9 @@ export default function Play() {
   const animationFrameRef = useRef();
   const spawnIntervalRef = useRef();
 
-  // Mouse tracking
+
   useEffect(() => {
-    // Hide navbar
+
     const navbar = document.querySelector('.navbar');
     if (navbar) navbar.style.display = 'none';
 
@@ -41,19 +41,17 @@ export default function Play() {
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
 
     return () => {
-      // Show navbar again when leaving
       if (navbar) navbar.style.display = '';
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('touchmove', handleTouchMove);
     };
   }, []);
 
-  // Spawn items - INSANE SPEED
   useEffect(() => {
     if (gameState !== 'playing') return;
 
     const spawnItem = () => {
-      const isBad = Math.random() < 0.4; // 40% bad items
+      const isBad = Math.random() < 0.4; 
       const itemList = isBad ? BAD_ITEMS : GOOD_ITEMS;
       const emoji = itemList[Math.floor(Math.random() * itemList.length)];
 
@@ -63,42 +61,37 @@ export default function Play() {
         isBad,
         x: Math.random() * (window.innerWidth - 100) + 50,
         y: -50,
-        speed: 6 + Math.random() * 3, // FAST
+        speed: 6 + Math.random() * 3, 
       };
 
       setItems((prev) => [...prev, newItem]);
     };
 
-    spawnIntervalRef.current = setInterval(spawnItem, 350); // spawns fast
+    spawnIntervalRef.current = setInterval(spawnItem, 350); 
     return () => clearInterval(spawnIntervalRef.current);
   }, [gameState]);
 
-  // Catch good item
   const catchGoodItem = useCallback((emoji) => {
     setJarCount((prev) => prev + 1);
     setJarItems((prev) => [...prev.slice(-7), emoji]);
   }, []);
 
-  // Catch bad item
   const catchBadItem = useCallback(() => {
     setGameState('lose');
   }, []);
 
-  // Check for win
   useEffect(() => {
     if (jarCount >= 15 && gameState === 'playing') {
       setGameState('win');
     }
   }, [jarCount, gameState]);
 
-  // Check for too many misses
   useEffect(() => {
     if (missed >= 5 && gameState === 'playing') {
       setGameState('lose');
     }
   }, [missed, gameState]);
 
-  // Game loop
   useEffect(() => {
     if (gameState !== 'playing') {
       cancelAnimationFrame(animationFrameRef.current);
@@ -134,7 +127,6 @@ export default function Play() {
             continue;
           }
 
-          // Off screen
           if (newY > window.innerHeight + 50) {
             if (!item.isBad) {
               setMissed((prev) => prev + 1);
@@ -157,7 +149,6 @@ export default function Play() {
     return () => cancelAnimationFrame(animationFrameRef.current);
   }, [gameState, catchGoodItem, catchBadItem]);
 
-  // Start game
   const startGame = () => {
     setJarCount(0);
     setJarItems([]);
@@ -168,9 +159,7 @@ export default function Play() {
 
   return (
     <div className="catch-container">
-      {/* Exit Button */}
       <Link to="/" className="catch-back">← Exit</Link>
-      {/* Start Screen */}
       <AnimatePresence>
         {gameState === 'start' && (
           <motion.div
@@ -200,7 +189,6 @@ export default function Play() {
         )}
       </AnimatePresence>
 
-      {/* Game UI */}
       {gameState === 'playing' && (
         <div className="catch-header">
           <div className="catch-missed">💔 {missed}/5</div>
@@ -208,10 +196,8 @@ export default function Play() {
         </div>
       )}
 
-      {/* Miss Flash */}
       {showMissFlash && <div className="catch-miss-flash">MISS!</div>}
 
-      {/* Falling Items */}
       <AnimatePresence>
         {items.map((item) => (
           <motion.div
@@ -227,7 +213,6 @@ export default function Play() {
         ))}
       </AnimatePresence>
 
-      {/* Jar */}
       {gameState === 'playing' && (
         <motion.div
           className="catch-jar"
@@ -249,7 +234,6 @@ export default function Play() {
         </motion.div>
       )}
 
-      {/* Win Screen */}
       <AnimatePresence>
         {gameState === 'win' && (
           <motion.div
@@ -279,7 +263,6 @@ export default function Play() {
         )}
       </AnimatePresence>
 
-      {/* Lose Screen */}
       <AnimatePresence>
         {gameState === 'lose' && (
           <motion.div
