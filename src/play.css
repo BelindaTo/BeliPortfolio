@@ -7,7 +7,6 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Exit Controls */
 .catch-back {
   position: fixed;
   bottom: 20px;
@@ -38,7 +37,6 @@
   }
 }
 
-/* Header */
 .catch-header {
   position: fixed;
   top: 20px;
@@ -80,7 +78,6 @@
   }
 }
 
-/* Miss Flash */
 .catch-miss-flash {
   position: fixed;
   bottom: 100px;
@@ -101,7 +98,6 @@
   75% { transform: translateX(-50%) rotate(5deg); }
 }
 
-/* Falling Items */
 .catch-falling-item {
   position: absolute;
   font-size: 2.8rem;
@@ -116,7 +112,6 @@
   }
 }
 
-/* Jar */
 .catch-jar {
   position: fixed;
   width: 80px;
@@ -169,7 +164,6 @@
   gap: 1px;
 }
 
-/* Overlay Screens */
 .catch-overlay {
   position: fixed;
   top: 0;
@@ -216,7 +210,6 @@
   cursor: pointer;
 }
 
-/* Win/Lose Screens */
 .catch-win-emoji {
   font-size: 4rem;
   margin-bottom: 20px;
