@@ -37,10 +37,9 @@
 
 .picki-intro-section {
   min-height: 100vh;
-  padding: 140px 120px 80px;
+  padding: 140px 120px 60px;
   background-color: #fffcf2;
   
-  /* Grid pattern */
   background-image:
     linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
@@ -119,7 +118,6 @@
   outline: none;
 }
 
-/* Shine effect */
 .picki-btn::before {
   content: '';
   position: absolute;
@@ -152,15 +150,15 @@
 }
 
 .picki-intro-image {
-    width: 100%;
-    height: 550px;
-    background: linear-gradient(135deg, #e8b4d4 0%, #d4a5c9 100%);
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  width: 100%;
+  height: 550px;
+  background: linear-gradient(135deg, #e8b4d4 0%, #d4a5c9 100%);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   border: 3px solid #FF91BA;
 }
 
@@ -174,10 +172,9 @@
 /* ================= OVERVIEW SECTION ================= */
 
 .picki-overview-section {
-  padding: 100px 120px 80px;
+  padding: 60px 120px 60px;
   background: linear-gradient(to bottom, #fffcf2 0%, #FFE2ED 100%);
   
-  /* Grid pattern */
   background-image:
     linear-gradient(to bottom, #fffcf2 0%, #FFE2ED 100%),
     linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
@@ -230,7 +227,7 @@
   font-size: clamp(15px, 2vw, 17px);
   line-height: 1.7;
   color: #333;
-  margin: 0 0 60px 0;
+  margin: 0 0 40px 0;
 }
 
 .picki-overview-cards {
@@ -296,7 +293,7 @@
 /* ================= THE CHALLENGE SECTION ================= */
 
 .picki-challenge-section {
-  padding: 140px 120px 160px;
+  padding: 80px 120px 100px;
   background: #FFE2ED;
 }
 
@@ -311,7 +308,7 @@
   grid-template-columns: auto 1fr;
   gap: 120px;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .picki-challenge-visual {
@@ -331,7 +328,7 @@
 .picki-challenge-text {
   display: flex;
   flex-direction: column;
-  gap: 90px;
+  gap: 60px;
 }
 
 .picki-challenge-block {
@@ -371,7 +368,7 @@
 /* ================= THE CONCEPT SECTION ================= */
 
 .picki-concept-section {
-  padding: 80px 120px 180px;
+  padding: 60px 120px 120px;
   background: #FFE2ED;
 }
 
@@ -390,7 +387,7 @@
   font-weight: 600;
   color: #0a2a66;
   line-height: 1.3;
-  margin: 60px 0 30px 0;
+  margin: 40px 0 30px 0;
   letter-spacing: 0.01em;
   text-align: center;
 }
@@ -405,7 +402,7 @@
   font-size: clamp(15px, 2vw, 17px);
   line-height: 1.7;
   color: #333;
-  margin: 0 0 100px 0;
+  margin: 0 0 60px 0;
   text-align: center;
 }
 
@@ -413,7 +410,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 60px;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 .picki-concept-point {
@@ -457,13 +454,13 @@
 /* ================= HOW IT WORKS SECTION ================= */
 
 .picki-features-section {
-  padding: 180px 120px;
+  padding: 100px 120px;
   background: #FFE2ED;
 }
 
 .picki-features-header {
   max-width: 1400px;
-  margin: 0 auto 100px;
+  margin: 0 auto 60px;
 }
 
 .picki-features-header .picki-section-label {
@@ -503,10 +500,10 @@
 }
 
 .picki-features-list {
-  margin-top: 120px;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  gap: 80px;
   margin-left: 40px;
 }
 
@@ -581,7 +578,7 @@
 /* ================= USER FLOW SECTION ================= */
 
 .picki-userflow-section {
-  padding: 180px 120px;
+  padding: 100px 120px;
   background: #FFE2ED;
 }
 
@@ -596,7 +593,7 @@
   font-weight: 600;
   color: #0a2a66;
   line-height: 1.3;
-  margin: 60px 0 30px 0;
+  margin: 40px 0 30px 0;
   letter-spacing: 0.01em;
   text-align: center;
 }
@@ -631,7 +628,7 @@
 /* ================= DEMO SECTION ================= */
 
 .picki-demo-section {
-  padding: 180px 120px;
+  padding: 100px 120px;
   background: #FFE2ED;
 }
 
@@ -694,7 +691,7 @@
 /* ================= DESIGN PROCESS SECTION ================= */
 
 .picki-design-section {
-  padding: 180px 120px;
+  padding: 100px 120px;
   background: #FFE2ED;
 }
 
@@ -723,7 +720,7 @@
 /* ================= STYLEGUIDE SUBSECTION ================= */
 
 .picki-styleguide-section {
-  margin: 80px 0 100px 0;
+  margin: 60px 0 80px 0;
 }
 
 .picki-styleguide-header {
@@ -776,12 +773,10 @@
   border-radius: 16px;
 }
 
-/* Scale down only typography image */
 .picki-styleguide-right .picki-styleguide-img {
   width: 60%;
 }
 
-/* Scale up logo image */
 .picki-styleguide-right .picki-styleguide-block:last-child .picki-styleguide-img {
   width: 100%;
 }
@@ -823,7 +818,7 @@
 /* ================= WIREFRAMES SUBSECTION ================= */
 
 .picki-wireframes-section {
-  margin: 100px 0 0 0;
+  margin: 80px 0 0 0;
 }
 
 .picki-wireframes-header {
@@ -831,7 +826,7 @@
   font-weight: 800;
   color: #6DB5E3;
   letter-spacing: 0.05em;
-  margin: 80px 0 60px 0;
+  margin: 60px 0 60px 0;
   text-transform: uppercase;
 }
 
@@ -839,7 +834,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 .picki-figma-embed iframe {
@@ -850,6 +845,7 @@
 }
 
 /* ================= OUTCOME SECTION ================= */
+
 .picki-challenges-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -884,20 +880,8 @@
   margin: 0;
 }
 
-@media (max-width: 1200px) {
-  .picki-challenges-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-}
-
-@media (max-width: 768px) {
-  .picki-challenge-card {
-    padding: 30px;
-  }
-}
 .picki-outcome-section {
-  padding: 180px 120px;
+  padding: 100px 120px;
   background: #FFE2ED;
 }
 
@@ -988,124 +972,129 @@
 
 @media (max-width: 1200px) {
   .picki-intro-section {
-    padding: 140px 60px 80px;
+    padding: 140px 60px 60px;
   }
-  
+
   .picki-intro-content {
     grid-template-columns: 1fr;
     gap: 60px;
   }
-  
+
   .picki-intro-image {
     height: 400px;
   }
-  
+
   .picki-overview-section {
-    padding: 100px 60px;
+    padding: 60px 60px;
   }
-  
+
   .picki-overview-content {
     grid-template-columns: 1fr;
     gap: 60px;
   }
-  
+
   .picki-challenge-section {
-    padding: 140px 60px;
+    padding: 80px 60px;
   }
-  
+
   .picki-challenge-layout {
     grid-template-columns: 1fr;
     gap: 60px;
   }
-  
+
   .picki-challenge-visual {
     width: 100%;
     min-width: auto;
     max-width: 500px;
     margin: 0 auto;
   }
-  
+
   .picki-concept-section {
-    padding: 140px 60px;
+    padding: 80px 60px;
   }
-  
+
   .picki-concept-points {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+
   .picki-demo-section {
-    padding: 140px 60px;
+    padding: 80px 60px;
   }
-  
+
   .picki-design-section {
-    padding: 140px 60px;
+    padding: 80px 60px;
   }
-  
+
   .picki-styleguide-section {
     margin: 60px 0 80px 0;
   }
-  
+
   .picki-styleguide-grid {
     gap: 60px;
   }
-  
+
   .picki-styleguide-left,
   .picki-styleguide-right {
     gap: 60px;
   }
-  
+
   .picki-features-section {
-    padding: 140px 60px;
+    padding: 80px 60px;
   }
-  
+
   .picki-features-layout {
     grid-template-columns: 1fr;
     gap: 60px;
   }
-  
+
   .picki-features-list {
     margin-top: 60px;
-    gap: 80px;
+    gap: 60px;
     margin-left: 0;
   }
-  
+
   .picki-features-media {
     margin-top: -40px;
     right: 0;
     margin: 0 auto;
   }
-  
+
   .picki-blobs-img {
     width: 100%;
     max-width: 600px;
   }
-  
+
   .picki-demo-video {
     width: 55%;
   }
-  
+
   .picki-outcome-section {
-    padding: 140px 60px;
+    padding: 80px 60px;
   }
-  
+
   .picki-userflow-section {
-    padding: 140px 60px;
+    padding: 80px 60px;
   }
-  
+
   .picki-userflow-embed iframe {
     width: 100%;
     max-width: 700px;
   }
-  
+
   .picki-wireframes-section {
-    margin: 80px 0 0 0;
+    margin: 60px 0 0 0;
   }
-  
+
   .picki-figma-embed iframe {
     width: 100%;
     max-width: 900px;
     height: 506px;
+  }
+
+  .picki-challenges-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
 
@@ -1116,136 +1105,140 @@
     width: 40px;
     height: 40px;
   }
-  
+
   .picki-intro-section {
     padding: 120px 40px 60px;
   }
-  
+
   .picki-title {
     font-size: 3rem;
   }
-  
+
   .picki-intro-image {
     height: 300px;
   }
-  
+
   .picki-btn {
     width: 100%;
     text-align: center;
   }
-  
+
   .picki-overview-section {
-    padding: 80px 40px;
+    padding: 60px 40px;
   }
-  
+
   .picki-overview-title {
     font-size: 1.8rem;
   }
-  
+
   .picki-challenge-section {
-    padding: 100px 40px;
+    padding: 60px 40px;
   }
-  
+
   .picki-challenge-visual {
     max-width: 400px;
   }
-  
+
   .picki-concept-section {
-    padding: 100px 40px;
+    padding: 60px 40px;
   }
-  
+
   .picki-demo-section {
-    padding: 100px 40px;
+    padding: 60px 40px;
   }
-  
+
   .picki-demo-placeholder {
     height: 300px;
   }
-  
+
   .picki-design-section {
-    padding: 100px 40px;
+    padding: 60px 40px;
   }
-  
+
   .picki-styleguide-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+
   .picki-styleguide-left,
   .picki-styleguide-right {
     gap: 40px;
   }
-  
+
   .picki-styleguide-section {
     margin: 40px 0 60px 0;
   }
-  
+
   .picki-styleguide-right .picki-styleguide-img {
     width: 80%;
   }
-  
+
   .picki-design-labels {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .picki-design-label {
     font-size: 16px;
   }
-  
+
   .picki-features-section {
-    padding: 100px 40px;
+    padding: 60px 40px;
   }
-  
+
   .picki-features-list {
     margin-top: 40px;
     gap: 60px;
   }
-  
+
   .picki-features-media {
     margin-top: 0;
   }
-  
+
   .picki-blobs-img {
     max-width: 450px;
   }
-  
+
   .picki-demo-video {
     width: 50%;
     border-radius: 40px;
   }
-  
+
   .picki-feature-number {
     font-size: 2.5rem;
   }
-  
+
   .picki-feature-name {
     font-size: 18px;
   }
-  
+
   .picki-outcome-section {
-    padding: 100px 40px;
+    padding: 60px 40px;
   }
-  
+
   .picki-next-steps {
     padding: 30px;
   }
-  
+
   .picki-userflow-section {
-    padding: 100px 40px;
+    padding: 60px 40px;
   }
-  
+
   .picki-userflow-embed iframe {
     width: 100%;
     height: 350px;
   }
-  
+
   .picki-wireframes-section {
     margin: 60px 0 0 0;
   }
-  
+
   .picki-figma-embed iframe {
     width: 100%;
     height: 350px;
+  }
+
+  .picki-challenge-card {
+    padding: 30px;
   }
 }
