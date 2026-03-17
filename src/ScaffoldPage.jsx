@@ -36,6 +36,9 @@ import per2 from './images/per2.png';
 const ScaffoldPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
+  const [activePersona, setActivePersona] = useState(0);
+
+  const personas = [per1, per2];
 
   useEffect(() => {
     document.title = "Scaffold — Belinda To";
@@ -314,15 +317,47 @@ While classroom training environments are improving, workplace experiences are n
             </div>
           </div>
           
-          {/* Right Column - Personas */}
+          {/* Right Column - Personas Carousel */}
           <div className="scaffold-insights-right">
             <div className="scaffold-personas-container">
-              <img 
-                src={per1} 
-                alt="Mateo Alvarez - Plumbing Apprentice Persona"
-                className="scaffold-persona-image"
-                onClick={() => handleImageClick(per1)}
-              />
+              <div className="persona-carousel">
+                <img
+                  src={personas[activePersona]}
+                  alt={`Persona ${activePersona + 1}`}
+                  className="scaffold-persona-image"
+                  onClick={() => handleImageClick(personas[activePersona])}
+                />
+                <div className="persona-carousel-controls">
+                  <button
+                    className="persona-carousel-btn"
+                    onClick={() => setActivePersona((prev) => (prev - 1 + personas.length) % personas.length)}
+                    aria-label="Previous persona"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  <div className="persona-carousel-dots">
+                    {personas.map((_, i) => (
+                      <button
+                        key={i}
+                        className={`persona-dot ${activePersona === i ? 'active' : ''}`}
+                        onClick={() => setActivePersona(i)}
+                        aria-label={`Go to persona ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    className="persona-carousel-btn"
+                    onClick={() => setActivePersona((prev) => (prev + 1) % personas.length)}
+                    aria-label="Next persona"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
