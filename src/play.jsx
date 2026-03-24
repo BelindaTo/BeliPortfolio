@@ -112,7 +112,6 @@ export default function Play() {
         for (const item of prevItems) {
           const newY = item.y + item.speed;
 
-          // Collision check
           if (
             item.x > jarRect.left &&
             item.x < jarRect.right &&
