@@ -102,17 +102,17 @@
   
   .license-star-2 {
     bottom: 20%;
-    left: 8%;
-    width: 200px;
-    height: 200px;
+    left: 2%;
+    width: 375px;
+    height: 375px;
     background: #a8d5f0;
     transform: rotate(-20deg);
     animation: floatStar2 10s ease-in-out infinite, starAppear 1s ease-out 0.6s backwards;
   }
   
   .license-star-3 {
-    top: 50%;
-    right: 15%;
+    top: 60%;
+    right: 5%;
     width: 150px;
     height: 150px;
     background: #d4a5f0;
@@ -190,6 +190,7 @@
     background-position: 0 0;
     position: relative;
     animation: fadeInUp 0.8s ease-out 0.3s backwards;
+    overflow: hidden; /* add this */
   }
   
   .bio-section::after {
@@ -215,6 +216,50 @@
     position: relative;
     z-index: 3;
   }
+  /* Big decorative stars (same style as the other pages) */
+.bio-star {
+  position: absolute;
+  opacity: 0.35;
+  z-index: 1;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    100% 50%,
+    61% 65%,
+    50% 100%,
+    39% 65%,
+    0% 50%,
+    39% 35%
+  );
+}
+
+.bio-star-1 {
+  top: 8%;
+  left: 3%;
+  width: 420px;
+  height: 420px;
+  background: #a8d5f0;
+  transform: rotate(-15deg);
+}
+
+.bio-star-2 {
+  bottom: 5%;
+  right: -6%;
+  width: 600px;
+  height: 600px;
+  background: #ffa8d4;
+  transform: rotate(25deg);
+}
+
+@media (max-width: 1024px) {
+  .bio-star-1 { width: 300px; height: 300px; }
+  .bio-star-2 { width: 400px; height: 400px; }
+}
+
+@media (max-width: 768px) {
+  .bio-star-1 { width: 200px; height: 200px; }
+  .bio-star-2 { width: 260px; height: 260px; }
+}
   
   .bio-title {
     font-size: 40px;

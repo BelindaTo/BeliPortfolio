@@ -13,6 +13,7 @@ import Footer from "./footer";
 import ContactPage from './ContactPage';
 import PickiPage from './PIckiPage';
 import Play from './play';
+import HerschelPage from './Herschelpage';
 
 
 import designerBear from "./images/designer-bear.png";
@@ -21,7 +22,40 @@ import developerBear from "./images/developer-bear.png";
 import ideatorBear from "./images/ideator-bear.png";
 import scaffoldHero from "./images/scaffold-hero.png";
 import scaffoldMain from "./images/scaffold-main.png";
+import herschelFeatured from "./images/Herschel-certificate.png";
 import ScaffoldPage from './ScaffoldPage';
+
+
+/* =========================
+   FEATURED PROJECTS
+   (add or reorder cards here)
+   backgroundText is optional: the big faded word behind the card.
+   If it is left out, the title is used.
+========================= */
+
+const featuredProjects = [
+  {
+    id: "herschel",
+    title: "HERSCHEL SUPPLY CO.",
+    backgroundText: "HERSCHEL",
+    role: "GRAPHIC DESIGN INTERN",
+    desc: "Print, packaging and retail design for Minecraft, Golf and more during my graphic design internship at Herschel Supply Co.",
+    link: "/herschel",
+    image: herschelFeatured,
+    alt: "Herschel APAC retail competition award certificates designed as vintage postcards",
+    buttonText: "VIEW WORK",
+  },
+  {
+    id: "scaffold",
+    title: "SCAFFOLD",
+    role: "LEAD DESIGNER / FRONT-END DEVELOPER",
+    desc: "An AI-powered grant app that checks eligibility and assists with applications for apprentices.",
+    link: "/scaffold",
+    image: scaffoldMain,
+    alt: "Scaffold App",
+    buttonText: "VIEW CASE STUDY",
+  },
+];
 
 
 /* =========================
@@ -293,29 +327,37 @@ function LandingPage() {
 
   /* =========================
    FEATURED SECTION SCROLL ANIMATION
+   - the section triggers the "FEATURED WORK" label
+   - each featured card triggers its own animation when it scrolls in
 ========================= */
 useEffect(() => {
   const featuredSection = document.querySelector('.featured-section');
-  
-  const observer = new IntersectionObserver(
+  const featuredItems = document.querySelectorAll('.featured-item');
+
+  if (!featuredSection) return;
+
+  const sectionObserver = new IntersectionObserver(
     ([entry]) => {
-      if (entry.isIntersecting) {
-        featuredSection.classList.add('in-view');
-      } else {
-        featuredSection.classList.remove('in-view');
-      }
+      featuredSection.classList.toggle('in-view', entry.isIntersecting);
+    },
+    { threshold: 0.05 }
+  );
+
+  const itemObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
+      });
     },
     { threshold: 0.2 }
   );
 
-  if (featuredSection) {
-    observer.observe(featuredSection);
-  }
+  sectionObserver.observe(featuredSection);
+  featuredItems.forEach((item) => itemObserver.observe(item));
 
   return () => {
-    if (featuredSection) {
-      observer.unobserve(featuredSection);
-    }
+    sectionObserver.disconnect();
+    itemObserver.disconnect();
   };
 }, []);
 
@@ -399,30 +441,31 @@ useEffect(() => {
 
       {/* ================= FEATURED WORK ================= */}
       <section className="featured-section">
-        <div className="featured-background-text">SCAFFOLD</div>
-        
         <div className="featured-container">
           <h2 className="featured-label">FEATURED WORK</h2>
-          
-          <div className="featured-inner">
-            <div className="featured-text">
-              <h3 className="featured-title">SCAFFOLD</h3>
-              <p className="featured-role">
-                LEAD DESIGNER / FRONT-END DEVELOPER
-              </p>
-              <p className="featured-desc">
-                An AI-powered grant app that checks eligibility and assists with
-                applications for apprentices.
-              </p>
-              <Link to="/scaffold">
-                  <button className="featured-btn">VIEW CASE STUDY</button>
-              </Link>
-            </div>
 
-            <div className="featured-image">
-              <img src={scaffoldMain} alt="Scaffold App" />
+          {featuredProjects.map((project) => (
+            <div className="featured-item" key={project.id}>
+              <div className="featured-background-text">
+                {project.backgroundText || project.title}
+              </div>
+
+              <div className="featured-inner">
+                <div className="featured-text">
+                  <h3 className="featured-title">{project.title}</h3>
+                  <p className="featured-role">{project.role}</p>
+                  <p className="featured-desc">{project.desc}</p>
+                  <Link to={project.link}>
+                    <button className="featured-btn">{project.buttonText}</button>
+                  </Link>
+                </div>
+
+                <div className="featured-image">
+                  <img src={project.image} alt={project.alt} loading="lazy" decoding="async" />
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -511,6 +554,7 @@ export default function App() {
         <Route path="/scaffold" element={<ScaffoldPage />} />
         <Route path="/picki" element={<PickiPage />} />
         <Route path="/play" element={<Play />} />
+        <Route path="/herschel" element={<HerschelPage />} />
       </Routes>
     </Layout>
   );

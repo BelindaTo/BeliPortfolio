@@ -657,21 +657,6 @@ body {
   overflow: hidden;
 }
 
-/* Giant background text */
-.featured-background-text {
-  position: absolute;
-  top: 27%;
-  left: 8.5%;
-  transform: translateY(-50%);
-  font-size: clamp(120px, 18vw, 240px);
-  font-weight: 900;
-  color: rgba(255, 145, 186, 0.25);
-  letter-spacing: -0.02em;
-  z-index: 1;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
 .featured-container {
   max-width: 1600px;
   margin: 0 auto;
@@ -685,13 +670,40 @@ body {
   font-weight: 900;
   color: #0a2a66;
   letter-spacing: 0.08em;
-  margin-bottom: 160px;
+  margin-bottom: 220px;
   text-transform: uppercase;
   position: relative;
   z-index: 3;
 }
 
+/* One featured card + its giant background word */
+.featured-item {
+  position: relative;
+}
+
+/* Space between featured cards (leaves room for the next background word) */
+.featured-item + .featured-item {
+  margin-top: 240px;
+}
+
+/* Giant background text (sits just above its own card) */
+.featured-background-text {
+  position: absolute;
+  top: -60px;
+  left: 40px;
+  transform: translateY(-50%);
+  font-size: clamp(120px, 18vw, 240px);
+  font-weight: 900;
+  color: rgba(255, 145, 186, 0.25);
+  letter-spacing: -0.02em;
+  z-index: 1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 .featured-inner {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1fr 1.3fr;
   gap: 100px;
@@ -717,6 +729,7 @@ body {
   color: #ff91ba;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
+  line-height: 0.95;
 }
 
 .featured-role {
@@ -819,37 +832,38 @@ body {
   transform: translateY(30px);
 }
 
-/* Visible states when section is in view - using animations */
+/* The label animates with the section */
 .featured-section.in-view .featured-label {
   animation: fadeUp 0.6s ease-out 0.1s forwards;
 }
 
-.featured-section.in-view .featured-background-text {
-  animation: fadeUpBackground 0.6s ease-out 0.2s forwards;
+/* Each card animates when IT scrolls into view */
+.featured-item.in-view .featured-background-text {
+  animation: fadeUpBackground 0.6s ease-out 0.1s forwards;
 }
 
-.featured-section.in-view .featured-inner {
+.featured-item.in-view .featured-inner {
+  animation: fadeUp 0.6s ease-out 0.2s forwards;
+}
+
+.featured-item.in-view .featured-title {
   animation: fadeUp 0.6s ease-out 0.3s forwards;
 }
 
-.featured-section.in-view .featured-title {
+.featured-item.in-view .featured-role {
   animation: fadeUp 0.6s ease-out 0.4s forwards;
 }
 
-.featured-section.in-view .featured-role {
+.featured-item.in-view .featured-desc {
   animation: fadeUp 0.6s ease-out 0.5s forwards;
 }
 
-.featured-section.in-view .featured-desc {
+.featured-item.in-view .featured-btn {
   animation: fadeUp 0.6s ease-out 0.6s forwards;
 }
 
-.featured-section.in-view .featured-btn {
-  animation: fadeUp 0.6s ease-out 0.7s forwards;
-}
-
-.featured-section.in-view .featured-image {
-  animation: fadeUp 0.6s ease-out 0.5s forwards;
+.featured-item.in-view .featured-image {
+  animation: fadeUp 0.6s ease-out 0.4s forwards;
 }
 
 @keyframes fadeUp {
@@ -901,6 +915,10 @@ body {
     padding: 40px;
   }
 
+  .featured-item + .featured-item {
+    margin-top: 160px;
+  }
+
   .featured-label {
     font-size: 14px;
   }
@@ -925,7 +943,8 @@ body {
 
   .featured-background-text {
     font-size: clamp(60px, 12vw, 100px);
-    top: 25%;
+    top: -30px;
+    left: 0;
   }
 }
 /* ================= TRANSITION SECTION ================= */
