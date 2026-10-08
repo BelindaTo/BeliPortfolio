@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './HerschelPage.css';
+import './Herschelpage.css';
 import Footer from './footer';
 import heroLogo from './images/HSC_WHITEWOVEN-ON-BLACK.jpg';
 import stickerDieCut from './images/MINECRAFTSTICKER_V3.png';
