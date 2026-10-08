@@ -13,7 +13,7 @@ import Footer from "./footer";
 import ContactPage from './ContactPage';
 import PickiPage from './PIckiPage';
 import Play from './play';
-import HerschelPage from './Herschelpage'
+import HerschelPage from './Herschelpage';
 
 
 import designerBear from "./images/designer-bear.png";
