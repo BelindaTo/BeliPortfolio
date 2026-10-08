@@ -1,0 +1,705 @@
+.herschel-page {
+    min-height: 100vh;
+    background: #fffcf2;
+  }
+
+  /* ================= INTRO SECTION ================= */
+
+  .herschel-intro-section {
+    position: relative;
+    min-height: 100vh;
+    padding: 140px 120px 80px;
+
+    background-color: #fffcf2;
+
+    /* Grid pattern */
+    background-image:
+      linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
+
+    background-size: 80px 80px;
+    background-position: 0 0;
+
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .herschel-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+  }
+
+  .herschel-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .herschel-title {
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 900;
+    color: #ff91ba;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  /* Label + value pair with a tight gap (matches .picki-info-group) */
+  .herschel-info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* Intro label (matches .picki-label) */
+  .herschel-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #6DB5E3;
+    letter-spacing: 0.08em;
+    margin: 0;
+  }
+
+  /* Intro detail (matches .picki-value) */
+  .herschel-detail {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .herschel-image {
+    width: 100%;
+    height: 550px;
+    background: linear-gradient(135deg, #e8b4d4 0%, #d4a5c9 100%);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .herschel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Logo cover: black frame, image scaled up so the label fills the frame */
+  .herschel-image-logo {
+    background: #000;
+  }
+
+  .herschel-image-logo img {
+    transform: scale(1.7);
+  }
+
+  /* Floating stars */
+  .herschel-star {
+    position: absolute;
+    background: #5bb0ff;
+    z-index: 3;
+
+    clip-path: polygon(
+      50% 0%,
+      61% 35%,
+      100% 50%,
+      61% 65%,
+      50% 100%,
+      39% 65%,
+      0% 50%,
+      39% 35%
+    );
+
+    animation: herschelFloat 10s ease-in-out infinite;
+  }
+
+  .herschel-star-1 {
+    top: 15%;
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    background: #6db5e3;
+  }
+
+  .herschel-star-2 {
+    bottom: 20%;
+    left: 30%;
+    width: 100px;
+    height: 100px;
+    background: #0a2a66;
+    animation-delay: -3s;
+  }
+
+  @keyframes herschelFloat {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(20px, -15px) rotate(90deg);
+    }
+    50% {
+      transform: translate(-15px, -25px) rotate(180deg);
+    }
+    75% {
+      transform: translate(-25px, -10px) rotate(270deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .herschel-star {
+      animation: none;
+    }
+  }
+
+  /* ================= ABOUT SECTION ================= */
+
+  .herschel-about-section {
+    min-height: auto;
+    padding: 100px 120px;
+    background: linear-gradient(to bottom, #fffcf2 0%, #fce4ec 100%);
+    display: flex;
+    align-items: center;
+  }
+
+  .herschel-about-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .herschel-about-image {
+    width: 100%;
+    height: 500px;
+    background: transparent;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .herschel-about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 36%; /* keeps the Herschel road sign in frame on the tall photo */
+    display: block;
+    border-radius: 24px;
+  }
+
+  .herschel-about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* About heading: original style */
+  .herschel-about-title {
+    font-size: 48px !important;
+    font-weight: 800;
+    color: #76BDFF;
+    letter-spacing: 0.02em;
+    margin: 0 0 16px 0;
+  }
+
+  .herschel-about-paragraph {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #000;
+    margin: 0;
+  }
+
+  /* Project section headings (matches .picki-section-label) */
+  .herschel-project-title {
+    font-size: 24px !important;
+    font-weight: 800;
+    color: #FF91BA;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  /* ================= PROJECT SECTIONS (shared) ================= */
+
+  .herschel-project-section {
+    position: relative;
+    padding: 64px 120px;
+    overflow: hidden;
+  }
+
+  .herschel-project-inner {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .herschel-project-head {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: none;
+    margin-bottom: 72px;
+  }
+
+  /* Big statement headline (matches .picki-overview-title) */
+  .herschel-project-headline {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    color: #0a2a66;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-align: center;
+    margin: 16px 0 0 0;
+  }
+
+  .herschel-project-headline .highlight-italic {
+    color: #FF91BA;
+    font-style: italic;
+  }
+
+  /* Lead paragraph under the headline */
+  .herschel-project-paragraph {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #333;
+    max-width: 900px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .herschel-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 30px;
+    align-items: start;
+  }
+
+  .herschel-span-3 { grid-column: span 3; }
+  .herschel-span-4 { grid-column: span 4; }
+  .herschel-span-6 { grid-column: span 6; }
+  .herschel-span-12 { grid-column: span 12; }
+
+  /* Centers a pair of span-4 items (used in Golf & Postcards) */
+  .herschel-start-3 { grid-column: 3 / span 4; }
+  .herschel-start-7 { grid-column: 7 / span 4; }
+
+  .herschel-item {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .herschel-item-image {
+    aspect-ratio: 4 / 3; /* every image in the project sections uses this same size */
+    background: transparent;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .herschel-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 12px;
+  }
+
+  /* Per-image crop positions (second number = how far down the photo the crop sits) */
+  .herschel-item-image img.herschel-crop-card { object-position: center 40%; }
+  .herschel-item-image img.herschel-crop-stack { object-position: center 65%; }
+
+  .herschel-caption {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.7);
+    max-width: 52ch;
+  }
+
+  /* ----- Sub-sections inside a project (Stickers, Seeding card, Patches) ----- */
+
+  .herschel-subsection {
+    margin-bottom: 96px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(255, 145, 186, 0.5);
+  }
+
+  .herschel-subsection:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Subheadings (matches .picki-styleguide-header) */
+  .herschel-sub-title {
+    font-size: 24px !important;
+    font-weight: 800;
+    color: #6DB5E3;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0 0 16px 0;
+  }
+
+  .herschel-sub-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000;
+    max-width: none;
+    margin: 0 0 40px 0;
+  }
+
+  .herschel-sub-text-tight {
+    margin-bottom: 16px;
+  }
+
+  .herschel-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .herschel-row .herschel-item {
+    flex: 0 0 auto;
+  }
+
+  .herschel-row .herschel-caption {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  /* 3 across for stickers */
+  .herschel-row-3 .herschel-item {
+    width: calc((100% - 60px) / 3);
+  }
+
+  /* larger, centered images for the card and the patches (same size) */
+  .herschel-row-2 .herschel-item,
+  .herschel-row-1 .herschel-item {
+    width: calc((100% - 30px) * 0.4);
+  }
+
+  /* ----- Minecraft: pink with large low-opacity stars ----- */
+
+  .herschel-minecraft-section {
+    background: #fce4ec;
+  }
+
+  .herschel-bg-star {
+    opacity: 0.35;
+    z-index: 1;
+    animation: none;
+  }
+
+  .herschel-bg-star-1,
+  .herschel-bg-star-2,
+  .herschel-bg-star-3,
+  .herschel-bg-star-4,
+  .herschel-bg-star-5 {
+    opacity: 0.35;
+    z-index: 1;
+    animation: none;
+  }
+
+  .herschel-bg-star-1 {
+    top: 0%;
+    right: 0%;
+    width: 800px;
+    height: 800px;
+    background: #a8d5f0;
+    transform: rotate(15deg);
+  }
+
+  .herschel-bg-star-2 {
+    top: 25%;
+    left: 0%;
+    width: 350px;
+    height: 350px;
+    background: #d4a5f0;
+    transform: rotate(-20deg);
+  }
+
+  .herschel-bg-star-3 {
+    bottom: 10%;
+    right: 10%;
+    width: 380px;
+    height: 380px;
+    background: #ffa8d4;
+    transform: rotate(25deg);
+  }
+
+  .herschel-bg-star-4 {
+    bottom: 30%;
+    left: 5%;
+    width: 400px;
+    height: 400px;
+    background: #89c7e8;
+    transform: rotate(-95deg);
+  }
+
+  .herschel-bg-star-5 {
+    bottom: 2%;
+    left: 3%;
+    width: 420px;
+    height: 420px;
+    background: #d4a5f0;
+    transform: rotate(64deg);
+  }
+
+  /* ----- Golf & awards: pink fades into the grid (same blend as the Posters mockups section) ----- */
+
+  .herschel-golf-section {
+    background-color: #fffcf2;
+
+    /* Grid pattern */
+    background-image:
+      linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
+
+    background-size: 80px 80px;
+    background-position: 0 0;
+  }
+
+  .herschel-golf-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to bottom, #fce4ec 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Zig-zag rows: image + text side by side, alternating */
+  .herschel-zig-row {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .herschel-zig-row + .herschel-zig-row {
+    margin-top: 30px;
+  }
+
+  .herschel-zig-image,
+  .herschel-zig-text {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .herschel-zig-text {
+    padding: 0 40px;
+  }
+
+  .herschel-zig-text .herschel-sub-title {
+    margin-bottom: 20px;
+  }
+
+  .herschel-zig-text .herschel-sub-text {
+    margin: 0;
+  }
+
+  /* ================= FOOTER ================= */
+  /* Identical to the footer block in PostersPage.css so the shared Footer looks the same on every page */
+
+  .footer {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: block;
+    background-color: #fffcf2;
+
+    background-image:
+      linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
+
+    background-size: 80px 80px;
+    background-position: 0 0;
+    position: relative;
+    z-index: 3;
+    overflow: visible;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #fffcf2;
+    z-index: 5;
+  }
+
+  .footer-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 10;
+  }
+
+  .footer-links {
+    position: absolute;
+    top: 50%;
+    right: 120px;
+    display: flex;
+    gap: 120px;
+    z-index: 10;
+    transform: translateY(-50%);
+  }
+
+  .footer-link {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    position: relative;
+  }
+
+  /* ================= RESPONSIVE ================= */
+
+  @media (max-width: 1200px) {
+    .herschel-content,
+    .herschel-about-content {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+
+    .herschel-intro-section,
+    .herschel-about-section {
+      padding: 140px 60px 80px;
+    }
+
+    .herschel-image,
+    .herschel-about-image {
+      height: 400px;
+    }
+
+    .herschel-project-section {
+      padding: 64px 60px;
+    }
+
+    .herschel-span-3 { grid-column: span 6; }
+    .herschel-span-4 { grid-column: span 6; }
+    .herschel-span-6 { grid-column: span 12; }
+    .herschel-start-3,
+    .herschel-start-7 { grid-column: span 6; }
+
+    .herschel-row-3 .herschel-item,
+    .herschel-row-2 .herschel-item,
+    .herschel-row-1 .herschel-item {
+      width: calc((100% - 30px) / 2);
+    }
+
+    .herschel-bg-star-1,
+    .herschel-bg-star-3 {
+      width: 300px;
+      height: 300px;
+    }
+
+    .herschel-bg-star-2,
+    .herschel-bg-star-4,
+    .herschel-bg-star-5 {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .herschel-intro-section,
+    .herschel-about-section {
+      padding: 120px 40px 60px;
+    }
+
+    .herschel-about-title {
+      font-size: 36px !important;
+    }
+
+    .herschel-project-title {
+      font-size: 20px !important;
+    }
+
+    .herschel-sub-title {
+      font-size: 20px !important;
+    }
+
+    .herschel-about-paragraph,
+    .herschel-project-paragraph {
+      font-size: 16px;
+    }
+
+    .herschel-project-section {
+      padding: 48px 40px;
+    }
+
+    .herschel-project-head {
+      margin-bottom: 40px;
+    }
+
+    .herschel-span-4,
+    .herschel-start-3,
+    .herschel-start-7 {
+      grid-column: span 12;
+    }
+
+    .herschel-subsection {
+      margin-bottom: 48px;
+    }
+
+    .herschel-row-3 .herschel-item,
+    .herschel-row-2 .herschel-item,
+    .herschel-row-1 .herschel-item {
+      width: 100%;
+    }
+
+    .herschel-bg-star-1,
+    .herschel-bg-star-2,
+    .herschel-bg-star-3,
+    .herschel-bg-star-4,
+    .herschel-bg-star-5 {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .herschel-zig-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .herschel-zig-row-reverse {
+      flex-direction: column-reverse;
+    }
+
+    .herschel-zig-image,
+    .herschel-zig-text {
+      flex: 0 0 auto;
+    }
+
+    .herschel-zig-text {
+      padding: 24px 0;
+    }
+  }

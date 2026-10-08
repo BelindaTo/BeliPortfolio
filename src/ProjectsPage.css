@@ -73,7 +73,8 @@ body {
   border-radius: 25px;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  /* Only transition what actually changes (was: all) */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 1;
   outline: none; /* Remove blue outline */
 }
@@ -119,6 +120,29 @@ body {
   left: 0;
 }
 
+/* INTERNSHIP tab: blue instead of pink */
+.filter-btn.internship {
+  border-color: #5bb0ff;
+  color: #5bb0ff;
+}
+
+.filter-btn.internship::before {
+  background: #5bb0ff;
+}
+
+.filter-btn.internship:hover {
+  color: #ffffff;
+  border-color: #5bb0ff;
+  box-shadow: 0 4px 12px rgba(91, 176, 255, 0.3);
+}
+
+.filter-btn.internship.active {
+  background: #5bb0ff;
+  color: #ffffff;
+  border-color: #5bb0ff;
+  box-shadow: 0 4px 12px rgba(91, 176, 255, 0.3);
+}
+
 /* Projects Container with Transitions */
 .projects-container {
   max-width: 1200px;
@@ -126,13 +150,13 @@ body {
   padding: 0 4rem 4rem;
 }
 
-/* Fade animations */
+/* Fade animations (shortened so tab switches feel instant) */
 .projects-container.fade-in {
-  animation: fadeInSlide 0.5s ease-out forwards;
+  animation: fadeInSlide 0.3s ease-out forwards;
 }
 
 .projects-container.fade-out {
-  animation: fadeOutSlide 0.3s ease-in forwards;
+  animation: fadeOutSlide 0.15s ease-in forwards;
 }
 
 @keyframes fadeInSlide {
@@ -203,8 +227,6 @@ body {
   margin-bottom: 2rem;
   max-width: 450px;
 }
-
-
 
 .view-btn {
   background-color: #ff8fb5;

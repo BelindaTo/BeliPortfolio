@@ -27,6 +27,8 @@ const AboutPage = () => {
 
       {/* BIO SECTION - How I Design */}
       <section className="bio-section">
+        <div className="bio-star bio-star-1" />
+        <div className="bio-star bio-star-2" />
         <div className="bio-container">
           <h2 className="bio-title">HOW I DESIGN</h2>
           <p className="bio-text">
