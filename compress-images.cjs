@@ -1,4 +1,4 @@
-// Lossless WebP conversion: every pixel stays identical, original size is kept.
+g// Lossless WebP conversion: every pixel stays identical, original size is kept.
 // Setup:  npm i -D sharp
 // Run:    node compress-images.js
 const sharp = require('sharp');

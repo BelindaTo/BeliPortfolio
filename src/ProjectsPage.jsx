@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './ProjectsPage.css';
 import canMockup from './images/canmockup.png';
@@ -98,17 +98,80 @@ const projects = [
   }
 ];
 
-const filters = ['APPS', 'INTERACTIVE', 'GRAPHIC', 'INTERNSHIP'];
+const filters = [
+  { name: 'APPS', c: '#d4161c', t: '#fbf9f1' },        // red
+  { name: 'INTERACTIVE', c: '#f2b705', t: '#121316' },  // yellow
+  { name: 'GRAPHIC', c: '#1747c9', t: '#fbf9f1' },      // blue
+  { name: 'INTERNSHIP', c: '#f8fafc', t: '#0a0b0e' }    // white
+];
+
+const cardColors = [
+  { c: '#d4161c', t: '#fbf9f1', cl: '#ff5a52' },
+  { c: '#1747c9', t: '#fbf9f1', cl: '#6f94ff' },
+  { c: '#f2b705', t: '#121316', cl: '#f2b705' }
+];
 
 const ProjectsPage = () => {
   const [searchParams] = useSearchParams();
   const [activeFilter, setActiveFilter] = useState(searchParams.get('tab')?.toUpperCase() || 'APPS');
   const [isAnimating, setIsAnimating] = useState(false);
   const navigate = useNavigate();
+  const [view, setView] = useState('cards'); // 'cards' | 'index'
+  const [hovered, setHovered] = useState(null);
+  const previewRef = useRef(null);
+  const mouse = useRef({ x: 0, y: 0, px: 0, py: 0 });
+
+  // Index view: the preview image eases after the cursor
+  useEffect(() => {
+    if (view !== 'index') return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const onMove = (e) => {
+      mouse.current.x = e.clientX;
+      mouse.current.y = e.clientY;
+    };
+    window.addEventListener('mousemove', onMove);
+
+    let raf;
+    const tick = () => {
+      const m = mouse.current;
+      const ease = reduce ? 1 : 0.14;
+      const dx = m.x - m.px;
+      m.px += dx * ease;
+      m.py += (m.y - m.py) * ease;
+      if (previewRef.current) {
+        const tilt = Math.max(-8, Math.min(8, dx * 0.08));
+        previewRef.current.style.transform =
+          `translate3d(${m.px}px, ${m.py}px, 0) translate(-50%, -50%) rotate(${tilt}deg)`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, [view]);
 
   useEffect(() => {
     document.title = "Projects — Belinda To";
+    // deep-space theme: also flips the docked orbit nav + logo to their dark styles
+    document.body.classList.add('space-page', 'space-dark');
+    return () => document.body.classList.remove('space-page', 'space-dark');
   }, []);
+
+  // static twinkling stars (no lines)
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 90 }, () => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 2 + 1,
+        delay: Math.random() * 5,
+        dur: 2.5 + Math.random() * 3.5
+      })),
+    []
+  );
 
   // Preload every project image once so tab switches don't wait on loading/decoding
   useEffect(() => {
@@ -137,26 +200,124 @@ const ProjectsPage = () => {
   };
 
   return (
-    <div className="portfolio" style={{ paddingTop: '100px' }}>
+    <div className="portfolio">
+      <div className="pp-stars" aria-hidden="true">
+        {stars.map((st, k) => (
+          <span
+            key={k}
+            style={{
+              left: st.x + '%',
+              top: st.y + '%',
+              width: st.size,
+              height: st.size,
+              animationDelay: st.delay + 's',
+              animationDuration: st.dur + 's'
+            }}
+          />
+        ))}
+        <i className="pp-shoot pp-shoot-a" />
+        <i className="pp-shoot pp-shoot-b" />
+      </div>
+
+      {/* line-art planet + sparkles, kept small and quiet */}
+      <svg className="pp-planet" viewBox="0 0 160 120" aria-hidden="true">
+        <path d="M8 60 A72 19 0 0 1 152 60" className="pp-line pp-blue" transform="rotate(-18 80 60)" />
+        <circle cx="80" cy="60" r="34" className="pp-line pp-fill" />
+        <path d="M52 50 Q80 60 108 48" className="pp-line pp-thin" />
+        <path d="M48 66 Q80 78 112 64" className="pp-line pp-thin" />
+        <path d="M8 60 A72 19 0 0 0 152 60" className="pp-line pp-blue" transform="rotate(-18 80 60)" />
+      </svg>
+      <svg className="pp-sparkle pp-sparkle-a" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" />
+      </svg>
+      <svg className="pp-sparkle pp-sparkle-b" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" />
+      </svg>
+
+      <header className="pp-header">
+        <span className="pp-label">02 / Mission Log</span>
+        <h1 className="pp-title">PROJECTS</h1>
+      </header>
+
       <div className="filter-container">
         {filters.map(filter => (
           <button
-            key={filter}
-            className={`filter-btn ${filter === 'INTERNSHIP' ? 'internship' : ''} ${activeFilter === filter ? 'active' : ''}`}
-            onClick={() => handleFilterChange(filter)}
+            key={filter.name}
+            className={`filter-btn ${activeFilter === filter.name ? 'active' : ''}`}
+            style={{ '--c': filter.c, '--ct': filter.t }}
+            onClick={() => handleFilterChange(filter.name)}
           >
-            {filter}
+            {filter.name}
           </button>
         ))}
       </div>
 
-      <div className={`projects-container ${isAnimating ? 'fade-out' : 'fade-in'}`}>
-        {filteredProjects.map(project => (
+      <div className="view-toggle" role="group" aria-label="Project view">
+        <button
+          className={view === 'cards' ? 'active' : ''}
+          onClick={() => setView('cards')}
+        >
+          CARDS
+        </button>
+        <button
+          className={view === 'index' ? 'active' : ''}
+          onClick={() => setView('index')}
+        >
+          INDEX
+        </button>
+      </div>
+
+      {view === 'index' && (
+        <>
+          <div className={`index-list ${isAnimating ? 'fade-out' : 'fade-in'}`}>
+            {filteredProjects.map((project, i) => (
+              <div
+                key={project.id}
+                className="index-row"
+                style={{ '--c': cardColors[i % 3].c, '--ct': cardColors[i % 3].t, '--cl': cardColors[i % 3].cl }}
+                onMouseEnter={() => setHovered(project)}
+                onMouseLeave={() => setHovered(null)}
+                onClick={() => project.link && navigate(project.link)}
+                role="link"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && project.link && navigate(project.link)}
+              >
+                <span className="index-num">{String(i + 1).padStart(2, '0')}</span>
+                <span className="index-title">{project.title}</span>
+                <span className="index-role">{project.role}</span>
+                <span className="index-arrow" aria-hidden="true">→</span>
+              </div>
+            ))}
+          </div>
+
+          <div
+            ref={previewRef}
+            className={`index-preview ${hovered ? 'show' : ''}`}
+            style={hovered ? { '--c': cardColors[filteredProjects.indexOf(hovered) % 3].c } : undefined}
+            aria-hidden="true"
+          >
+            {hovered && hovered.image && <img src={hovered.image} alt="" />}
+          </div>
+        </>
+      )}
+
+      <div
+        className={`projects-container ${isAnimating ? 'fade-out' : 'fade-in'}`}
+        style={view === 'index' ? { display: 'none' } : undefined}
+      >
+        {filteredProjects.map((project, i) => (
           <div
             key={project.id}
             className={`project-card ${project.imageAlign === 'left' ? 'reverse' : ''}`}
+            style={{ '--c': cardColors[i % 3].c, '--ct': cardColors[i % 3].t, '--cl': cardColors[i % 3].cl }}
           >
             <div className="project-content">
+              <span className="project-num">
+                <svg className="pp-spark" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" />
+                </svg>
+                {String(i + 1).padStart(2, '0')}
+              </span>
               <h2 className="project-title">{project.title}</h2>
               <p className="project-role">{project.role}</p>
               <p className="project-description">{project.description}</p>

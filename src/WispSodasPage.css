@@ -1,578 +1,504 @@
+/* WispSodasPage.css — deep-space theme (matches Scaffold / Picki / Music Player / Dress-Up)
+   Everything is scoped under .wisp-sodas-page so it can't leak into other pages. */
+
+/* ================= BASE ================= */
+
 .wisp-sodas-page {
-    min-height: 100vh;
-    background: #fffcf2;
-  }
-  
-  /* ================= INTRO SECTION ================= */
-  
-  .wisp-intro-section {
-    position: relative;
-    min-height: 100vh;
-    padding: 140px 120px 80px;
-    
-    background-color: #fffcf2;
-    
-    /* Grid pattern */
-    background-image:
-      linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
-    
-    background-size: 80px 80px;
-    background-position: 0 0;
-    
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-  
-  .wisp-content {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 80px;
-    align-items: center;
-    position: relative;
-    z-index: 5;
-  }
-  
-  .wisp-text {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  
-  .wisp-title {
-    font-size: clamp(4rem, 8vw, 8rem);
-    font-weight: 900;
-    color: #ff91ba;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-    margin: 0;
-  }
-  
-  .wisp-software {
-    font-size: 18px;
-    font-weight: 700;
-    color: #5bb0ff;
-    letter-spacing: 0.08em;
-    margin: 0;
-  }
-  
-  .wisp-tools {
-    font-size: 16px;
-    font-weight: 500;
-    color: #000;
-    margin: 0;
-  }
-  
-  .wisp-image {
-    width: 100%;
-    height: 550px;
-    background: linear-gradient(135deg, #e8b4d4 0%, #d4a5c9 100%);
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .wisp-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .image-placeholder {
-    font-size: 24px;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-  }
-  
-  /* Floating stars */
-  .wisp-star {
-    position: absolute;
-    background: #5bb0ff;
-    z-index: 3;
-    
-    clip-path: polygon(
-      50% 0%,
-      61% 35%,
-      100% 50%,
-      61% 65%,
-      50% 100%,
-      39% 65%,
-      0% 50%,
-      39% 35%
-    );
-    
-    animation: wispFloat 10s ease-in-out infinite;
-  }
-  
-  .wisp-star-1 {
-    top: 15%;
-    left: 25%;
-    width: 80px;
-    height: 80px;
-    background: #6db5e3;
-  }
-  
-  .wisp-star-2 {
-    bottom: 20%;
-    left: 30%;
-    width: 100px;
-    height: 100px;
-    background: #0a2a66;
-    animation-delay: -3s;
-  }
-  
-  @keyframes wispFloat {
-    0%, 100% {
-      transform: translate(0, 0) rotate(0deg);
-    }
-    25% {
-      transform: translate(20px, -15px) rotate(90deg);
-    }
-    50% {
-      transform: translate(-15px, -25px) rotate(180deg);
-    }
-    75% {
-      transform: translate(-25px, -10px) rotate(270deg);
-    }
-  }
-  
-  /* ================= ABOUT WISP SECTION ================= */
-  
-  .wisp-about-section {
-    min-height: 100vh;
-    padding: 120px 120px;
-    background: linear-gradient(to bottom, #fffcf2 0%, #fce4ec 100%);
-    display: flex;
-    align-items: center;
-  }
-  
-  .about-content {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  .about-image {
-    width: 100%;
-    height: 500px;
-    background: transparent;
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .about-image-placeholder {
-    font-size: 24px;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-  }
-  
-  .about-text {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  
-  .about-title {
-    font-size: 48px;
-    font-weight: 800;
-    color: #76BDFF;
-    letter-spacing: 0.02em;
-    margin: 0 0 16px 0;
-  }
-  
-  .about-paragraph {
-    font-size: 18px;
-    line-height: 1.7;
-    color: #000;
-    margin: 0;
-  }
-  
-  .about-paragraph em {
-    font-style: italic;
-    font-weight: 600;
-  }
-  
-  /* ================= LABELS SECTION ================= */
-  
-  .wisp-labels-section {
-    position: relative;
-    min-height: 100vh;
-    padding: 80px 0;
-    background: linear-gradient(to bottom, #fce4ec 0%, #fce4ec 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .labels-container {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-    padding: 0 120px;
-    position: relative;
-    z-index: 5;
-  }
-  
-  .label-card {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .label-image {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    background: transparent;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .label-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  .label-placeholder {
-    font-size: 28px;
-    font-weight: 700;
-    color: rgba(0, 0, 0, 0.3);
-    text-align: center;
-    padding: 100px;
-  }
-  
-  /* Large decorative stars with low opacity */
-  .labels-star {
-    position: absolute;
-    opacity: 0.35;
-    z-index: 1;
-    
-    clip-path: polygon(
-      50% 0%,
-      61% 35%,
-      100% 50%,
-      61% 65%,
-      50% 100%,
-      39% 65%,
-      0% 50%,
-      39% 35%
-    );
-  }
-  
-  .labels-star-1 {
-    top: 0%;
-    right: 0%;
-    width: 800px;
-    height: 800px;
-    background: #a8d5f0;
-    transform: rotate(15deg);
-  }
-  
-  .labels-star-2 {
-    top: 5%;
-    left: 0%;
-    width: 350px;
-    height: 350px;
-    background: #d4a5f0;
-    transform: rotate(-20deg);
-  }
-  
-  .labels-star-3 {
-    bottom: 10%;
-    right: 10%;
-    width: 380px;
-    height: 380px;
-    background: #ffa8d4;
-    transform: rotate(25deg);
-  }
-  
-  .labels-star-4 {
-    bottom: 30%;
-    left: 5%;
-    width: 400px;
-    height: 400px;
-    background: #89c7e8;
-    transform: rotate(-95deg);
-  }
-  
-  /* ================= MOCKUPS SECTION ================= */
-  
-  .wisp-mockups-section {
-    position: relative;
-    min-height: 160vh;
-    padding: 120px 120px;
-    background: #fffcf2;
-    
-    /* Grid pattern */
-    background-image:
-      linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
-    
-    background-size: 80px 80px;
-    background-position: 0 0;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .wisp-mockups-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: linear-gradient(to bottom, #fce4ec 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  
-  .mockups-grid {
-    width: 100%;
-    max-width: 1400px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .mockup-large {
-    aspect-ratio: 3.93 / 5 !important;
-    grid-row: span 2;
-    background: #f0f0f0;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .mockup-large img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .mockup-small-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .mockup-small {
-    background: #f0f0f0;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .mockup-small:first-child {
-    aspect-ratio: 16 / 9;
-  }
-  
-  .mockup-small:last-child {
-    flex: 1;
-    min-height: 400px;
-  }
-  
-  .mockup-small img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .mockup-placeholder {
-    font-size: 20px;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.3);
-    text-align: center;
-    padding: 40px;
-  }
-  
-  /* ================= FOOTER ================= */
-  
-  .footer {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    display: block;
-    background-color: #fffcf2;
-    
-    background-image:
-      linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
-    
-    background-size: 80px 80px;
-    background-position: 0 0;
-    position: relative;
-    z-index: 3;
-    overflow: visible;
-  }
-  
-  .footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #fffcf2;
-    z-index: 5;
-  }
-  
-  .footer-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    position: relative;
-    z-index: 10;
-  }
-  
-  .footer-links {
-    position: absolute;
-    top: 50%;
-    right: 120px;
-    display: flex;
-    gap: 120px;
-    z-index: 10;
-    transform: translateY(-50%);
-  }
-  
-  .footer-link {
-    color: #ffffff;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    position: relative;
-  }
-  
-  /* ================= RESPONSIVE ================= */
-  
-  @media (max-width: 1200px) {
-    .wisp-content,
-    .about-content {
-      grid-template-columns: 1fr;
-      gap: 60px;
-    }
-    
-    .wisp-intro-section,
-    .wisp-about-section {
-      padding: 140px 60px 80px;
-    }
-    
-    .wisp-image,
-    .about-image {
-      padding: 40px;
-      height: 400px;
-    }
-  
-    .labels-container {
-      gap: 40px;
-      padding: 0 60px;
-    }
-  
-    .labels-star-1,
-    .labels-star-3 {
-      width: 300px;
-      height: 300px;
-    }
-  
-    .labels-star-2,
-    .labels-star-4 {
-      width: 250px;
-      height: 250px;
-    }
-  
-    .wisp-mockups-section {
-      padding: 140px 60px 80px;
-    }
-  
-    .mockups-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-  
-    .mockup-large {
-      grid-row: span 1;
-      aspect-ratio: 4 / 3;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .wisp-intro-section,
-    .wisp-about-section {
-      padding: 120px 40px 60px;
-    }
-    
-    .about-title {
-      font-size: 36px;
-    }
-    
-    .about-paragraph {
-      font-size: 16px;
-    }
-  
-    .labels-container {
-      gap: 30px;
-      padding: 0 40px;
-    }
-  
-    .label-placeholder {
-      font-size: 20px;
-      padding: 60px;
-    }
-  
-    .labels-star-1,
-    .labels-star-2,
-    .labels-star-3,
-    .labels-star-4 {
-      width: 200px;
-      height: 200px;
-    }
-  
-    .wisp-mockups-section {
-      padding: 120px 40px 60px;
-    }
-  }
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+  background: #0a0b0e;
+  color: #f8fafc;
+  font-family: "Inter", sans-serif;
+}
+
+.wisp-sodas-page *,
+.wisp-sodas-page *::before,
+.wisp-sodas-page *::after {
+  box-sizing: border-box;
+}
+
+.wisp-sodas-page section {
+  position: relative;
+  z-index: 1;
+}
+
+.wisp-sodas-page p {
+  color: rgba(248, 250, 252, 0.78);
+}
+
+/* stars */
+.wisp-sodas-page .ws-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.wisp-sodas-page .ws-stars span {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.2;
+  animation: wsTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes wsTwinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50% { opacity: 0.95; transform: scale(1.2); }
+}
+
+.wisp-sodas-page .ws-shoot {
+  position: absolute;
+  top: 12%;
+  left: 70%;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff);
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: wsShoot 9s ease-in infinite;
+}
+
+.wisp-sodas-page .ws-shoot-b {
+  top: 55%;
+  left: 25%;
+  animation-delay: 5s;
+  animation-duration: 12s;
+}
+
+@keyframes wsShoot {
+  0% { opacity: 0; transform: translate(0, 0) rotate(-30deg); }
+  3% { opacity: 1; }
+  10% { opacity: 0; transform: translate(-320px, 185px) rotate(-30deg); }
+  100% { opacity: 0; transform: translate(-320px, 185px) rotate(-30deg); }
+}
+
+/* scroll reveal (classes added by WispSodasPage.jsx) */
+.wisp-sodas-page .ws-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wisp-sodas-page .ws-reveal.ws-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ================= BACK ARROW ================= */
+
+.wisp-sodas-page .back-arrow {
+  position: fixed;
+  top: 120px;
+  left: 60px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  background: #0a0b0e;
+  color: #f8fafc;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  box-shadow: none;
+  transition: all 0.3s ease;
+}
+
+.wisp-sodas-page .back-arrow:hover {
+  background: #f2b705;
+  border-color: #f2b705;
+  color: #121316;
+  transform: translateX(-4px);
+  box-shadow: none;
+}
+
+/* ================= SHARED TYPE ================= */
+
+.wisp-sodas-page .ws-section-label {
+  display: block;
+  margin: 0 0 30px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #f8fafc;
+}
+
+.wisp-sodas-page .sec-num { font-style: normal; }
+.wisp-sodas-page .sec-red { color: #ff5a52; }
+.wisp-sodas-page .sec-yellow { color: #f2b705; }
+.wisp-sodas-page .sec-blue { color: #6f94ff; }
+
+/* ================= INTRO ================= */
+
+.wisp-sodas-page .wisp-intro-section {
+  min-height: 100vh;
+  padding: 140px 120px 80px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* fizz */
+.wisp-sodas-page .ws-bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.wisp-sodas-page .ws-bubbles span {
+  position: absolute;
+  bottom: -60px;
+  border-radius: 50%;
+  border: 1px solid rgba(248, 250, 252, 0.45);
+  animation: wsRise 12s linear infinite;
+}
+
+.wisp-sodas-page .ws-bubbles span::after {
+  content: '';
+  position: absolute;
+  top: 18%;
+  left: 20%;
+  width: 28%;
+  height: 28%;
+  border-radius: 50%;
+  border-top: 1px solid rgba(248, 250, 252, 0.7);
+  border-left: 1px solid rgba(248, 250, 252, 0.7);
+  transform: rotate(-20deg);
+}
+
+.wisp-sodas-page .ws-bubbles span:nth-child(3n) { border-color: rgba(255, 90, 82, 0.55); }
+.wisp-sodas-page .ws-bubbles span:nth-child(3n + 1) { border-color: rgba(111, 148, 255, 0.55); }
+.wisp-sodas-page .ws-bubbles span:nth-child(3n + 2) { border-color: rgba(242, 183, 5, 0.55); }
+
+@keyframes wsRise {
+  0% { translate: 0 0; opacity: 0; }
+  8% { opacity: 1; }
+  25% { translate: var(--sway) -30vh; }
+  50% { translate: calc(var(--sway) * -0.6) -60vh; }
+  75% { translate: var(--sway) -90vh; opacity: 1; }
+  100% { translate: 0 -120vh; opacity: 0; }
+}
+
+.wisp-sodas-page .wisp-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.wisp-sodas-page .wisp-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.wisp-sodas-page .wisp-title {
+  margin: 0 0 12px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0;
+  color: #f8fafc;
+}
+
+.wisp-sodas-page .wisp-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wisp-sodas-page .wisp-software {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.6);
+}
+
+.wisp-sodas-page .wisp-tools {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #f8fafc;
+}
+
+.wisp-sodas-page .wisp-image-wrap {
+  --rx: 0deg;
+  --ry: 0deg;
+  perspective: 1000px;
+}
+
+.wisp-sodas-page .wisp-image {
+  width: 100%;
+  height: 550px;
+  background: #14161b;
+  border: 1px solid #f8fafc;
+  border-radius: 28px;
+  box-shadow: 12px 12px 0 #f2b705;
+  overflow: hidden;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s ease-out;
+}
+
+.wisp-sodas-page .wisp-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ================= ABOUT ================= */
+
+.wisp-sodas-page .wisp-about-section {
+  padding: 130px 120px;
+}
+
+.wisp-sodas-page .ws-about-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.wisp-sodas-page .ws-about-image {
+  width: 100%;
+  height: 500px;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  border-radius: 28px;
+  box-shadow: 12px 12px 0 #1747c9;
+  overflow: hidden;
+  background: #14161b;
+}
+
+.wisp-sodas-page .ws-about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.wisp-sodas-page .ws-about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.wisp-sodas-page .ws-about-text .ws-section-label { margin-bottom: 6px; }
+
+.wisp-sodas-page .ws-about-paragraph {
+  margin: 0;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+}
+
+/* ================= FLAVOURS ================= */
+
+.wisp-sodas-page .wisp-labels-section {
+  padding: 130px 120px;
+}
+
+.wisp-sodas-page .ws-labels-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.wisp-sodas-page .ws-flavours {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+}
+
+.wisp-sodas-page .ws-flavour-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.wisp-sodas-page .ws-flavour-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 26px;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  border-radius: 999px;
+  background: transparent;
+  color: #f8fafc;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.wisp-sodas-page .ws-flavour-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--tc);
+  transition: background-color 0.3s ease;
+}
+
+.wisp-sodas-page .ws-flavour-tab:hover {
+  border-color: var(--tc);
+  transform: translateY(-2px);
+}
+
+.wisp-sodas-page .ws-flavour-tab.on {
+  background: var(--tc);
+  border-color: var(--tc);
+  color: #121316;
+}
+
+.wisp-sodas-page .ws-flavour-tab.on .ws-flavour-dot { background: #121316; }
+
+/* all three labels stacked in one grid cell; the chosen one fades in */
+.wisp-sodas-page .ws-flavour-stage {
+  display: grid;
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 28px;
+  box-shadow: 0 0 90px 4px color-mix(in srgb, var(--c) 30%, transparent);
+  transition: box-shadow 0.5s ease;
+}
+
+.wisp-sodas-page .ws-flavour-stage img {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 28px;
+  border: 1px solid rgba(248, 250, 252, 0.3);
+  opacity: 0;
+  scale: 0.97;
+  transition: opacity 0.5s ease, scale 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.wisp-sodas-page .ws-flavour-stage img.show {
+  opacity: 1;
+  scale: 1;
+  pointer-events: auto;
+}
+
+/* ================= MOCKUPS ================= */
+
+.wisp-sodas-page .wisp-mockups-section {
+  padding: 130px 120px 150px;
+}
+
+.wisp-sodas-page .ws-mockups-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.wisp-sodas-page .ws-mockups-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.wisp-sodas-page .ws-mockup-large,
+.wisp-sodas-page .ws-mockup-small {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(248, 250, 252, 0.3);
+  border-radius: 24px;
+  background: #14161b;
+}
+
+.wisp-sodas-page .ws-mockup-large {
+  aspect-ratio: 3.93 / 5;
+  grid-row: span 2;
+}
+
+.wisp-sodas-page .ws-mockup-small-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.wisp-sodas-page .ws-mockup-wide { aspect-ratio: 16 / 9; }
+
+.wisp-sodas-page .ws-mockup-fill {
+  flex: 1;
+  min-height: 400px;
+}
+
+.wisp-sodas-page .ws-mockup-large img,
+.wisp-sodas-page .ws-mockup-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wisp-sodas-page .ws-mockup-large:hover img,
+.wisp-sodas-page .ws-mockup-small:hover img { transform: scale(1.04); }
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1200px) {
+  .wisp-sodas-page .wisp-intro-section { padding: 140px 60px 80px; }
+  .wisp-sodas-page .wisp-content,
+  .wisp-sodas-page .ws-about-content { grid-template-columns: 1fr; gap: 60px; }
+  .wisp-sodas-page .wisp-image { height: 400px; }
+  .wisp-sodas-page .ws-about-image { height: 420px; }
+
+  .wisp-sodas-page .wisp-about-section,
+  .wisp-sodas-page .wisp-labels-section,
+  .wisp-sodas-page .wisp-mockups-section { padding-left: 60px; padding-right: 60px; }
+
+  .wisp-sodas-page .ws-mockups-grid { grid-template-columns: 1fr; }
+  .wisp-sodas-page .ws-mockup-large { grid-row: span 1; aspect-ratio: 4 / 3; }
+  .wisp-sodas-page .back-arrow { left: 24px; }
+}
+
+@media (max-width: 768px) {
+  .wisp-sodas-page .wisp-intro-section { padding: 120px 24px 60px; min-height: auto; }
+  .wisp-sodas-page .wisp-image { height: 300px; box-shadow: 8px 8px 0 #f2b705; }
+
+  .wisp-sodas-page .wisp-about-section,
+  .wisp-sodas-page .wisp-labels-section { padding: 90px 24px; }
+  .wisp-sodas-page .wisp-mockups-section { padding: 90px 24px 110px; }
+
+  .wisp-sodas-page .ws-about-image { height: 300px; box-shadow: 8px 8px 0 #1747c9; }
+  .wisp-sodas-page .ws-flavour-tab { padding: 11px 18px; }
+  .wisp-sodas-page .ws-mockup-fill { min-height: 280px; }
+  .wisp-sodas-page .back-arrow { top: 96px; left: 16px; width: 42px; height: 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wisp-sodas-page .ws-stars span,
+  .wisp-sodas-page .ws-shoot,
+  .wisp-sodas-page .ws-bubbles span { animation: none; }
+  .wisp-sodas-page .ws-shoot { display: none; }
+  .wisp-sodas-page .ws-bubbles span { opacity: 0.5; bottom: auto; top: 30%; }
+  .wisp-sodas-page .ws-reveal { opacity: 1; transform: none; transition: none; }
+  .wisp-sodas-page .wisp-image { transform: none; }
+}

@@ -1,0 +1,282 @@
+/* GolfGame.css — self-contained styles for the mini-golf game and its landing-page launcher */
+
+.gg, .gg * { box-sizing: border-box; }
+
+.gg { color: #f8fafc; font-family: "Inter", sans-serif; }
+
+/* ================= GOLF GAME ================= */
+
+.gg {
+  margin: 0;
+  padding: 26px 30px 30px;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  border-radius: 28px;
+  background: #0f1116;
+  box-shadow: 10px 10px 0 #1747c9;
+}
+
+
+.gg-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px dashed rgba(248, 250, 252, 0.3);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(248, 250, 252, 0.6);
+}
+
+.gg-head span:first-child { color: #f2b705; }
+
+/* leave room for the close button */
+.gg-head { padding-right: 44px; }
+
+.gg-stage {
+  position: relative;
+  border: 1px solid rgba(248, 250, 252, 0.2);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(23, 71, 201, 0.12), transparent 60%),
+    #0a0b0e;
+  overflow: hidden;
+}
+
+.gg-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 800 / 340;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.gg-msg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #f2b705;
+  text-shadow: 0 0 40px rgba(242, 183, 5, 0.5);
+  animation: ggPopMsg 1.2s ease forwards;
+}
+
+@keyframes ggPopMsg {
+  0% { opacity: 0; scale: 0.6; }
+  20% { opacity: 1; scale: 1.1; }
+  80% { opacity: 1; scale: 1; }
+  100% { opacity: 0; scale: 1; }
+}
+
+.gg-done {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(10, 11, 14, 0.88);
+  animation: ggFadeIn 0.4s ease;
+}
+
+@keyframes ggFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.gg-done-title {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: rgba(248, 250, 252, 0.6);
+}
+
+.gg-done-score {
+  margin: 0 0 8px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.gg-again {
+  padding: 12px 28px;
+  border: 1px solid #f2b705;
+  border-radius: 999px;
+  background: #f2b705;
+  color: #121316;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.gg-again:hover { background: #f7cb3d; transform: translateY(-2px); }
+
+/* the scoring sheet */
+.gg-sheet {
+  display: grid;
+  grid-template-columns: 110px repeat(3, 1fr) 80px;
+  margin-top: 20px;
+  border: 1px solid rgba(248, 250, 252, 0.3);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.gg-sheet > span {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px dashed rgba(248, 250, 252, 0.18);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.gg-sheet > span:nth-last-child(-n + 5) { border-bottom: none; }
+
+.gg-sheet-k {
+  text-align: left !important;
+  padding-left: 18px !important;
+  font-size: 11px !important;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.55) !important;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.gg-sheet-t {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 1px dashed rgba(248, 250, 252, 0.3);
+}
+
+.gg-sheet-c.now { color: #f2b705 !important; }
+.gg-sheet-score.live { color: #6f94ff !important; }
+.gg-sheet-score.under { color: #6f94ff !important; }
+.gg-sheet-score.over { color: #ff5a52 !important; }
+
+.gg-hint {
+  margin: 22px 0 0;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.5);
+}
+
+
+/* ================= LAUNCHER (landing page hero, bottom-left) ================= */
+
+.gg-launch {
+  position: absolute;
+  top: 32px;
+  right: 4%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px 10px 14px;
+  border: 1px solid #121316;
+  border-radius: 999px;
+  background: transparent;
+  color: #121316;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.gg-launch:hover {
+  background: #121316;
+  color: #fbf9f1;
+  transform: translateY(-3px);
+}
+
+.gg-launch-flag { transform-origin: 20px 12px; }
+.gg-launch:hover .gg-launch-flag { animation: ggWave 0.5s ease-in-out infinite alternate; }
+.gg-launch:hover .gg-launch-ball { animation: ggRoll 0.9s ease-in-out infinite alternate; }
+
+@keyframes ggWave {
+  from { transform: skewY(-8deg); }
+  to { transform: skewY(8deg); }
+}
+
+@keyframes ggRoll {
+  from { transform: translateX(0); }
+  to { transform: translateX(8px); }
+}
+
+/* ================= MODAL ================= */
+
+.gg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(5, 6, 8, 0.9);
+  animation: ggFadeIn 0.25s ease;
+}
+
+.gg-modal {
+  position: relative;
+  width: min(940px, 100%);
+  max-height: 100%;
+  overflow: auto;
+  padding: 0 12px 12px 0; /* room for the offset shadow */
+  animation: ggZoom 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes ggZoom {
+  from { opacity: 0; scale: 0.94; }
+  to { opacity: 1; scale: 1; }
+}
+
+.gg-close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  z-index: 5;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #f8fafc;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.gg-close:hover { color: #f2b705; }
+
+@media (max-width: 768px) {
+  .gg { padding: 20px 16px 24px; box-shadow: 6px 6px 0 #1747c9; }
+  .gg-head { font-size: 9px; letter-spacing: 0.12em; padding-right: 30px; }
+  .gg-sheet { grid-template-columns: 74px repeat(3, 1fr) 54px; }
+  .gg-sheet > span { padding: 10px 4px; font-size: 12px; }
+  .gg-sheet-k { padding-left: 10px !important; font-size: 9px !important; letter-spacing: 0.1em; }
+  .gg-launch { top: 20px; right: 4%; padding: 8px 16px 8px 10px; font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gg-msg, .gg-done, .gg-overlay, .gg-modal,
+  .gg-launch:hover .gg-launch-flag, .gg-launch:hover .gg-launch-ball { animation: none; }
+  .gg-msg { opacity: 1; }
+}

@@ -1,705 +1,1062 @@
+/* Herschelpage.css — deep-space theme (matches Scaffold / Picki / Posters and the rest of the site)
+   Everything is scoped under .herschel-page so it can't leak into other pages. */
+
+/* ================= BASE ================= */
+
 .herschel-page {
-    min-height: 100vh;
-    background: #fffcf2;
-  }
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+  background: #0a0b0e;
+  color: #f8fafc;
+  font-family: "Inter", sans-serif;
+}
 
-  /* ================= INTRO SECTION ================= */
+.herschel-page *,
+.herschel-page *::before,
+.herschel-page *::after {
+  box-sizing: border-box;
+}
 
-  .herschel-intro-section {
-    position: relative;
-    min-height: 100vh;
-    padding: 140px 120px 80px;
+.herschel-page section {
+  position: relative;
+  z-index: 1;
+}
 
-    background-color: #fffcf2;
+.herschel-page p {
+  color: rgba(248, 250, 252, 0.78);
+}
 
-    /* Grid pattern */
-    background-image:
-      linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
+/* stars */
+.herschel-page .hs-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
 
-    background-size: 80px 80px;
-    background-position: 0 0;
+.herschel-page .hs-stars span {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.2;
+  animation: hsTwinkle 3s ease-in-out infinite;
+}
 
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
+@keyframes hsTwinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50% { opacity: 0.95; transform: scale(1.2); }
+}
 
-  .herschel-content {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 80px;
-    align-items: center;
-    position: relative;
-    z-index: 5;
-  }
+.herschel-page .hs-shoot {
+  position: absolute;
+  top: 12%;
+  left: 70%;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff);
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: hsShoot 9s ease-in infinite;
+}
 
-  .herschel-text {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
+.herschel-page .hs-shoot-b {
+  top: 55%;
+  left: 25%;
+  animation-delay: 5s;
+  animation-duration: 12s;
+}
 
-  .herschel-title {
-    font-size: clamp(4rem, 8vw, 8rem);
-    font-weight: 900;
-    color: #ff91ba;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-    margin: 0;
-  }
+@keyframes hsShoot {
+  0% { opacity: 0; transform: translate(0, 0) rotate(-30deg); }
+  3% { opacity: 1; }
+  10% { opacity: 0; transform: translate(-320px, 185px) rotate(-30deg); }
+  100% { opacity: 0; transform: translate(-320px, 185px) rotate(-30deg); }
+}
 
-  /* Label + value pair with a tight gap (matches .picki-info-group) */
-  .herschel-info-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+/* scroll reveal (classes added by HerschelPage.jsx) */
+.herschel-page .hs-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 
-  /* Intro label (matches .picki-label) */
-  .herschel-label {
-    font-size: 14px;
-    font-weight: 700;
-    color: #6DB5E3;
-    letter-spacing: 0.08em;
-    margin: 0;
-  }
+.herschel-page .hs-reveal.hs-in {
+  opacity: 1;
+  transform: none;
+}
 
-  /* Intro detail (matches .picki-value) */
-  .herschel-detail {
-    font-size: 16px;
-    font-weight: 500;
-    color: #000;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    margin: 0;
-  }
+/* ================= BACK ARROW ================= */
 
-  .herschel-image {
-    width: 100%;
-    height: 550px;
-    background: linear-gradient(135deg, #e8b4d4 0%, #d4a5c9 100%);
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
+.herschel-page .back-arrow {
+  position: fixed;
+  top: 120px;
+  left: 60px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  background: #0a0b0e;
+  color: #f8fafc;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  box-shadow: none;
+  transition: all 0.3s ease;
+}
 
-  .herschel-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+.herschel-page .back-arrow:hover {
+  background: #f2b705;
+  border-color: #f2b705;
+  color: #121316;
+  transform: translateX(-4px);
+  box-shadow: none;
+}
 
-  /* Logo cover: black frame, image scaled up so the label fills the frame */
-  .herschel-image-logo {
-    background: #000;
-  }
+/* ================= SHARED TYPE ================= */
 
-  .herschel-image-logo img {
-    transform: scale(1.7);
-  }
+.herschel-page .hs-section-label {
+  display: block;
+  margin: 0 0 30px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #f8fafc;
+}
 
-  /* Floating stars */
-  .herschel-star {
-    position: absolute;
-    background: #5bb0ff;
-    z-index: 3;
+.herschel-page .sec-num { font-style: normal; }
+.herschel-page .sec-red { color: #ff5a52; }
+.herschel-page .sec-yellow { color: #f2b705; }
+.herschel-page .sec-blue { color: #6f94ff; }
 
-    clip-path: polygon(
-      50% 0%,
-      61% 35%,
-      100% 50%,
-      61% 65%,
-      50% 100%,
-      39% 65%,
-      0% 50%,
-      39% 35%
+.herschel-page .highlight-italic {
+  color: #f2b705;
+  font-style: normal;
+}
+
+.herschel-page .hs-hint {
+  margin: 36px 0 0;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.5);
+}
+
+/* ================= FLIGHT PATH (right edge, APR → OCT) ================= */
+
+.herschel-page .hs-flight {
+  position: fixed;
+  right: 34px;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 90;
+  height: 56vh;
+  min-height: 320px;
+  pointer-events: none;
+}
+
+.herschel-page .hs-flight-track {
+  position: relative;
+  height: 100%;
+  width: 1px;
+  border-left: 1px dashed rgba(248, 250, 252, 0.3);
+}
+
+.herschel-page .hs-flight-done {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #ff5a52, #f2b705, #6f94ff);
+  border-radius: 2px;
+}
+
+.herschel-page .hs-flight-tick {
+  position: absolute;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: #0a0b0e;
+  border: 1px solid rgba(248, 250, 252, 0.55);
+  transition: background-color 0.3s ease, border-color 0.3s ease, scale 0.3s ease;
+}
+
+.herschel-page .hs-flight-tick em {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  translate: 0 -50%;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(248, 250, 252, 0.35);
+  transition: color 0.3s ease;
+}
+
+.herschel-page .hs-flight-tick.passed {
+  background: var(--c);
+  border-color: var(--c);
+}
+
+.herschel-page .hs-flight-tick.passed em { color: rgba(248, 250, 252, 0.7); }
+
+.herschel-page .hs-flight-tick.active { scale: 1.5; }
+.herschel-page .hs-flight-tick.active em { color: var(--c); }
+
+.herschel-page .hs-flight-plane {
+  position: absolute;
+  left: 0;
+  translate: -50% -50%;
+  rotate: 135deg;
+  display: grid;
+  place-items: center;
+  color: #f8fafc;
+  filter: drop-shadow(0 0 8px rgba(248, 250, 252, 0.7));
+}
+
+/* ================= INTRO ================= */
+
+.herschel-page .herschel-intro-section {
+  min-height: 100vh;
+  padding: 140px 120px 80px;
+  display: flex;
+  align-items: center;
+}
+
+.herschel-page .herschel-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.herschel-page .herschel-text {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.herschel-page .herschel-title {
+  margin: 0;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(3rem, 6.4vw, 6.2rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0;
+  color: #f8fafc;
+}
+
+.herschel-page .herschel-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.herschel-page .herschel-label {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.6);
+}
+
+.herschel-page .herschel-detail {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #f8fafc;
+}
+
+/* boarding pass */
+.herschel-page .hs-pass {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  max-width: 620px;
+  border: 1px solid rgba(248, 250, 252, 0.45);
+  border-radius: 24px;
+  background: #0f1116;
+  box-shadow: 8px 8px 0 #1747c9;
+}
+
+.herschel-page .hs-pass-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 26px 28px;
+}
+
+.herschel-page .hs-pass-tag {
+  align-self: flex-start;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: #f2b705;
+  color: #121316;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.herschel-page .hs-pass-motto {
+  margin: 0;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #f8fafc;
+}
+
+.herschel-page .hs-pass-stub {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 26px 26px;
+  border-left: 2px dashed rgba(248, 250, 252, 0.35);
+}
+
+/* notches where the stub tears off */
+.herschel-page .hs-pass-stub::before,
+.herschel-page .hs-pass-stub::after {
+  content: '';
+  position: absolute;
+  left: -12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0a0b0e;
+  border: 1px solid rgba(248, 250, 252, 0.45);
+}
+
+.herschel-page .hs-pass-stub::before { top: -12px; clip-path: inset(50% 0 0 0); }
+.herschel-page .hs-pass-stub::after { bottom: -12px; clip-path: inset(0 0 50% 0); }
+
+.herschel-page .hs-barcode {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  height: 34px;
+}
+
+.herschel-page .hs-barcode span {
+  background: #f8fafc;
+  opacity: 0.85;
+  border-radius: 1px;
+}
+
+/* hero image */
+.herschel-page .herschel-image-wrap {
+  --rx: 0deg;
+  --ry: 0deg;
+  perspective: 1000px;
+}
+
+.herschel-page .herschel-image {
+  width: 100%;
+  height: 550px;
+  background: #000;
+  border: 1px solid #f8fafc;
+  border-radius: 28px;
+  box-shadow: 12px 12px 0 #f2b705;
+  overflow: hidden;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s ease-out;
+}
+
+.herschel-page .herschel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* logo cover: black frame, image scaled up so the label fills the frame */
+.herschel-page .herschel-image-logo img { transform: scale(1.7); }
+
+/* ================= ABOUT ================= */
+
+.herschel-page .herschel-about-section {
+  padding: 130px 120px;
+}
+
+.herschel-page .herschel-about-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.herschel-page .herschel-about-image {
+  width: 100%;
+  height: 500px;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  border-radius: 28px;
+  box-shadow: 12px 12px 0 #d4161c;
+  overflow: hidden;
+  background: #14161b;
+}
+
+.herschel-page .herschel-about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%; /* keeps the Herschel road sign in frame on the tall photo */
+  display: block;
+}
+
+.herschel-page .herschel-about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.herschel-page .herschel-about-text .hs-section-label { margin-bottom: 6px; }
+
+.herschel-page .herschel-about-paragraph {
+  margin: 0;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+}
+
+/* ================= BY THE NUMBERS ================= */
+
+.herschel-page .hs-stats-section {
+  padding: 40px 120px 100px;
+}
+
+.herschel-page .hs-stats {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.herschel-page .hs-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 34px 28px 30px;
+  border: 1px solid rgba(248, 250, 252, 0.18);
+  border-top: 3px solid var(--c);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.herschel-page .hs-stat:hover {
+  transform: translateY(-6px);
+  border-color: var(--c);
+}
+
+.herschel-page .hs-stat-num {
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c);
+}
+
+.herschel-page .hs-stat-label {
+  margin-top: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #f8fafc;
+}
+
+.herschel-page .hs-stat-sub {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(248, 250, 252, 0.65);
+}
+
+/* ================= PROJECT SECTIONS ================= */
+
+.herschel-page .herschel-project-section {
+  padding: 110px 120px;
+}
+
+.herschel-page .herschel-project-inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.herschel-page .herschel-project-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 60px;
+}
+
+.herschel-page .herschel-project-headline {
+  margin: 8px 0 16px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.8rem, 3.6vw, 3rem);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  color: #f8fafc;
+}
+
+.herschel-page .herschel-project-paragraph {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+}
+
+/* sub-sections inside a project */
+.herschel-page .herschel-subsection {
+  margin-bottom: 110px;
+  padding-top: 56px;
+  border-top: 1px dashed rgba(248, 250, 252, 0.28);
+}
+
+.herschel-page .herschel-subsection:last-child { margin-bottom: 0; }
+
+.herschel-page .herschel-sub-title {
+  margin: 0 0 18px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6f94ff;
+}
+
+.herschel-page .herschel-minecraft-section .herschel-subsection:nth-child(2) .herschel-sub-title { color: #ff5a52; }
+.herschel-page .herschel-minecraft-section .herschel-subsection:nth-child(3) .herschel-sub-title { color: #f2b705; }
+.herschel-page .herschel-minecraft-section .herschel-subsection:nth-child(4) .herschel-sub-title { color: #6f94ff; }
+
+.herschel-page .herschel-golf-section .herschel-zig-row:nth-child(2) .herschel-sub-title { color: #6f94ff; }
+.herschel-page .herschel-golf-section .herschel-zig-row:nth-child(3) .herschel-sub-title { color: #ff5a52; }
+
+.herschel-page .herschel-sub-text {
+  max-width: none;
+  margin: 0 0 40px;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+}
+
+.herschel-page .herschel-sub-text-tight { margin-bottom: 16px; }
+
+.herschel-page .herschel-item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.herschel-page .herschel-caption {
+  margin: 0;
+  max-width: 52ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(248, 250, 252, 0.7);
+}
+
+.herschel-page .herschel-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.herschel-page .herschel-row .herschel-item { flex: 0 0 auto; }
+
+.herschel-page .herschel-row .herschel-caption {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.herschel-page .herschel-row-3 .herschel-item { width: calc((100% - 60px) / 3); }
+.herschel-page .herschel-row-1 .herschel-item { width: calc((100% - 30px) * 0.55); }
+
+/* framed, tilting image with a glare that follows the cursor */
+.herschel-page .hs-shot {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(248, 250, 252, 0.3);
+  border-radius: 16px;
+  background: #14161b;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s ease-out, border-color 0.3s ease;
+}
+
+.herschel-page .hs-shot:hover { border-color: rgba(248, 250, 252, 0.7); }
+
+.herschel-page .hs-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* per-image crop positions (second number = how far down the photo the crop sits) */
+.herschel-page img.herschel-crop-card { object-position: center 40%; }
+.herschel-page img.herschel-crop-stack { object-position: center 65%; }
+
+.herschel-page .hs-shot-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at var(--gx) var(--gy), rgba(255, 255, 255, 0.26), transparent 55%);
+  transition: opacity 0.3s ease;
+}
+
+.herschel-page .hs-shot:hover .hs-shot-glare { opacity: 1; }
+
+/* holographic stickers: a rainbow sheen slides under the cursor */
+.herschel-page .hs-holo .hs-shot-glare {
+  background:
+    linear-gradient(
+      115deg,
+      transparent 15%,
+      rgba(255, 70, 160, 0.55) 30%,
+      rgba(90, 220, 255, 0.55) 45%,
+      rgba(255, 240, 90, 0.55) 60%,
+      rgba(150, 110, 255, 0.5) 75%,
+      transparent 90%
     );
-
-    animation: herschelFloat 10s ease-in-out infinite;
-  }
-
-  .herschel-star-1 {
-    top: 15%;
-    left: 25%;
-    width: 80px;
-    height: 80px;
-    background: #6db5e3;
-  }
-
-  .herschel-star-2 {
-    bottom: 20%;
-    left: 30%;
-    width: 100px;
-    height: 100px;
-    background: #0a2a66;
-    animation-delay: -3s;
-  }
-
-  @keyframes herschelFloat {
-    0%, 100% {
-      transform: translate(0, 0) rotate(0deg);
-    }
-    25% {
-      transform: translate(20px, -15px) rotate(90deg);
-    }
-    50% {
-      transform: translate(-15px, -25px) rotate(180deg);
-    }
-    75% {
-      transform: translate(-25px, -10px) rotate(270deg);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .herschel-star {
-      animation: none;
-    }
-  }
-
-  /* ================= ABOUT SECTION ================= */
-
-  .herschel-about-section {
-    min-height: auto;
-    padding: 100px 120px;
-    background: linear-gradient(to bottom, #fffcf2 0%, #fce4ec 100%);
-    display: flex;
-    align-items: center;
-  }
-
-  .herschel-about-content {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .herschel-about-image {
-    width: 100%;
-    height: 500px;
-    background: transparent;
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .herschel-about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 36%; /* keeps the Herschel road sign in frame on the tall photo */
-    display: block;
-    border-radius: 24px;
-  }
-
-  .herschel-about-text {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  /* About heading: original style */
-  .herschel-about-title {
-    font-size: 48px !important;
-    font-weight: 800;
-    color: #76BDFF;
-    letter-spacing: 0.02em;
-    margin: 0 0 16px 0;
-  }
-
-  .herschel-about-paragraph {
-    font-size: 18px;
-    line-height: 1.7;
-    color: #000;
-    margin: 0;
-  }
-
-  /* Project section headings (matches .picki-section-label) */
-  .herschel-project-title {
-    font-size: 24px !important;
-    font-weight: 800;
-    color: #FF91BA;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin: 0;
-  }
-
-  /* ================= PROJECT SECTIONS (shared) ================= */
-
-  .herschel-project-section {
-    position: relative;
-    padding: 64px 120px;
-    overflow: hidden;
-  }
-
-  .herschel-project-inner {
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .herschel-project-head {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    max-width: none;
-    margin-bottom: 72px;
-  }
-
-  /* Big statement headline (matches .picki-overview-title) */
-  .herschel-project-headline {
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 800;
-    color: #0a2a66;
-    line-height: 1.2;
-    letter-spacing: 0.01em;
-    text-align: center;
-    margin: 16px 0 0 0;
-  }
-
-  .herschel-project-headline .highlight-italic {
-    color: #FF91BA;
-    font-style: italic;
-  }
-
-  /* Lead paragraph under the headline */
-  .herschel-project-paragraph {
-    font-size: 18px;
-    line-height: 1.7;
-    color: #333;
-    max-width: 900px;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .herschel-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 30px;
-    align-items: start;
-  }
-
-  .herschel-span-3 { grid-column: span 3; }
-  .herschel-span-4 { grid-column: span 4; }
-  .herschel-span-6 { grid-column: span 6; }
-  .herschel-span-12 { grid-column: span 12; }
-
-  /* Centers a pair of span-4 items (used in Golf & Postcards) */
-  .herschel-start-3 { grid-column: 3 / span 4; }
-  .herschel-start-7 { grid-column: 7 / span 4; }
-
-  .herschel-item {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .herschel-item-image {
-    aspect-ratio: 4 / 3; /* every image in the project sections uses this same size */
-    background: transparent;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
-    border-radius: 12px;
-  }
-
-  .herschel-item-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    border-radius: 12px;
-  }
-
-  /* Per-image crop positions (second number = how far down the photo the crop sits) */
-  .herschel-item-image img.herschel-crop-card { object-position: center 40%; }
-  .herschel-item-image img.herschel-crop-stack { object-position: center 65%; }
-
-  .herschel-caption {
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.5;
-    color: rgba(0, 0, 0, 0.7);
-    max-width: 52ch;
-  }
-
-  /* ----- Sub-sections inside a project (Stickers, Seeding card, Patches) ----- */
-
-  .herschel-subsection {
-    margin-bottom: 96px;
-    padding-top: 48px;
-    border-top: 1px solid rgba(255, 145, 186, 0.5);
-  }
-
-  .herschel-subsection:last-child {
-    margin-bottom: 0;
-  }
-
-  /* Subheadings (matches .picki-styleguide-header) */
-  .herschel-sub-title {
-    font-size: 24px !important;
-    font-weight: 800;
-    color: #6DB5E3;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin: 0 0 16px 0;
-  }
-
-  .herschel-sub-text {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #000;
-    max-width: none;
-    margin: 0 0 40px 0;
-  }
-
-  .herschel-sub-text-tight {
-    margin-bottom: 16px;
-  }
-
-  .herschel-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-  }
-
-  .herschel-row .herschel-item {
-    flex: 0 0 auto;
-  }
-
-  .herschel-row .herschel-caption {
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  /* 3 across for stickers */
-  .herschel-row-3 .herschel-item {
-    width: calc((100% - 60px) / 3);
-  }
-
-  /* larger, centered images for the card and the patches (same size) */
-  .herschel-row-2 .herschel-item,
-  .herschel-row-1 .herschel-item {
-    width: calc((100% - 30px) * 0.4);
-  }
-
-  /* ----- Minecraft: pink with large low-opacity stars ----- */
-
-  .herschel-minecraft-section {
-    background: #fce4ec;
-  }
-
-  .herschel-bg-star {
-    opacity: 0.35;
-    z-index: 1;
-    animation: none;
-  }
-
-  .herschel-bg-star-1,
-  .herschel-bg-star-2,
-  .herschel-bg-star-3,
-  .herschel-bg-star-4,
-  .herschel-bg-star-5 {
-    opacity: 0.35;
-    z-index: 1;
-    animation: none;
-  }
-
-  .herschel-bg-star-1 {
-    top: 0%;
-    right: 0%;
-    width: 800px;
-    height: 800px;
-    background: #a8d5f0;
-    transform: rotate(15deg);
-  }
-
-  .herschel-bg-star-2 {
-    top: 25%;
-    left: 0%;
-    width: 350px;
-    height: 350px;
-    background: #d4a5f0;
-    transform: rotate(-20deg);
-  }
-
-  .herschel-bg-star-3 {
-    bottom: 10%;
-    right: 10%;
-    width: 380px;
-    height: 380px;
-    background: #ffa8d4;
-    transform: rotate(25deg);
-  }
-
-  .herschel-bg-star-4 {
-    bottom: 30%;
-    left: 5%;
-    width: 400px;
-    height: 400px;
-    background: #89c7e8;
-    transform: rotate(-95deg);
-  }
-
-  .herschel-bg-star-5 {
-    bottom: 2%;
-    left: 3%;
-    width: 420px;
-    height: 420px;
-    background: #d4a5f0;
-    transform: rotate(64deg);
-  }
-
-  /* ----- Golf & awards: pink fades into the grid (same blend as the Posters mockups section) ----- */
-
-  .herschel-golf-section {
-    background-color: #fffcf2;
-
-    /* Grid pattern */
-    background-image:
-      linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
-
-    background-size: 80px 80px;
-    background-position: 0 0;
-  }
-
-  .herschel-golf-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: linear-gradient(to bottom, #fce4ec 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Zig-zag rows: image + text side by side, alternating */
-  .herschel-zig-row {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .herschel-zig-row + .herschel-zig-row {
-    margin-top: 30px;
-  }
-
-  .herschel-zig-image,
-  .herschel-zig-text {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
-  .herschel-zig-text {
-    padding: 0 40px;
-  }
-
-  .herschel-zig-text .herschel-sub-title {
-    margin-bottom: 20px;
-  }
-
-  .herschel-zig-text .herschel-sub-text {
-    margin: 0;
-  }
-
-  /* ================= FOOTER ================= */
-  /* Identical to the footer block in PostersPage.css so the shared Footer looks the same on every page */
-
-  .footer {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    display: block;
-    background-color: #fffcf2;
-
-    background-image:
-      linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
-
-    background-size: 80px 80px;
-    background-position: 0 0;
-    position: relative;
-    z-index: 3;
-    overflow: visible;
-  }
-
-  .footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #fffcf2;
-    z-index: 5;
-  }
-
-  .footer-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    position: relative;
-    z-index: 10;
-  }
-
-  .footer-links {
-    position: absolute;
-    top: 50%;
-    right: 120px;
-    display: flex;
-    gap: 120px;
-    z-index: 10;
-    transform: translateY(-50%);
-  }
-
-  .footer-link {
-    color: #ffffff;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    position: relative;
-  }
-
-  /* ================= RESPONSIVE ================= */
-
-  @media (max-width: 1200px) {
-    .herschel-content,
-    .herschel-about-content {
-      grid-template-columns: 1fr;
-      gap: 60px;
-    }
-
-    .herschel-intro-section,
-    .herschel-about-section {
-      padding: 140px 60px 80px;
-    }
-
-    .herschel-image,
-    .herschel-about-image {
-      height: 400px;
-    }
-
-    .herschel-project-section {
-      padding: 64px 60px;
-    }
-
-    .herschel-span-3 { grid-column: span 6; }
-    .herschel-span-4 { grid-column: span 6; }
-    .herschel-span-6 { grid-column: span 12; }
-    .herschel-start-3,
-    .herschel-start-7 { grid-column: span 6; }
-
-    .herschel-row-3 .herschel-item,
-    .herschel-row-2 .herschel-item,
-    .herschel-row-1 .herschel-item {
-      width: calc((100% - 30px) / 2);
-    }
-
-    .herschel-bg-star-1,
-    .herschel-bg-star-3 {
-      width: 300px;
-      height: 300px;
-    }
-
-    .herschel-bg-star-2,
-    .herschel-bg-star-4,
-    .herschel-bg-star-5 {
-      width: 250px;
-      height: 250px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .herschel-intro-section,
-    .herschel-about-section {
-      padding: 120px 40px 60px;
-    }
-
-    .herschel-about-title {
-      font-size: 36px !important;
-    }
-
-    .herschel-project-title {
-      font-size: 20px !important;
-    }
-
-    .herschel-sub-title {
-      font-size: 20px !important;
-    }
-
-    .herschel-about-paragraph,
-    .herschel-project-paragraph {
-      font-size: 16px;
-    }
-
-    .herschel-project-section {
-      padding: 48px 40px;
-    }
-
-    .herschel-project-head {
-      margin-bottom: 40px;
-    }
-
-    .herschel-span-4,
-    .herschel-start-3,
-    .herschel-start-7 {
-      grid-column: span 12;
-    }
-
-    .herschel-subsection {
-      margin-bottom: 48px;
-    }
-
-    .herschel-row-3 .herschel-item,
-    .herschel-row-2 .herschel-item,
-    .herschel-row-1 .herschel-item {
-      width: 100%;
-    }
-
-    .herschel-bg-star-1,
-    .herschel-bg-star-2,
-    .herschel-bg-star-3,
-    .herschel-bg-star-4,
-    .herschel-bg-star-5 {
-      width: 200px;
-      height: 200px;
-    }
-  }
-
-  @media (max-width: 1200px) {
-    .herschel-zig-row {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .herschel-zig-row-reverse {
-      flex-direction: column-reverse;
-    }
-
-    .herschel-zig-image,
-    .herschel-zig-text {
-      flex: 0 0 auto;
-    }
-
-    .herschel-zig-text {
-      padding: 24px 0;
-    }
-  }
+  background-size: 260% 260%;
+  background-position: var(--gx) var(--gy);
+  mix-blend-mode: color-dodge;
+}
+
+.herschel-page .hs-holo:hover .hs-shot-glare { opacity: 0.85; }
+
+/* ----- seeding card flip ----- */
+
+.herschel-page .hs-flip-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.herschel-page .hs-flip {
+  --f: 0deg;
+  display: block;
+  width: min(640px, 100%);
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  perspective: 1400px;
+}
+
+.herschel-page .hs-flip.flipped { --f: 180deg; }
+
+.herschel-page .hs-flip-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateY(var(--f));
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.herschel-page .hs-flip:hover .hs-flip-inner { transform: rotateY(calc(var(--f) + 9deg)); }
+
+.herschel-page .hs-flip-face {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  border-radius: 16px;
+  background: #14161b;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 0 60px -10px rgba(242, 183, 5, 0.35);
+}
+
+.herschel-page .hs-flip-back { transform: rotateY(180deg); }
+
+.herschel-page .hs-flip-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.herschel-page .hs-flip-caption { text-align: center; }
+.herschel-page .hs-flip-wrap .hs-hint { margin-top: 4px; }
+
+/* ----- golf & awards: zig-zag rows ----- */
+
+.herschel-page .herschel-zig-row {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+
+.herschel-page .herschel-zig-row + .herschel-zig-row { margin-top: 90px; }
+
+.herschel-page .herschel-zig-image,
+.herschel-page .herschel-zig-text {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.herschel-page .herschel-zig-row-reverse { flex-direction: row; }
+
+.herschel-page .herschel-zig-text .herschel-sub-text { margin: 0; }
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px) {
+  .herschel-page .hs-flight { display: none; }
+}
+
+@media (max-width: 1200px) {
+  .herschel-page .herschel-intro-section { padding: 140px 60px 80px; }
+  .herschel-page .herschel-content,
+  .herschel-page .herschel-about-content { grid-template-columns: 1fr; gap: 60px; }
+  .herschel-page .herschel-image { height: 400px; }
+  .herschel-page .herschel-about-image { height: 420px; }
+
+  .herschel-page .herschel-about-section,
+  .herschel-page .herschel-project-section { padding-left: 60px; padding-right: 60px; }
+  .herschel-page .hs-stats-section { padding-left: 60px; padding-right: 60px; }
+  .herschel-page .hs-stats { grid-template-columns: repeat(2, 1fr); }
+
+  .herschel-page .herschel-row-3 .herschel-item { width: calc((100% - 30px) / 2); }
+  .herschel-page .herschel-row-1 .herschel-item { width: min(640px, 100%); }
+
+  .herschel-page .herschel-zig-row,
+  .herschel-page .herschel-zig-row-reverse { flex-direction: column; align-items: stretch; gap: 30px; }
+  .herschel-page .herschel-zig-row-reverse { flex-direction: column-reverse; }
+  .herschel-page .herschel-zig-image,
+  .herschel-page .herschel-zig-text { flex: 0 0 auto; }
+  .herschel-page .back-arrow { left: 24px; }
+}
+
+@media (max-width: 768px) {
+  .herschel-page .herschel-intro-section { padding: 120px 24px 60px; min-height: auto; }
+  .herschel-page .herschel-image { height: 300px; box-shadow: 8px 8px 0 #f2b705; }
+  .herschel-page .herschel-text { gap: 26px; }
+
+  .herschel-page .hs-pass { grid-template-columns: 1fr; box-shadow: 6px 6px 0 #1747c9; }
+  .herschel-page .hs-pass-stub { border-left: none; border-top: 2px dashed rgba(248, 250, 252, 0.35); }
+  .herschel-page .hs-pass-stub::before,
+  .herschel-page .hs-pass-stub::after { top: -12px; bottom: auto; }
+  .herschel-page .hs-pass-stub::before { left: -12px; clip-path: inset(0 50% 0 0); }
+  .herschel-page .hs-pass-stub::after { left: auto; right: -12px; clip-path: inset(0 0 0 50%); }
+
+  .herschel-page .herschel-about-section { padding: 90px 24px; }
+  .herschel-page .herschel-about-image { height: 300px; box-shadow: 8px 8px 0 #d4161c; }
+  .herschel-page .hs-stats-section { padding: 20px 24px 70px; }
+  .herschel-page .hs-stats { grid-template-columns: 1fr; }
+  .herschel-page .herschel-project-section { padding: 80px 24px; }
+  .herschel-page .herschel-subsection { margin-bottom: 70px; }
+  .herschel-page .herschel-row-3 .herschel-item,
+  .herschel-page .herschel-row-1 .herschel-item { width: 100%; }
+  .herschel-page .back-arrow { top: 96px; left: 16px; width: 42px; height: 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .herschel-page .hs-stars span,
+  .herschel-page .hs-shoot { animation: none; }
+  .herschel-page .hs-shoot { display: none; }
+  .herschel-page .hs-reveal { opacity: 1; transform: none; transition: none; }
+  .herschel-page .herschel-image,
+  .herschel-page .hs-shot { transform: none; }
+  .herschel-page .hs-flip-inner { transition: none; }
+}
+
+
+/* ================= PASSPORT ================= */
+
+.herschel-page .hs-passport {
+  max-width: 900px;
+  margin: 70px auto 0;
+  padding: 26px 34px 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  border-radius: 28px;
+  background: #0f1116;
+  box-shadow: 10px 10px 0 #d4161c;
+}
+
+.herschel-page .hs-passport-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed rgba(248, 250, 252, 0.3);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(248, 250, 252, 0.6);
+}
+
+.herschel-page .hs-passport-slots {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.herschel-page .hs-slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0 0;
+  border: none;
+  background: none;
+  color: var(--c);
+  cursor: pointer;
+}
+
+.herschel-page .hs-slot-ring {
+  position: absolute;
+  top: 10px;
+  width: min(170px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed rgba(248, 250, 252, 0.3);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.herschel-page .hs-slot:hover .hs-slot-ring {
+  border-color: var(--c);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.herschel-page .hs-slot.stamped .hs-slot-ring { border-color: transparent; }
+
+.herschel-page .hs-stamp {
+  position: relative;
+  width: min(170px, 100%);
+  aspect-ratio: 1;
+  opacity: 0;
+  rotate: var(--r);
+  transform-origin: center;
+}
+
+.herschel-page .hs-slot.stamped .hs-stamp {
+  opacity: 0.95;
+  animation: hsStamp 0.5s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+/* the stamp thuds down, then the ink settles */
+@keyframes hsStamp {
+  0% { opacity: 0; scale: 2.4; filter: blur(4px); }
+  60% { opacity: 1; scale: 0.92; filter: blur(0); }
+  100% { opacity: 0.95; scale: 1; }
+}
+
+.herschel-page .hs-slot.stamped .hs-slot-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--c);
+  animation: hsInk 0.7s ease-out forwards;
+}
+
+@keyframes hsInk {
+  0% { opacity: 0.8; scale: 0.9; }
+  100% { opacity: 0; scale: 1.5; }
+}
+
+.herschel-page .hs-slot-name {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.6);
+  transition: color 0.3s ease;
+}
+
+.herschel-page .hs-slot:hover .hs-slot-name,
+.herschel-page .hs-slot.stamped .hs-slot-name { color: var(--c); }
+
+.herschel-page .hs-passport-msg {
+  margin: 0;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.5);
+}
+
+.herschel-page .hs-passport-msg.done {
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  color: #f2b705;
+  animation: hsStamp 0.6s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+.herschel-page .hs-passport-reset {
+  padding: 9px 20px;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(248, 250, 252, 0.7);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.herschel-page .hs-passport-reset:hover {
+  background: #f8fafc;
+  color: #0a0b0e;
+}
+
+@media (max-width: 768px) {
+  .herschel-page .hs-passport { padding: 22px 18px 28px; box-shadow: 6px 6px 0 #d4161c; }
+  .herschel-page .hs-passport-slots { gap: 8px; }
+  .herschel-page .hs-passport-head { font-size: 9px; letter-spacing: 0.12em; }
+  .herschel-page .hs-slot-name { font-size: 9px; letter-spacing: 0.1em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .herschel-page .hs-slot.stamped .hs-stamp,
+  .herschel-page .hs-passport-msg.done,
+  .herschel-page .hs-slot.stamped .hs-slot-ring::after { animation: none; }
+}
+
+
+/* boarding pass: two connecting legs (intern, then contractor) */
+.herschel-page .hs-legs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.herschel-page .hs-leg {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.herschel-page .hs-leg-num {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid #ff5a52;
+  color: #ff5a52;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.herschel-page .hs-leg:nth-child(2) .hs-leg-num {
+  border-color: #f2b705;
+  color: #f2b705;
+}
+
+.herschel-page .hs-leg .herschel-info-group { gap: 4px; }
+.herschel-page .hs-leg .herschel-detail { font-size: 15px; }
+
+
+/* ================= AWARDS: foil + medals ================= */
+
+.herschel-page .hs-foil .hs-shot-glare {
+  background:
+    linear-gradient(
+      115deg,
+      transparent 25%,
+      rgba(255, 214, 110, 0.65) 42%,
+      rgba(255, 255, 255, 0.75) 50%,
+      rgba(255, 200, 90, 0.65) 58%,
+      transparent 75%
+    );
+  background-size: 260% 260%;
+  background-position: var(--gx) var(--gy);
+  mix-blend-mode: color-dodge;
+}
+
+.herschel-page .hs-foil:hover .hs-shot-glare { opacity: 0.8; }
+
+.herschel-page .hs-medals {
+  display: flex;
+  gap: 28px;
+  margin-top: 34px;
+}
+
+.herschel-page .hs-medal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  perspective: 600px;
+}
+
+.herschel-page .hs-medal svg {
+  width: 64px;
+  height: auto;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.herschel-page .hs-medal:hover svg { transform: rotateY(360deg) translateY(-6px); }
+
+.herschel-page .hs-medal span {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.6);
+}
+
+@media (max-width: 768px) {
+  .herschel-page .hs-medals { gap: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .herschel-page .hs-medal svg { transition: none; }
+}
