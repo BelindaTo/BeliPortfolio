@@ -1,355 +1,634 @@
-/* ProjectsPage.css */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  background-color: #f5f0eb;
-  color: #333;
-}
+/* ProjectsPage.css — space theme (matches the landing page)
+   Everything is scoped under .portfolio so it can't leak into other pages.
+   The old global `*`, `body`, `.navbar`, `.logo` and `.nav-links` rules were
+   removed on purpose: they were overriding the rest of the site. */
 
 .portfolio {
   min-height: 100vh;
-  background-color: #f5f0eb;
+  padding: 130px 0 80px;
+  position: relative;
+  overflow-x: clip;
+  background-color: #fbf9f1;
+  color: #121316;
+  font-family: "Inter", sans-serif;
 }
 
-/* Navigation */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 4rem;
+.portfolio *,
+.portfolio *::before,
+.portfolio *::after {
+  box-sizing: border-box;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #87ceeb;
-  letter-spacing: 0.1em;
+/* Header */
+.portfolio .pp-header {
+  text-align: center;
+  padding: 0 24px;
 }
 
-.nav-links {
-  display: flex;
-  gap: 3rem;
+.portfolio .pp-label {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(18, 19, 22, 0.6);
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-  transition: color 0.3s;
+.portfolio .pp-title {
+  margin: 0;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: #121316;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color: #000;
-  font-weight: 600;
-}
-
-/* Filter Buttons */
-.filter-container {
+/* Filters */
+.portfolio .filter-container {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  padding: 3rem 0;
-  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 48px 24px;
 }
 
-.filter-btn {
-  background: none;
-  border: 2px solid #ff8fb5;
-  color: #ff8fb5;
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  padding: 0.5rem 1.5rem;
-  border-radius: 25px;
-  position: relative;
-  overflow: hidden;
-  /* Only transition what actually changes (was: all) */
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 1;
-  outline: none; /* Remove blue outline */
-}
-
-/* Remove focus outline */
-.filter-btn:focus {
-  outline: none;
-}
-
-/* Sliding background effect */
-.filter-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: #ff8fb5;
-  transition: left 0.3s ease;
-  z-index: -1;
-}
-
-.filter-btn:hover::before {
-  left: 0;
-}
-
-.filter-btn:hover {
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 143, 181, 0.3);
-  border-color: #ff8fb5; /* Keep border color consistent */
-}
-
-.filter-btn.active {
-  background: #ff8fb5;
-  color: #ffffff;
+.portfolio .filter-btn {
+  background: transparent;
+  border: 1px solid #121316;
+  color: #121316;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(255, 143, 181, 0.3);
-  border-color: #ff8fb5; /* Keep border color consistent */
+  letter-spacing: 0.15em;
+  padding: 12px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
-.filter-btn.active::before {
-  left: 0;
+.portfolio .filter-btn:hover {
+  background: var(--c);
+  border-color: var(--c);
+  color: var(--ct);
+  transform: translateY(-2px);
 }
 
-/* INTERNSHIP tab: blue instead of pink */
-.filter-btn.internship {
-  border-color: #5bb0ff;
-  color: #5bb0ff;
+.portfolio .filter-btn.active {
+  background: var(--c);
+  border-color: var(--c);
+  color: var(--ct);
 }
 
-.filter-btn.internship::before {
-  background: #5bb0ff;
-}
-
-.filter-btn.internship:hover {
-  color: #ffffff;
-  border-color: #5bb0ff;
-  box-shadow: 0 4px 12px rgba(91, 176, 255, 0.3);
-}
-
-.filter-btn.internship.active {
-  background: #5bb0ff;
-  color: #ffffff;
-  border-color: #5bb0ff;
-  box-shadow: 0 4px 12px rgba(91, 176, 255, 0.3);
-}
-
-/* Projects Container with Transitions */
-.projects-container {
+/* Projects container + tab transitions */
+.portfolio .projects-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 4rem 4rem;
+  padding: 0 64px;
 }
 
-/* Fade animations (shortened so tab switches feel instant) */
-.projects-container.fade-in {
-  animation: fadeInSlide 0.3s ease-out forwards;
+.portfolio .projects-container.fade-in {
+  animation: ppFadeIn 0.3s ease-out forwards;
 }
 
-.projects-container.fade-out {
-  animation: fadeOutSlide 0.15s ease-in forwards;
+.portfolio .projects-container.fade-out {
+  animation: ppFadeOut 0.15s ease-in forwards;
 }
 
-@keyframes fadeInSlide {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes ppFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeOutSlide {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
+@keyframes ppFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
 }
 
-/* Project Card */
-.project-card {
+/* Project card */
+.portfolio .project-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 56px;
   align-items: center;
-  margin-bottom: 5rem;
+  margin-bottom: 40px;
+  padding: 32px;
+  border: 1px solid rgba(18, 19, 22, 0.15);
+  border-radius: 32px;
+  background: #fbf9f1;
+  transition: border-color 0.4s ease, transform 0.4s ease;
 }
 
-.project-card.reverse {
+.portfolio .project-card:hover {
+  border-color: var(--c);
+  transform: translateY(-4px);
+}
+
+.portfolio .project-card.reverse {
   direction: rtl;
 }
 
-.project-card.reverse > * {
+.portfolio .project-card.reverse > * {
   direction: ltr;
 }
 
-/* Project Content */
-.project-content {
-  padding: 2rem 0;
+.portfolio .project-content {
+  padding: 16px 8px;
 }
 
-.project-title {
+.portfolio .project-num {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: rgba(18, 19, 22, 0.5);
+  transition: color 0.3s ease;
+}
+
+.portfolio .project-card:hover .project-num {
+  color: var(--c);
+}
+
+.portfolio .project-title {
+  margin: 0 0 8px;
+  font-family: "Fredoka", "Inter", sans-serif;
   font-size: 2.5rem;
-  font-weight: 900;
-  color: #ff8fb5;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #121316;
 }
 
-.project-role {
-  font-size: 16px;
-  color: #5bb0ff;
+.portfolio .project-role {
+  margin: 0 0 24px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  margin-bottom: 1.5rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+  color: rgba(18, 19, 22, 0.6);
 }
 
-.project-description {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 2rem;
+.portfolio .project-description {
+  margin: 0 0 32px;
   max-width: 450px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(18, 19, 22, 0.75);
 }
 
-.view-btn {
-  background-color: #ff8fb5;
-  color: white;
-  border: none;
-  padding: 20px 60px;
+.portfolio .view-btn {
+  background: transparent;
+  color: #121316;
+  border: 1px solid #121316;
+  padding: 16px 40px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  border-radius: 14px;
+  letter-spacing: 0.15em;
+  border-radius: 999px;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  z-index: 1;
   outline: none;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
-.view-btn:focus {
-  outline: none;
-}
-
-/* Shine effect */
-.view-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transition: left 0.5s ease;
-}
-
-.view-btn:hover::before {
-  left: 100%;
-}
-
-.view-btn:hover {
-  background-color: #ff7aa3;
+.portfolio .view-btn:hover {
+  background: var(--c);
+  border-color: var(--c);
+  color: var(--ct);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 143, 181, 0.4);
 }
 
-.view-btn:active {
+.portfolio .view-btn:active {
   transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(255, 143, 181, 0.3);
 }
 
-/* Project Image */
-.project-image {
-  background-color: #c9c9c9;
-  border-radius: 12px;
-  aspect-ratio: 4/3;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+/* Project image */
+.portfolio .project-image {
+  background-color: #eeeadf;
+  border: 1px solid rgba(18, 19, 22, 0.15);
+  border-radius: 20px;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.project-image img {
+.portfolio .project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.portfolio .project-card:hover .project-image img {
+  transform: scale(1.04);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .portfolio .projects-container {
+    padding: 0 24px;
+  }
+
+  .portfolio .project-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .portfolio .project-card.reverse {
+    direction: ltr;
+  }
+
+  .portfolio .project-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio {
+    padding-top: 110px;
+  }
+
+  .portfolio .filter-container {
+    gap: 8px;
+    padding: 32px 16px;
+  }
+
+  .portfolio .view-btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio .projects-container.fade-in,
+  .portfolio .projects-container.fade-out {
+    animation: none;
+  }
+  .portfolio .project-card,
+  .portfolio .project-image img {
+    transition: none;
+  }
+}
+
+
+/* ---------- space touches ---------- */
+
+.portfolio .pp-header {
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio .pp-planet {
+  position: absolute;
+  top: 110px;
+  right: 7%;
+  width: 150px;
+  height: auto;
+  pointer-events: none;
+  animation: ppFloat 16s ease-in-out infinite alternate;
+}
+
+.portfolio .pp-line {
+  fill: none;
+  stroke: #121316;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.portfolio .pp-thin { stroke-width: 1.1; }
+.portfolio .pp-fill { fill: #fbf9f1; }
+.portfolio .pp-blue { stroke: var(--blue, #1747c9); }
+
+.portfolio .pp-sparkle {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #121316;
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  pointer-events: none;
+  animation: ppFloat 9s ease-in-out infinite alternate;
+}
+.portfolio .pp-sparkle-a { top: 150px; left: 14%; }
+.portfolio .pp-sparkle-b { top: 230px; right: 24%; stroke: var(--red, #d4161c); width: 16px; height: 16px; }
+
+@keyframes ppFloat {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(8px, -14px, 0); }
+}
+
+.portfolio .pp-spark {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  vertical-align: -2px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 768px) {
+  .portfolio .pp-planet { width: 90px; top: 90px; right: 4%; }
+  .portfolio .pp-sparkle-b { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio .pp-planet,
+  .portfolio .pp-sparkle { animation: none; }
+}
+
+
+/* ---------- view toggle ---------- */
+
+.portfolio .view-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: -16px auto 40px;
+  width: max-content;
+  border: 1px solid #121316;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.portfolio .view-toggle button {
+  background: transparent;
+  border: none;
+  padding: 10px 22px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #121316;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.portfolio .view-toggle button.active {
+  background: #121316;
+  color: #fbf9f1;
+}
+
+/* ---------- index view ---------- */
+
+.portfolio .index-list {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 64px;
+  border-top: 1px solid rgba(18, 19, 22, 0.2);
+  box-sizing: content-box;
+}
+
+.portfolio .index-row {
+  display: grid;
+  grid-template-columns: 56px 1fr auto 56px;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(18, 19, 22, 0.2);
+  cursor: pointer;
+  outline: none;
+  transition: padding-left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.portfolio .index-row:hover,
+.portfolio .index-row:focus-visible {
+  padding-left: 20px;
+}
+
+.portfolio .index-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: rgba(18, 19, 22, 0.5);
+  transition: color 0.3s ease;
+}
+
+.portfolio .index-row:hover .index-num,
+.portfolio .index-row:focus-visible .index-num {
+  color: var(--c);
+}
+
+.portfolio .index-title {
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  color: #121316;
+}
+
+.portfolio .index-role {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: right;
+  color: rgba(18, 19, 22, 0.55);
+}
+
+.portfolio .index-arrow {
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #121316;
+  border-radius: 50%;
+  font-size: 18px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.portfolio .index-row:hover .index-arrow,
+.portfolio .index-row:focus-visible .index-arrow {
+  background: var(--c);
+  border-color: var(--c);
+  color: var(--ct);
+  transform: rotate(-45deg);
+}
+
+/* image that chases the cursor */
+.portfolio .index-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  aspect-ratio: 4 / 3;
+  border: 1px solid #121316;
+  border-radius: 20px;
+  background: #eeeadf;
+  box-shadow: 8px 8px 0 var(--c, #121316);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  scale: 0.85;
+  transition: opacity 0.25s ease, scale 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.portfolio .index-preview.show {
+  opacity: 1;
+  scale: 1;
+}
+
+.portfolio .index-preview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* Responsive Design */
 @media (max-width: 968px) {
-  .navbar {
-    padding: 1.5rem 2rem;
-  }
-
-  .projects-container {
-    padding: 0 2rem 2rem;
-  }
-
-  .project-card {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-
-  .project-card.reverse {
-    direction: ltr;
-  }
-
-  .project-title {
-    font-size: 2rem;
-  }
+  .portfolio .index-list { padding: 0 24px; }
+  .portfolio .index-row { grid-template-columns: 36px 1fr 44px; gap: 14px; }
+  .portfolio .index-role { display: none; }
 }
 
-@media (max-width: 640px) {
-  .navbar {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
+@media (hover: none) {
+  .portfolio .index-preview { display: none; }
+}
 
-  .nav-links {
-    gap: 1.5rem;
-  }
 
-  .filter-container {
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 2rem 1rem;
-  }
+/* =====================================================
+   DEEP SPACE THEME (dark)
+   ===================================================== */
 
-  .projects-container {
-    padding: 0 1.5rem 1.5rem;
-  }
+.portfolio {
+  background-color: #0a0b0e;
+  color: #f8fafc;
+}
 
-  .project-title {
-    font-size: 1.75rem;
-  }
+/* stars */
+.portfolio .pp-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
 
-  .view-btn {
-    width: 100%;
-  }
+.portfolio .pp-stars span {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.2;
+  animation: ppTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes ppTwinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50% { opacity: 0.95; transform: scale(1.2); }
+}
+
+.portfolio .pp-shoot {
+  position: absolute;
+  top: 12%;
+  left: 70%;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), #fff);
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: ppShoot 9s ease-in infinite;
+}
+.portfolio .pp-shoot-b {
+  top: 55%;
+  left: 25%;
+  animation-delay: 5s;
+  animation-duration: 12s;
+}
+
+@keyframes ppShoot {
+  0% { opacity: 0; transform: translate(0, 0) rotate(-30deg); }
+  3% { opacity: 1; }
+  10% { opacity: 0; transform: translate(-320px, 185px) rotate(-30deg); }
+  100% { opacity: 0; transform: translate(-320px, 185px) rotate(-30deg); }
+}
+
+.portfolio .pp-header,
+.portfolio .filter-container,
+.portfolio .view-toggle,
+.portfolio .projects-container,
+.portfolio .index-list {
+  position: relative;
+  z-index: 1;
+}
+
+/* header */
+.portfolio .pp-label { color: rgba(248, 250, 252, 0.6); }
+.portfolio .pp-title { color: #f8fafc; }
+
+/* planet + sparkles go white */
+.portfolio .pp-line { stroke: #f8fafc; }
+.portfolio .pp-fill { fill: #0a0b0e; }
+.portfolio .pp-blue { stroke: #6f94ff; }
+.portfolio .pp-sparkle { stroke: #f8fafc; }
+.portfolio .pp-sparkle-b { stroke: #ff5a52; }
+
+/* filters + toggle */
+.portfolio .filter-btn {
+  border-color: rgba(248, 250, 252, 0.5);
+  color: #f8fafc;
+}
+.portfolio .view-toggle { border-color: rgba(248, 250, 252, 0.5); }
+.portfolio .view-toggle button { color: #f8fafc; }
+.portfolio .view-toggle button.active {
+  background: #f8fafc;
+  color: #0a0b0e;
+}
+
+/* cards */
+.portfolio .project-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(248, 250, 252, 0.18);
+  backdrop-filter: blur(2px);
+}
+.portfolio .project-card:hover { border-color: var(--cl, var(--c)); }
+.portfolio .project-num { color: rgba(248, 250, 252, 0.55); }
+.portfolio .project-card:hover .project-num { color: var(--cl, var(--c)); }
+.portfolio .project-title { color: #f8fafc; }
+.portfolio .project-role { color: rgba(248, 250, 252, 0.6); }
+.portfolio .project-description { color: rgba(248, 250, 252, 0.78); }
+.portfolio .view-btn {
+  color: #f8fafc;
+  border-color: rgba(248, 250, 252, 0.6);
+}
+.portfolio .project-image {
+  background-color: #14161b;
+  border-color: rgba(248, 250, 252, 0.18);
+}
+
+/* index view */
+.portfolio .index-list { border-top-color: rgba(248, 250, 252, 0.2); }
+.portfolio .index-row { border-bottom-color: rgba(248, 250, 252, 0.2); }
+.portfolio .index-num { color: rgba(248, 250, 252, 0.5); }
+.portfolio .index-row:hover .index-num,
+.portfolio .index-row:focus-visible .index-num { color: var(--cl, var(--c)); }
+.portfolio .index-title { color: #f8fafc; }
+.portfolio .index-role { color: rgba(248, 250, 252, 0.55); }
+.portfolio .index-arrow { border-color: rgba(248, 250, 252, 0.5); color: #f8fafc; }
+.portfolio .index-row:hover .index-arrow,
+.portfolio .index-row:focus-visible .index-arrow {
+  background: var(--c);
+  border-color: var(--c);
+  color: var(--ct);
+}
+.portfolio .index-preview {
+  border-color: #f8fafc;
+  background: #14161b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio .pp-stars span,
+  .portfolio .pp-shoot { animation: none; }
+  .portfolio .pp-shoot { display: none; }
 }

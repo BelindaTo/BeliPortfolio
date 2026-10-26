@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import './ScaffoldPage.css';
-import Footer from './footer';
+import EclipseFooter from './EclipseFooter';
 import constructionWorker from './images/construction-worker_1.png';
 import moneyGrant from './images/money-grant_1.png';
 import scaffoldPhone from './images/scaffold-phone.png';
@@ -33,6 +33,121 @@ import per2 from './images/per2.png';
 
 
 
+// Stat card: ring draws itself and the number counts up when scrolled into view
+const StatCard = ({ value, label, className }) => {
+  const ref = useRef(null);
+  const [n, setN] = useState(0);
+  const [on, setOn] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let raf;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        setOn(true);
+        if (reduce) { setN(value); return; }
+        const start = performance.now();
+        const DURATION = 1500;
+        const tick = (now) => {
+          const t = Math.min(1, (now - start) / DURATION);
+          setN(Math.round((1 - Math.pow(1 - t, 3)) * value));
+          if (t < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+    };
+  }, [value]);
+
+  return (
+    <div ref={ref} className={`scaffold-stat-card ${className}`}>
+      <div className="stat-ring-wrap">
+        <svg className="stat-ring" viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="60" cy="60" r="54" className="stat-ring-bg" />
+          <circle
+            cx="60"
+            cy="60"
+            r="54"
+            pathLength="1"
+            className="stat-ring-fg"
+            style={{ strokeDashoffset: on ? 1 - value / 100 : 1 }}
+          />
+        </svg>
+        <span className="stat-number">{n}%</span>
+      </div>
+      <span className="stat-label">{label}</span>
+    </div>
+  );
+};
+
+// Side navigation: a little flight path of dots that tracks where you are
+const NAV_SECTIONS = [
+  ['scaffold-intro-section', 'Intro'],
+  ['scaffold-whats-section', "What's Scaffold"],
+  ['scaffold-problem-section', 'Problem'],
+  ['scaffold-features-section', 'Core features'],
+  ['scaffold-research-section', 'Research'],
+  ['scaffold-insights-section', 'User insights'],
+  ['scaffold-userflow-section', 'User flow'],
+  ['scaffold-design-section', 'Design process'],
+  ['scaffold-wireframes-section', 'Wireframes'],
+  ['scaffold-howitworks-section', 'How it works'],
+  ['scaffold-promo-section', 'Promo material'],
+  ['scaffold-outcome-section', 'Outcome']
+];
+const NAV_COLORS = ['#ff5a52', '#f2b705', '#6f94ff'];
+
+const SectionNav = () => {
+  const [active, setActive] = useState(-1);
+
+  useEffect(() => {
+    const els = NAV_SECTIONS.map(([cls]) => document.querySelector(`.${cls}`));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          const i = els.indexOf(en.target);
+          if (i === -1) return;
+          if (en.isIntersecting) setActive(i);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    els.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const go = (i) => {
+    const el = document.querySelector(`.${NAV_SECTIONS[i][0]}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  return (
+    <nav className="sp-nav" aria-label="Case study sections">
+      {NAV_SECTIONS.map(([, label], i) => (
+        <button
+          key={label}
+          className={`sp-nav-item ${i === active ? 'active' : ''} ${i < active ? 'passed' : ''}`}
+          style={{ '--c': NAV_COLORS[i % 3] }}
+          onClick={() => go(i)}
+          aria-label={label}
+        >
+          <span className="sp-nav-label">{label}</span>
+          <span className="sp-nav-dot" />
+        </button>
+      ))}
+    </nav>
+  );
+};
+
 const ScaffoldPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
@@ -40,8 +155,67 @@ const ScaffoldPage = () => {
 
   const personas = [per1, per2];
 
+  const pageRef = useRef(null);
+
+  // phones tilt toward the cursor
+  const tilt = (e) => {
+    const el = e.currentTarget;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    el.style.setProperty('--rx', `${(-py * 12).toFixed(2)}deg`);
+    el.style.setProperty('--ry', `${(px * 14).toFixed(2)}deg`);
+  };
+  const untilt = (e) => {
+    e.currentTarget.style.setProperty('--rx', '0deg');
+    e.currentTarget.style.setProperty('--ry', '0deg');
+  };
+
   useEffect(() => {
     document.title = "Scaffold — Belinda To";
+    // deep-space theme: also flips the docked orbit nav + logo to their dark styles
+    document.body.classList.add('space-page', 'space-dark');
+    return () => document.body.classList.remove('space-page', 'space-dark');
+  }, []);
+
+  // twinkling stars (no lines)
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 90 }, () => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 2 + 1,
+        delay: Math.random() * 5,
+        dur: 2.5 + Math.random() * 3.5
+      })),
+    []
+  );
+
+  // scroll-in reveal for the main blocks of every section
+  useEffect(() => {
+    const root = pageRef.current;
+    if (!root) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const blocks = root.querySelectorAll(
+      'section > div > *, section > .scaffold-feature-row, section > .scaffold-features-header'
+    );
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.classList.add('sp-in');
+            io.unobserve(en.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    blocks.forEach((el) => {
+      el.classList.add('sp-reveal');
+      io.observe(el);
+    });
+    return () => io.disconnect();
   }, []);
 
   const handleImageClick = (imageSrc) => {
@@ -73,7 +247,27 @@ const ScaffoldPage = () => {
   }, [modalOpen]);
 
   return (
-    <div className="scaffold-page">
+    <div className="scaffold-page" ref={pageRef}>
+      <SectionNav />
+
+      <div className="sp-stars" aria-hidden="true">
+        {stars.map((st, k) => (
+          <span
+            key={k}
+            style={{
+              left: st.x + '%',
+              top: st.y + '%',
+              width: st.size,
+              height: st.size,
+              animationDelay: st.delay + 's',
+              animationDuration: st.dur + 's'
+            }}
+          />
+        ))}
+        <i className="sp-shoot sp-shoot-a" />
+        <i className="sp-shoot sp-shoot-b" />
+      </div>
+
       {/* BACK ARROW */}
       <button className="back-arrow" onClick={() => window.history.back()}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,8 +277,6 @@ const ScaffoldPage = () => {
 
       {/* INTRO SECTION */}
       <section className="scaffold-intro-section">
-        <div className="wisp-star wisp-star-1" />
-        <div className="wisp-star wisp-star-2" />
         <div className="scaffold-intro-content">
           <div className="scaffold-intro-text">
             <h1 className="scaffold-title">SCAFFOLD</h1>
@@ -131,7 +323,7 @@ const ScaffoldPage = () => {
       <section className="scaffold-whats-section">
         <div className="scaffold-whats-content">
           <div className="scaffold-whats-text">
-            <p className="scaffold-section-label">01 – WHAT'S SCAFFOLD?</p>
+            <p className="scaffold-section-label"><span className="sec-num sec-red">01</span> – WHAT'S SCAFFOLD?</p>
             
             <h2 className="scaffold-whats-title">
               AN <span className="highlight-italic">AI-POWERED</span> GRANT APP THAT CHECKS ELIGIBILITY AND ASSISTS WITH APPLICATIONS FOR APPRENTICES
@@ -156,19 +348,12 @@ const ScaffoldPage = () => {
       {/* 02 - PROBLEM SECTION */}
       <section className="scaffold-problem-section">
         <div className="scaffold-problem-content">
-          <p className="scaffold-section-label">02 – PROBLEM</p>
+          <p className="scaffold-section-label"><span className="sec-num sec-yellow">02</span> – PROBLEM</p>
           
           <div className="scaffold-problem-layout">
             <div className="scaffold-stats-container">
-              <div className="scaffold-stat-card stat-blue">
-                <span className="stat-number">33%</span>
-                <span className="stat-label">of eligible apprentices apply</span>
-              </div>
-              
-              <div className="scaffold-stat-card stat-navy">
-                <span className="stat-number">66%</span>
-                <span className="stat-label">gain awareness post deadline</span>
-              </div>
+              <StatCard className="stat-blue" value={33} label="of eligible apprentices apply" />
+              <StatCard className="stat-navy" value={66} label="gain awareness post deadline" />
             </div>
             
             <div className="scaffold-problem-text">
@@ -192,12 +377,8 @@ const ScaffoldPage = () => {
 
       {/* 03 - CORE FEATURES SECTION */}
       <section className="scaffold-features-section">
-        <div className="scaffold-features-star scaffold-features-star-1" />
-        <div className="scaffold-features-star scaffold-features-star-2" />
-        <div className="scaffold-features-star scaffold-features-star-3" />
-        <div className="scaffold-features-star scaffold-features-star-4" />
         <div className="scaffold-features-header">
-          <p className="scaffold-section-label">03 – CORE FEATURES</p>
+          <p className="scaffold-section-label"><span className="sec-num sec-blue">03</span> – CORE FEATURES</p>
           <h2 className="scaffold-features-title">
             TO ADDRESS THIS CHALLENGE, SCAFFOLD IS BUILT<br />
             AROUND <span className="highlight-italic">THREE CORE FEATURES.</span>
@@ -206,7 +387,7 @@ const ScaffoldPage = () => {
 
         {/* Feature 01 */}
         <div className="scaffold-feature-row">
-          <div className="scaffold-feature-phone">
+          <div className="scaffold-feature-phone" onMouseMove={tilt} onMouseLeave={untilt}>
             <img src={smartProfile} alt="Smart Profile Feature" />
           </div>
           <div className="scaffold-feature-text">
@@ -228,14 +409,14 @@ Once complete, the profile enables faster eligibility checks and pre-filled appl
               Before users invest time in an application, Scaffold checks whether they qualify. Clear feedback helps users understand what they're eligible for and why, reducing frustration and wasted effort.
             </p>
           </div>
-          <div className="scaffold-feature-phone">
+          <div className="scaffold-feature-phone" onMouseMove={tilt} onMouseLeave={untilt}>
             <img src={checker} alt="Eligibility Checker Feature" />
           </div>
         </div>
 
         {/* Feature 03 */}
         <div className="scaffold-feature-row">
-          <div className="scaffold-feature-phone">
+          <div className="scaffold-feature-phone" onMouseMove={tilt} onMouseLeave={untilt}>
             <img src={aiAssist} alt="AI Application Assistant Feature" />
           </div>
           <div className="scaffold-feature-text">
@@ -252,7 +433,7 @@ Once eligible, Scaffold generates a complete application template and can assist
       {/* 03 - RESEARCH AND ANALYSIS SECTION */}
       <section className="scaffold-research-section">
         <div className="scaffold-research-content">
-          <p className="scaffold-section-label">03 – RESEARCH AND ANALYSIS</p>
+          <p className="scaffold-section-label"><span className="sec-num sec-red">03</span> – RESEARCH AND ANALYSIS</p>
           
           <div className="scaffold-research-block">
             <h3 className="scaffold-research-subtitle">BARRIERS TO ENTRY AND PARTICIPATION</h3>
@@ -272,10 +453,9 @@ While classroom training environments are improving, workplace experiences are n
       {/* 04 - USER INSIGHTS SECTION */}
       <section className="scaffold-insights-section">
         <div className="scaffold-insights-content">
+          <p className="scaffold-section-label"><span className="sec-num sec-yellow">04</span> – USER INSIGHTS</p>
           {/* Left Column - Insights */}
           <div className="scaffold-insights-left">
-            <p className="scaffold-section-label">04 – USER INSIGHTS</p>
-            
             <h3 className="scaffold-insights-subtitle">WHO SCAFFOLD DESIGNED FOR</h3>
             <p className="scaffold-insights-paragraph">
               Scaffold was designed for apprentices and early-career tradespeople juggling work, training, and limited time often navigating funding systems not built for them.
@@ -398,7 +578,7 @@ While classroom training environments are improving, workplace experiences are n
       {/* 05 - DESIGN PROCESSES SECTION */}
       <section className="scaffold-design-section">
         <div className="scaffold-design-content">
-          <h2 className="scaffold-design-title">05 – DESIGN PROCESSES</h2>
+          <h2 className="scaffold-design-title"><span className="sec-num sec-blue">05</span> – DESIGN PROCESSES</h2>
           
           <p className="scaffold-design-paragraph">
             Scaffold's design reduces cognitive load by guiding users through complex funding processes with simple language and a mobile-first experience. Applications are broken into manageable steps and only relevant information is shown, helping busy apprentices move forward with confidence.
@@ -491,12 +671,8 @@ While classroom training environments are improving, workplace experiences are n
 
       {/* 06 - HOW IT WORKS SECTION */}
       <section className="scaffold-howitworks-section">
-        <div className="scaffold-howitworks-star scaffold-howitworks-star-1" />
-        <div className="scaffold-howitworks-star scaffold-howitworks-star-2" />
-        <div className="scaffold-howitworks-star scaffold-howitworks-star-3" />
-        <div className="scaffold-howitworks-star scaffold-howitworks-star-4" />
         <div className="scaffold-howitworks-content">
-          <p className="scaffold-section-label">06 – HOW IT WORKS</p>
+          <p className="scaffold-section-label"><span className="sec-num sec-red">06</span> – HOW IT WORKS</p>
           
           <p className="scaffold-howitworks-paragraph">
 Scaffold is designed as a mobile-first experience, with a focused web supplement for applications.
@@ -539,7 +715,7 @@ Users complete their profile, eligibility checks, and grant discovery directly i
      {/* 07 - PROMOTIONAL MATERIAL SECTION */}
       <section className="scaffold-promo-section">
         <div className="scaffold-promo-content">
-          <p className="scaffold-section-label">07 – PROMOTIONAL MATERIAL</p>
+          <p className="scaffold-section-label"><span className="sec-num sec-yellow">07</span> – PROMOTIONAL MATERIAL</p>
            <div className="scaffold-promo-full">
             <img src={banner} alt="Scaffold Promotional Banner" />
             <span className="promo-label">Promotional Banner</span>
@@ -581,7 +757,7 @@ Users complete their profile, eligibility checks, and grant discovery directly i
       {/* 08 - OUTCOME SECTION */}
       <section className="scaffold-outcome-section">
         <div className="scaffold-outcome-content">
-          <p className="scaffold-section-label">08 – OUTCOME</p>
+          <p className="scaffold-section-label"><span className="sec-num sec-blue">08</span> – OUTCOME</p>
           
           <div className="scaffold-outcome-header">
             <h2 className="scaffold-outcome-title">TEAM SCAFFOLD PLACED</h2>
@@ -607,11 +783,8 @@ Users complete their profile, eligibility checks, and grant discovery directly i
         </div>
       </section>
 
-      {/* GRID SECTION */}
-      <div className="scaffold-grid-section" />
-
       {/* FOOTER */}
-      <Footer />
+      <EclipseFooter />
     </div>
   );
 };

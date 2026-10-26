@@ -1,562 +1,646 @@
+/* DressUpDarlingPage.css — deep-space theme (matches Scaffold / Picki / Music Player)
+   Everything is scoped under .dress-up-page so it can't leak into other pages. */
+
+/* ================= BASE ================= */
+
 .dress-up-page {
-  min-height: 100vh;
-  background: #fffcf2;
-}
-
-/* ============================= */
-/* PROJECT INFO SECTION */
-/* ============================= */
-
-.project-info-section {
   position: relative;
   min-height: 100vh;
-  padding: 140px 120px 80px;
-  
-  background-color: #fffcf2;
-  
-  /* Grid pattern */
-  background-image:
-    linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
-  
-  background-size: 80px 80px;
-  background-position: 0 0;
-  
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  overflow-x: clip;
+  background: #0a0b0e;
+  color: #f8fafc;
+  font-family: "Inter", sans-serif;
+}
+
+.dress-up-page *,
+.dress-up-page *::before,
+.dress-up-page *::after {
+  box-sizing: border-box;
+}
+
+.dress-up-page section {
+  position: relative;
+  z-index: 1;
+}
+
+.dress-up-page p {
+  color: rgba(248, 250, 252, 0.78);
+}
+
+/* stars */
+.dress-up-page .du-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   overflow: hidden;
 }
 
-.project-info-container {
+.dress-up-page .du-stars span {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.2;
+  animation: duTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes duTwinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50% { opacity: 0.95; transform: scale(1.2); }
+}
+
+.dress-up-page .du-shoot {
+  position: absolute;
+  top: 12%;
+  left: 70%;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff);
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: duShoot 9s ease-in infinite;
+}
+
+.dress-up-page .du-shoot-b {
+  top: 55%;
+  left: 25%;
+  animation-delay: 5s;
+  animation-duration: 12s;
+}
+
+@keyframes duShoot {
+  0% { opacity: 0; transform: translate(0, 0) rotate(-30deg); }
+  3% { opacity: 1; }
+  10% { opacity: 0; transform: translate(-320px, 185px) rotate(-30deg); }
+  100% { opacity: 0; transform: translate(-320px, 185px) rotate(-30deg); }
+}
+
+/* scroll reveal (classes added by DressUpDarlingPage.jsx) */
+.dress-up-page .du-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.dress-up-page .du-reveal.du-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ================= BACK ARROW ================= */
+
+.dress-up-page .back-arrow {
+  position: fixed;
+  top: 120px;
+  left: 60px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  background: #0a0b0e;
+  color: #f8fafc;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  box-shadow: none;
+  transition: all 0.3s ease;
+}
+
+.dress-up-page .back-arrow:hover {
+  background: #f2b705;
+  border-color: #f2b705;
+  color: #121316;
+  transform: translateX(-4px);
+  box-shadow: none;
+}
+
+/* ================= SHARED TYPE ================= */
+
+.dress-up-page .du-section-label {
+  display: block;
+  margin: 0 0 30px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #f8fafc;
+}
+
+.dress-up-page .sec-num { font-style: normal; }
+.dress-up-page .sec-red { color: #ff5a52; }
+.dress-up-page .sec-yellow { color: #f2b705; }
+.dress-up-page .sec-blue { color: #6f94ff; }
+
+/* ================= INTRO ================= */
+
+.dress-up-page .du-info-section {
+  min-height: 100vh;
+  padding: 140px 120px 80px;
+  display: flex;
+  align-items: center;
+}
+
+/* pixel sparkles */
+.dress-up-page .du-pixels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.dress-up-page .du-pixels span {
+  position: absolute;
+  opacity: 0.8;
+  animation: duBlink 2.4s steps(2, jump-none) infinite;
+}
+
+@keyframes duBlink {
+  0% { opacity: 0.9; scale: 1; }
+  50% { opacity: 0.15; scale: 0.5; }
+  100% { opacity: 0.9; scale: 1; }
+}
+
+.dress-up-page .du-info-container {
+  position: relative;
+  z-index: 2;
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 80px;
   align-items: center;
-  position: relative;
-  z-index: 5;
 }
 
-.project-info-content {
+.dress-up-page .du-info-content {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.project-info-title {
-  font-size: clamp(4rem, 8vw, 8rem);
-  font-weight: 900;
-  color: #ff91ba;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  margin: 0;
+.dress-up-page .du-info-title {
+  margin: 0 0 12px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0;
+  color: #f8fafc;
 }
 
-.project-info-block {
+.dress-up-page .du-info-block {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
-.project-info-label {
-  font-size: 14px;
-  font-weight: 700;
-  color: #5bb0ff;
-  letter-spacing: 0.08em;
+.dress-up-page .du-info-label {
   margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.6);
 }
 
-.project-info-text {
+.dress-up-page .du-info-text {
+  margin: 0;
   font-size: 16px;
   font-weight: 500;
-  color: #000;
-  margin: 0;
+  letter-spacing: 0.02em;
+  color: #f8fafc;
 }
 
-.project-info-image {
+.dress-up-page .du-info-image {
   width: 100%;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  background: #14161b;
+  border: 1px solid #f8fafc;
+  border-radius: 28px;
+  box-shadow: 12px 12px 0 #f2b705;
   overflow: hidden;
 }
 
-.project-info-image img {
+.dress-up-page .du-info-image img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* Floating stars */
-.project-info-section::before {
-  content: '';
-  position: absolute;
-  top: 15%;
-  left: 25%;
-  width: 80px;
-  height: 80px;
-  background: #6db5e3;
-  z-index: 3;
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    100% 50%,
-    61% 65%,
-    50% 100%,
-    39% 65%,
-    0% 50%,
-    39% 35%
-  );
-  animation: dressUpFloat 10s ease-in-out infinite;
+/* ================= ABOUT ================= */
+
+.dress-up-page .du-about-section {
+  padding: 130px 120px;
 }
 
-.project-info-section::after {
-  content: '';
-  position: absolute;
-  bottom: 10%;
-  left: 30%;
-  width: 100px;
-  height: 100px;
-  background: #0a2a66;
-  z-index: 3;
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    100% 50%,
-    61% 65%,
-    50% 100%,
-    39% 65%,
-    0% 50%,
-    39% 35%
-  );
-  animation: dressUpFloat 10s ease-in-out infinite;
-  animation-delay: -3s;
-}
-
-@keyframes dressUpFloat {
-  0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(20px, -15px) rotate(90deg);
-  }
-  50% {
-    transform: translate(-15px, -25px) rotate(180deg);
-  }
-  75% {
-    transform: translate(-25px, -10px) rotate(270deg);
-  }
-}
-
-/* ============================= */
-/* ABOUT SECTION */
-/* ============================= */
-
-.about-section {
-  padding: 120px 120px;
-  background: linear-gradient(to bottom, #fffcf2 0%, #fce4ec 100%);
-  display: flex;
-  align-items: center;
-}
-
-.about-container {
+.dress-up-page .du-about-container {
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 100px;
   align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
 }
 
-.about-title {
-  font-size: clamp(4rem, 8vw, 8rem);
-  font-weight: 800;
-  color: #5bb0ff;
-  letter-spacing: 0.02em;
-  margin: 0;
-}
-
-.about-text {
-  font-size: 17px;
-  line-height: 1.7;
-  color: #000;
-  margin: 0;
-}
-
-.about-text-container {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.about-image {
+.dress-up-page .du-about-image {
+  position: relative;
   width: 100%;
   height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 24px;
 }
 
-.about-image img { 
+.dress-up-page .du-about-image::before {
+  content: '';
+  position: absolute;
+  width: min(480px, 90%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed rgba(248, 250, 252, 0.3);
+}
+
+.dress-up-page .du-about-image img {
+  position: relative;
   max-height: 100%;
+  max-width: 100%;
   width: auto;
-  
   height: auto;
   object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+  animation: duHover 5s ease-in-out infinite;
 }
 
-
-/* ============================= */
-/* GAME SECTION */
-/* ============================= */
-
-.game-section {
-  padding: 80px 0;
-  position: relative;
-  overflow: hidden;
-  background: #fce4ec;
+@keyframes duHover {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -12px; }
 }
 
-.game-header {
-  margin-bottom: 68px;
-  text-align: center;
+.dress-up-page .du-about-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.game-section-title {
-  font-size: 30px;
-  font-weight: 900;
-  margin-bottom: 20px;
-  color: #022764;
+.dress-up-page .du-about-text {
+  margin: 0;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
 }
 
-/* Large decorative stars with low opacity behind the game */
-.game-star {
-  position: absolute;
-  opacity: 0.35;
-  z-index: 1;
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    100% 50%,
-    61% 65%,
-    50% 100%,
-    39% 65%,
-    0% 50%,
-    39% 35%
-  );
+/* ================= GAME ================= */
+
+.dress-up-page .du-game-section {
+  padding: 130px 120px;
 }
 
-.game-star-1 {
-  top: 10%;
-  right: -5%;
-  width: 400px;
-  height: 400px;
-  background: #d4a5f0;
-  transform: rotate(15deg);
-}
-
-.game-star-2 {
-  top: 20%;
-  left: -8%;
-  width: 600px;
-  height: 600px;
-  background: #89c7e8;
-  transform: rotate(-25deg);
-}
-
-.game-star-3 {
-  bottom: 5%;
-  left: 5%;
-  width: 400px;
-  height: 400px;
-  background: #ffa8d4;
-  transform: rotate(20deg);
-}
-
-.game-star-4 {
-  bottom: 10%;
-  right: -5%;
-  width: 550px;
-  height: 550px;
-  background: #89c7e8;
-  transform: rotate(-30deg);
-}
-
-.game-container {
+.dress-up-page .du-game-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 120px;
-  position: relative;
-  z-index: 5;
 }
 
-.game-iframe {
+.dress-up-page .du-game-header {
+  margin-bottom: 56px;
+}
+
+.dress-up-page .du-game-instructions {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+}
+
+/* game window frame */
+.dress-up-page .du-game-embed {
+  border: 1px solid rgba(248, 250, 252, 0.5);
+  border-radius: 24px;
+  box-shadow: 12px 12px 0 #1747c9;
+  background: #14161b;
+  overflow: hidden;
+}
+
+.dress-up-page .du-game-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(248, 250, 252, 0.25);
+  background: #0f1116;
+}
+
+.dress-up-page .du-game-bar span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff5a52;
+}
+
+.dress-up-page .du-game-bar span:nth-child(2) { background: #f2b705; }
+.dress-up-page .du-game-bar span:nth-child(3) { background: #6f94ff; }
+
+.dress-up-page .du-game-bar em {
+  margin-left: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.6);
+}
+
+.dress-up-page .du-game-iframe {
+  display: block;
   width: 100%;
   height: 80vh;
   min-height: 600px;
   border: none;
-  border-radius: 20px;
-  position: relative;
-  z-index: 10;
 }
 
-/* ============================= */
-/* CHARACTER SECTION */
-/* ============================= */
+/* ================= CHARACTER ================= */
 
-.character-section {
-  padding: 100px 0 120px;
-  background: #fce4ec;
+.dress-up-page .du-character-section {
+  padding: 130px 120px;
 }
 
-.character-container {
+.dress-up-page .du-character-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 120px;
 }
 
-.character-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #6DB5E3;
-  letter-spacing: 0.05em;
-  margin: 0 0 30px 0;
-  text-transform: uppercase;
+.dress-up-page .du-character-description {
+  margin: 0 0 70px;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
 }
 
-.character-description {
-  font-size: 17px;
-  line-height: 1.7;
-  margin-bottom: 60px;
-}
-
-.character-images {
+.dress-up-page .du-character-images {
   display: flex;
   justify-content: center;
-  gap: 80px;
+  gap: 110px;
+  flex-wrap: wrap;
 }
 
-.character-img {
-  height: 300px;
-  image-rendering: pixelated;
-}
-
-.character-label {
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: #022764;
-}
-
-/* ============================= */
-/* CLOTHING SECTION */
-/* ============================= */
-
-.clothing-section {
-  padding: 0px 0 120px;
-  background: #fce4ec;
-}
-
-.clothing-container {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 120px;
-}
-
-.clothing-row {
+.dress-up-page .du-character-item {
   display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 40px;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
 }
 
-.clothing-img {
-  height: 300px;
-  image-rendering: pixelated;
-}
-
-/* ============================= */
-/* GRID SECTION */
-/* ============================= */
-
-.grid-section {
+.dress-up-page .du-pedestal {
   position: relative;
-  min-height: 40vh;
-  margin-top: -200px;
-  padding-top: 200px;
-  background-color: #fffcf2;
-  background-image:
-    linear-gradient(rgba(255, 183, 203, 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 183, 203, 0.35) 1px, transparent 1px);
-  background-size: 80px 80px;
+  display: grid;
+  place-items: center;
+  width: 360px;
+  height: 360px;
+  max-width: 100%;
 }
 
-.grid-section::before {
+.dress-up-page .du-pedestal::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 240px;
-  background: linear-gradient(
-    to bottom,
-    #fce4ec 0%,
-    rgba(252, 228, 236, 0.85) 40%,
-    rgba(252, 228, 236, 0.4) 70%,
-    rgba(252, 228, 236, 0) 100%
-  );
-  pointer-events: none;
-  z-index: 2;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(248, 250, 252, 0.3);
 }
 
-/* ============================= */
-/* RESPONSIVE */
-/* ============================= */
+.dress-up-page .du-character-item:nth-child(1) .du-pedestal::before { border-color: rgba(255, 90, 82, 0.6); }
+.dress-up-page .du-character-item:nth-child(2) .du-pedestal::before { border-color: rgba(111, 148, 255, 0.6); }
+
+.dress-up-page .du-character-img {
+  position: relative;
+  height: 300px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6));
+  transition: translate 0.3s steps(3);
+}
+
+.dress-up-page .du-character-item:hover .du-character-img { translate: 0 -10px; }
+
+.dress-up-page .du-character-label {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: #f8fafc;
+}
+
+/* ================= WARDROBE ================= */
+
+.dress-up-page .du-clothing-section {
+  padding: 130px 120px 150px;
+}
+
+.dress-up-page .du-clothing-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* spotlight stage */
+.dress-up-page .du-spotlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 70px;
+}
+
+.dress-up-page .du-spotlight-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 420px;
+  height: 420px;
+  max-width: 100%;
+}
+
+.dress-up-page .du-spotlight-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(248, 250, 252, 0.35);
+}
+
+.dress-up-page .du-spotlight-ring::after {
+  content: '';
+  position: absolute;
+  inset: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 183, 5, 0.5);
+  box-shadow: 0 0 60px rgba(242, 183, 5, 0.12), inset 0 0 60px rgba(242, 183, 5, 0.08);
+}
+
+.dress-up-page .du-spotlight-item {
+  position: relative;
+  display: grid;
+  place-items: center;
+  animation: duPop 0.45s steps(5);
+}
+
+@keyframes duPop {
+  0% { scale: 0.6; opacity: 0; }
+  100% { scale: 1; opacity: 1; }
+}
+
+.dress-up-page .du-spotlight-item img {
+  height: 340px;
+  max-width: 340px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6));
+}
+
+/* pixel burst when a piece is picked */
+.dress-up-page .du-burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  background: var(--c);
+  opacity: 0;
+  pointer-events: none;
+  animation: duBurst 0.7s steps(7) forwards;
+}
+
+@keyframes duBurst {
+  0% { opacity: 1; transform: rotate(var(--a)) translateX(60px); }
+  100% { opacity: 0; transform: rotate(var(--a)) translateX(190px); }
+}
+
+.dress-up-page .du-spotlight-name {
+  margin: 0;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #f2b705;
+}
+
+.dress-up-page .du-spotlight-hint {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.5);
+}
+
+/* thumbnails */
+.dress-up-page .du-wardrobe {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.dress-up-page .du-clothing-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.dress-up-page .du-clothing-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 22px 16px;
+  border: 1px solid rgba(248, 250, 252, 0.18);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #f8fafc;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+.dress-up-page .du-clothing-btn:hover {
+  border-color: var(--c);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.dress-up-page .du-clothing-btn.on {
+  border-color: var(--c);
+  box-shadow: 0 0 0 1px var(--c), 0 0 30px -4px var(--c);
+}
+
+.dress-up-page .du-clothing-img {
+  height: 200px;
+  image-rendering: pixelated;
+  transition: translate 0.3s steps(3);
+}
+
+.dress-up-page .du-clothing-btn:hover .du-clothing-img { translate: 0 -8px; }
+
+.dress-up-page .du-clothing-tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(248, 250, 252, 0.6);
+}
+
+.dress-up-page .du-clothing-btn:hover .du-clothing-tag,
+.dress-up-page .du-clothing-btn.on .du-clothing-tag { color: var(--c); }
+
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 1200px) {
-  .project-info-section {
-    padding: 140px 60px 80px;
-  }
-  
-  .project-info-container {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-  
-  .about-section {
-    padding: 100px 60px;
-  }
-  
-  .about-container {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-  
-  .about-image {
-    height: 400px;
-  }
-  
-  .game-container {
-    padding: 0 60px;
-  }
-  
-  .character-container {
-    padding: 0 60px;
-  }
-  
-  .clothing-container {
-    padding: 0 60px;
-  }
-  
-  .game-star-1,
-  .game-star-3 {
-    width: 300px;
-    height: 300px;
-  }
-  
-  .game-star-2,
-  .game-star-4 {
-    width: 400px;
-    height: 400px;
-  }
+  .dress-up-page .du-info-section { padding: 140px 60px 80px; }
+  .dress-up-page .du-info-container,
+  .dress-up-page .du-about-container { grid-template-columns: 1fr; gap: 60px; }
+  .dress-up-page .du-about-section { padding-left: 60px; padding-right: 60px; }
+  .dress-up-page .du-about-image { height: 460px; }
+  .dress-up-page .du-game-section,
+  .dress-up-page .du-character-section,
+  .dress-up-page .du-clothing-section { padding-left: 60px; padding-right: 60px; }
+  .dress-up-page .back-arrow { left: 24px; }
 }
 
 @media (max-width: 768px) {
-  .project-info-section {
-    padding: 120px 40px 60px;
-  }
-  
-  .project-info-section::before,
-  .project-info-section::after {
-    display: none;
-  }
-  
-  .about-section {
-    padding: 80px 40px;
-  }
-  
-  .about-title {
-    font-size: 36px;
-  }
-  
-  .about-image {
-    height: 350px;
-  }
-  
-  .game-container {
-    padding: 0 40px;
-  }
-  
-  .game-section-title {
-    font-size: 2rem;
-  }
-  
-  .game-iframe {
-    height: 70vh;
-    min-height: 500px;
-  }
-  
-  .character-container {
-    padding: 0 40px;
-  }
-  
-  .character-images {
-    gap: 40px;
-  }
-  
-  .character-img {
-    height: 250px;
-  }
-  
-  .clothing-container {
-    padding: 0 40px;
-  }
-  
-  .clothing-row {
-    gap: 20px;
-  }
-  
-  .clothing-img {
-    height: 250px;
-  }
-  
-  .game-star-1,
-  .game-star-2,
-  .game-star-3,
-  .game-star-4 {
-    width: 200px;
-    height: 200px;
-  }
+  .dress-up-page .du-info-section { padding: 120px 24px 60px; min-height: auto; }
+  .dress-up-page .du-info-image { box-shadow: 8px 8px 0 #f2b705; }
+
+  .dress-up-page .du-about-section { padding: 90px 24px; }
+  .dress-up-page .du-about-image { height: 340px; }
+
+  .dress-up-page .du-game-section,
+  .dress-up-page .du-character-section { padding: 90px 24px; }
+  .dress-up-page .du-clothing-section { padding: 90px 24px 110px; }
+
+  .dress-up-page .du-game-embed { box-shadow: 8px 8px 0 #1747c9; }
+  .dress-up-page .du-game-iframe { height: 70vh; min-height: 500px; }
+
+  .dress-up-page .du-character-images { gap: 50px; }
+  .dress-up-page .du-pedestal { width: 280px; height: 280px; }
+  .dress-up-page .du-character-img { height: 230px; }
+
+  .dress-up-page .du-spotlight-stage { width: 300px; height: 300px; }
+  .dress-up-page .du-spotlight-item img { height: 240px; max-width: 240px; }
+  .dress-up-page .du-clothing-img { height: 140px; }
+  .dress-up-page .du-clothing-btn { padding: 14px 14px 12px; }
+  .dress-up-page .du-clothing-row,
+  .dress-up-page .du-wardrobe { gap: 16px; }
+
+  .dress-up-page .back-arrow { top: 96px; left: 16px; width: 42px; height: 42px; }
 }
 
-@media (max-width: 480px) {
-  .project-info-title {
-    font-size: 2.5rem;
-  }
-  
-  .game-iframe {
-    height: 60vh;
-    min-height: 400px;
-  }
-  
-  .character-section {
-    padding: 60px 0 80px;
-  }
-  
-  .character-images {
-    flex-direction: column;
-    gap: 40px;
-  }
-  
-  .character-img {
-    height: 200px;
-  }
-  
-  .clothing-section {
-    padding: 60px 0 80px;
-  }
-  
-  .clothing-img {
-    height: 200px;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .dress-up-page .du-stars span,
+  .dress-up-page .du-shoot,
+  .dress-up-page .du-pixels span,
+  .dress-up-page .du-about-image img,
+  .dress-up-page .du-spotlight-item,
+  .dress-up-page .du-burst { animation: none; }
+  .dress-up-page .du-shoot,
+  .dress-up-page .du-burst { display: none; }
+  .dress-up-page .du-reveal { opacity: 1; transform: none; transition: none; }
 }

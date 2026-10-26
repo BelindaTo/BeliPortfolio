@@ -1,57 +1,188 @@
+/* PickiPage.css — deep-space theme (matches Scaffold and the rest of the site)
+   Everything is scoped under .picki-page so it can't leak into other pages. */
+
+/* ================= BASE ================= */
+
 .picki-page {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #fffcf2;
+  overflow-x: clip;
+  background: #0a0b0e;
+  color: #f8fafc;
+  font-family: "Inter", sans-serif;
+}
+
+.picki-page *,
+.picki-page *::before,
+.picki-page *::after {
+  box-sizing: border-box;
+}
+
+.picki-page section {
+  position: relative;
+  z-index: 1;
+}
+
+.picki-page p {
+  color: rgba(248, 250, 252, 0.78);
+}
+
+/* stars */
+.picki-page .pk-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.picki-page .pk-stars span {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.2;
+  animation: pkTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes pkTwinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50% { opacity: 0.95; transform: scale(1.2); }
+}
+
+.picki-page .pk-shoot {
+  position: absolute;
+  top: 12%;
+  left: 70%;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff);
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: pkShoot 9s ease-in infinite;
+}
+
+.picki-page .pk-shoot-b {
+  top: 55%;
+  left: 25%;
+  animation-delay: 5s;
+  animation-duration: 12s;
+}
+
+@keyframes pkShoot {
+  0% { opacity: 0; transform: translate(0, 0) rotate(-30deg); }
+  3% { opacity: 1; }
+  10% { opacity: 0; transform: translate(-320px, 185px) rotate(-30deg); }
+  100% { opacity: 0; transform: translate(-320px, 185px) rotate(-30deg); }
+}
+
+/* scroll reveal (classes added by PickiPage.jsx) */
+.picki-page .pk-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.picki-page .pk-reveal.pk-in {
+  opacity: 1;
+  transform: none;
 }
 
 /* ================= BACK ARROW ================= */
 
-.back-arrow {
+.picki-page .back-arrow {
   position: fixed;
   top: 120px;
   left: 60px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #fff;
-  border: none;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  color: #0a2a66;
+  cursor: pointer;
   z-index: 100;
+  background: #0a0b0e;
+  color: #f8fafc;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  box-shadow: none;
   transition: all 0.3s ease;
 }
 
-.back-arrow:hover {
+.picki-page .back-arrow:hover {
+  background: #f2b705;
+  border-color: #f2b705;
+  color: #121316;
   transform: translateX(-4px);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-  background: #FF91BA;
-  color: #fff;
+  box-shadow: none;
 }
 
-/* ================= INTRO SECTION ================= */
+/* ================= SHARED TYPE ================= */
 
-.picki-intro-section {
+.picki-page .picki-section-label {
+  display: inline-block;
+  margin: 0 0 30px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #f8fafc;
+}
+
+.picki-page .sec-num { font-style: normal; }
+.picki-page .sec-red { color: #ff5a52; }
+.picki-page .sec-yellow { color: #f2b705; }
+.picki-page .sec-blue { color: #6f94ff; }
+
+.picki-page .highlight-italic {
+  color: #f2b705;
+  font-style: normal;
+}
+
+/* phones: tilt toward the cursor, with a dashed orbit ring behind */
+.picki-page .pk-phone {
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 900px;
+}
+
+.picki-page .pk-phone img,
+.picki-page .pk-phone video {
+  position: relative;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s ease-out;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+}
+
+/* cream panels for artwork drawn on light backgrounds */
+.picki-page .picki-panel {
+  padding: 24px;
+  background: #fbf9f1;
+  border-radius: 24px;
+}
+
+.picki-page .picki-panel img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ================= INTRO ================= */
+
+.picki-page .picki-intro-section {
   min-height: 100vh;
-  padding: 140px 120px 60px;
-  background-color: #fffcf2;
-  
-  background-image:
-    linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
-  
-  background-size: 80px 80px;
-  background-position: 0 0;
-  
+  padding: 140px 120px 80px;
   display: flex;
   align-items: center;
 }
 
-.picki-intro-content {
+.picki-page .picki-intro-content {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -61,1184 +192,1029 @@
   align-items: center;
 }
 
-.picki-intro-text {
+.picki-page .picki-intro-text {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.picki-title {
-  font-size: clamp(4rem, 8vw, 8rem);
-  font-weight: 900;
-  color: #FF91BA;
-  letter-spacing: -0.02em;
-  margin: 0 0 20px 0;
+.picki-page .picki-title {
+  margin: 0 0 12px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #f8fafc;
 }
 
-.picki-info-group {
+.picki-page .picki-info-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
-.picki-label {
-  font-size: 14px;
-  font-weight: 700;
-  color: #6DB5E3;
-  letter-spacing: 0.08em;
+.picki-page .picki-label {
   margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 252, 0.6);
 }
 
-.picki-value {
+.picki-page .picki-value {
+  margin: 0;
   font-size: 16px;
   font-weight: 500;
-  color: #000;
-  margin: 0;
   letter-spacing: 0.02em;
+  color: #f8fafc;
 }
 
-.picki-btn {
-  align-self: flex-start;
+.picki-page .picki-btn-group {
+  display: flex;
+  gap: 16px;
   margin-top: 20px;
-  padding: 16px 50px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ffffff;
-  background: #FF91BA;
-  border: none;
-  border-radius: 50px;
+  flex-wrap: wrap;
+}
+
+.picki-page .picki-btn {
+  margin: 0;
+  padding: 16px 40px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #121316;
+  background: #f2b705;
+  border: 1px solid #f2b705;
+  border-radius: 999px;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
   outline: none;
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.picki-btn:focus {
-  outline: none;
-}
+.picki-page .picki-btn::before { display: none; }
 
-.picki-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transition: left 0.5s ease;
-}
-
-.picki-btn:hover::before {
-  left: 100%;
-}
-
-.picki-btn:hover {
-  background-color: #ff7aa3;
+.picki-page .picki-btn:hover {
+  background: #f7cb3d;
+  border-color: #f7cb3d;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 143, 181, 0.4);
+  box-shadow: none;
 }
 
-.picki-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(255, 143, 181, 0.3);
-}
-
-.picki-intro-image {
+.picki-page .picki-intro-image {
   width: 100%;
   height: 550px;
-  background: linear-gradient(135deg, #e8b4d4 0%, #d4a5c9 100%);
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #14161b;
+  border: 1px solid #f8fafc;
+  border-radius: 28px;
+  box-shadow: 12px 12px 0 #f2b705;
   overflow: hidden;
-  border: 3px solid #FF91BA;
 }
 
-.picki-intro-image img {
+.picki-page .picki-intro-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* ================= OVERVIEW SECTION ================= */
+/* ================= OVERVIEW ================= */
 
-.picki-overview-section {
-  padding: 60px 120px 60px;
-  background: linear-gradient(to bottom, #fffcf2 0%, #FFE2ED 100%);
-  
-  background-image:
-    linear-gradient(to bottom, #fffcf2 0%, #FFE2ED 100%),
-    linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
-  
-  background-size: 100% 100%, 80px 80px, 80px 80px;
-  background-position: 0 0;
+.picki-page .picki-overview-section {
+  padding: 100px 120px;
 }
 
-.picki-overview-content {
+.picki-page .picki-overview-content {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 40px;
   align-items: center;
 }
 
-.picki-overview-text {
+.picki-page .picki-overview-text {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.picki-section-label {
-  font-size: 24px;
-  font-weight: 800;
-  color: #FF91BA;
-  letter-spacing: 0.05em;
-  margin: 0;
-  display: inline-block;
-}
-
-.picki-overview-title {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 800;
-  color: #0a2a66;
-  line-height: 1.3;
-  margin: 40px 0 0 0;
-  letter-spacing: 0.01em;
-}
-
-.picki-overview-title .highlight-italic {
-  color: #FF91BA;
-  font-style: italic;
-}
-
-.picki-overview-paragraph {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.7;
-  color: #333;
-  margin: 0 0 40px 0;
-}
-
-.picki-overview-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.picki-overview-card {
-  background: linear-gradient(135deg, #FF91BA 0%, #FFB5D3 100%);
-  padding: 40px 30px;
-  border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.picki-overview-card:nth-child(2) {
-  background: linear-gradient(135deg, #6DB5E3 0%, #8FCBF0 100%);
-}
-
-.picki-overview-card:nth-child(3) {
-  background: linear-gradient(135deg, #9B87F5 0%, #B5A3F7 100%);
-}
-
-.picki-overview-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-}
-
-.picki-card-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: #fff;
-  margin: 0 0 12px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.picki-card-text {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #fff;
-  margin: 0;
-}
-
-.picki-overview-image {
-  width: 100%;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-}
-
-.picki-overview-image img {
-  width: 110%;
-  height: auto;
-  object-fit: contain;
-  transform: scale(1.1);
-}
-
-/* ================= THE CHALLENGE SECTION ================= */
-
-.picki-challenge-section {
-  padding: 80px 120px 100px;
-  background: #FFE2ED;
-}
-
-.picki-challenge-content {
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-.picki-challenge-layout {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 120px;
-  align-items: center;
-  margin-top: 60px;
-}
-
-.picki-challenge-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 650px;
-  min-width: 650px;
-}
-
-.picki-character-img {
-  width: 100% !important;
-  max-width: 650px !important;
-  height: auto !important;
-}
-
-.picki-challenge-text {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
-
-.picki-challenge-block {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.picki-challenge-subtitle {
-  font-size: 20px;
-  font-weight: 800;
-  color: #6DB5E3;
-  letter-spacing: 0.05em;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.picki-challenge-title {
-  font-size: 20px;
+.picki-page .picki-overview-title {
+  margin: 8px 0 0;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.8rem);
   font-weight: 700;
-  color: #6DB5E3;
-  letter-spacing: 0.02em;
+  line-height: 1.25;
+  color: #f8fafc;
+}
+
+.picki-page .picki-overview-paragraph {
   margin: 0;
-}
-
-.picki-challenge-title.solution {
-  color: #FF91BA;
-}
-
-.picki-challenge-paragraph {
   font-size: clamp(15px, 2vw, 17px);
   line-height: 1.8;
-  color: #333;
-  margin: 0;
 }
 
-/* ================= THE CONCEPT SECTION ================= */
-
-.picki-concept-section {
-  padding: 60px 120px 120px;
-  background: #FFE2ED;
-}
-
-.picki-concept-content {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.picki-concept-content .picki-section-label {
-  text-align: left;
-}
-
-.picki-concept-title {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 600;
-  color: #0a2a66;
-  line-height: 1.3;
-  margin: 40px 0 30px 0;
-  letter-spacing: 0.01em;
-  text-align: center;
-}
-
-.picki-concept-title .highlight-italic {
-  color: #FF91BA;
-  font-style: italic;
-  font-weight: 800;
-}
-
-.picki-concept-paragraph {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.7;
-  color: #333;
-  margin: 0 0 60px 0;
-  text-align: center;
-}
-
-.picki-concept-points {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
-  margin-top: 60px;
-}
-
-.picki-concept-point {
-  background: linear-gradient(135deg, #FF91BA 0%, #FFB5D3 100%);
-  padding: 50px 40px;
-  border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.picki-concept-point:nth-child(2) {
-  background: linear-gradient(135deg, #6DB5E3 0%, #8FCBF0 100%);
-}
-
-.picki-concept-point:nth-child(3) {
-  background: linear-gradient(135deg, #9B87F5 0%, #B5A3F7 100%);
-}
-
-.picki-concept-point:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-}
-
-.picki-point-title {
-  font-size: 20px;
-  font-weight: 800;
-  color: #fff;
-  margin: 0 0 16px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.picki-point-text {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.6;
-  color: #fff;
-  margin: 0;
-}
-
-/* ================= HOW IT WORKS SECTION ================= */
-
-.picki-features-section {
-  padding: 100px 120px;
-  background: #FFE2ED;
-}
-
-.picki-features-header {
-  max-width: 1400px;
-  margin: 0 auto 60px;
-}
-
-.picki-features-header .picki-section-label {
-  text-align: left;
-  margin-bottom: 40px;
-  display: block;
-}
-
-.picki-features-title {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 600;
-  color: #0a2a66;
-  line-height: 1.4;
-  margin: 0;
-  text-align: center;
-}
-
-.picki-features-title .highlight-italic {
-  color: #FF91BA;
-  font-style: italic;
-  font-weight: 800;
-}
-
-.picki-features-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 120px;
-  align-items: flex-start;
-  max-width: 1600px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.picki-features-left {
-  display: flex;
-  flex-direction: column;
-}
-
-.picki-features-list {
-  margin-top: 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
-  margin-left: 40px;
-}
-
-.picki-feature-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.picki-feature-number {
-  font-size: 3rem;
-  font-weight: 900;
-  color: #FF91BA;
-  margin: 0;
-  line-height: 1;
-}
-
-.picki-feature-name {
-  font-size: 24px;
-  font-weight: 800;
-  color: #0a2a66;
-  letter-spacing: 0.02em;
-  margin: 0;
-}
-
-.picki-feature-description {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.7;
-  color: #333;
-  margin: 0;
-}
-
-.picki-features-right {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  min-height: 600px;
-}
-
-.picki-features-media {
-  position: relative;
-  width: 100%;
-  max-width: 550px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: -60px;
-  right: 60px;
-}
-
-.picki-blobs-img {
-  width: 120%;
-  max-width: 800px;
-  height: auto;
-  display: block;
-  position: relative;
-  z-index: 1;
-}
-
-.picki-demo-video {
-  position: absolute;
-  top: 57%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: auto;
-  border-radius: 55px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  z-index: 2;
-}
-
-/* ================= USER FLOW SECTION ================= */
-
-.picki-userflow-section {
-  padding: 100px 120px;
-  background: #FFE2ED;
-}
-
-.picki-userflow-content {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.picki-userflow-title {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 600;
-  color: #0a2a66;
-  line-height: 1.3;
-  margin: 40px 0 30px 0;
-  letter-spacing: 0.01em;
-  text-align: center;
-}
-
-.picki-userflow-title .highlight-italic {
-  color: #FF91BA;
-  font-style: italic;
-  font-weight: 800;
-}
-
-.picki-userflow-paragraph {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.7;
-  color: #333;
-  margin: 0 auto 60px;
-  max-width: 900px;
-  text-align: center;
-}
-
-.picki-userflow-embed {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;
-}
-
-.picki-userflow-embed iframe {
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-}
-
-/* ================= DEMO SECTION ================= */
-
-.picki-demo-section {
-  padding: 100px 120px;
-  background: #FFE2ED;
-}
-
-.picki-demo-content {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.picki-demo-title {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 600;
-  color: #0a2a66;
-  line-height: 1.3;
-  margin: 40px 0 30px 0;
-  letter-spacing: 0.01em;
-}
-
-.picki-demo-title .highlight-italic {
-  color: #FF91BA;
-  font-style: italic;
-  font-weight: 800;
-}
-
-.picki-demo-content .picki-section-label {
-  text-align: left;
-  display: block;
-}
-
-.picki-demo-paragraph {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.7;
-  color: #333;
-  margin: 0 auto 60px;
-  max-width: 800px;
-}
-
-.picki-demo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.picki-demo-placeholder {
-  width: 100%;
-  max-width: 900px;
-  height: 500px;
-  background: #d9d9d9;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 600;
-  color: #666;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-}
-
-/* ================= DESIGN PROCESS SECTION ================= */
-
-.picki-design-section {
-  padding: 100px 120px;
-  background: #FFE2ED;
-}
-
-.picki-design-content {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.picki-design-title {
-  font-size: 24px;
-  font-weight: 800;
-  color: #FF91BA;
-  letter-spacing: 0.02em;
-  margin: 0 0 30px 0;
-}
-
-.picki-design-paragraph {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.8;
-  color: #333;
-  margin: 40px 0 60px 0;
-  max-width: 1400px;
-}
-
-/* ================= STYLEGUIDE SUBSECTION ================= */
-
-.picki-styleguide-section {
-  margin: 60px 0 80px 0;
-}
-
-.picki-styleguide-header {
-  font-size: 24px;
-  font-weight: 800;
-  color: #6DB5E3;
-  letter-spacing: 0.05em;
-  margin: 0 0 60px 0;
-  text-transform: uppercase;
-}
-
-.picki-styleguide-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-}
-
-.picki-styleguide-left,
-.picki-styleguide-right {
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
-}
-
-.picki-styleguide-block {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.picki-styleguide-subtitle {
-  font-size: 16px;
-  font-weight: 800;
-  color: #0a2a66;
-  letter-spacing: 0.05em;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.picki-styleguide-description {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.6;
-  color: #333;
-  margin: 0 0 16px 0;
-}
-
-.picki-styleguide-img {
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
-}
-
-.picki-styleguide-right .picki-styleguide-img {
-  width: 60%;
-}
-
-.picki-styleguide-right .picki-styleguide-block:last-child .picki-styleguide-img {
-  width: 100%;
-}
-
-.picki-design-screens {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  margin-top: 80px;
-}
-
-.picki-design-image {
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
-}
-
-.picki-design-labels {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  width: 100%;
-  max-width: 900px;
-}
-
-.picki-design-label {
-  font-size: 18px;
-  font-weight: 700;
-  color: #0a2a66;
-  margin: 0;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* ================= WIREFRAMES SUBSECTION ================= */
-
-.picki-wireframes-section {
-  margin: 80px 0 0 0;
-}
-
-.picki-wireframes-header {
-  font-size: 24px;
-  font-weight: 800;
-  color: #6DB5E3;
-  letter-spacing: 0.05em;
-  margin: 60px 0 60px 0;
-  text-transform: uppercase;
-}
-
-.picki-figma-embed {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;
-}
-
-.picki-figma-embed iframe {
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  width: 900px;
-  height: 600px;
-}
-
-/* ================= OUTCOME SECTION ================= */
-
-.picki-challenges-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin-top: 60px;
-}
-
-.picki-challenge-card {
-  background: #fff;
-  padding: 40px;
-  border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.picki-challenge-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
-}
-
-.picki-challenge-card-title {
-  font-size: 20px;
-  font-weight: 800;
-  color: #0a2a66;
-  margin: 0 0 16px 0;
-}
-
-.picki-challenge-card-text {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.7;
-  color: #333;
-  margin: 0;
-}
-
-.picki-outcome-section {
-  padding: 100px 120px;
-  background: #FFE2ED;
-}
-
-.picki-outcome-content {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.picki-outcome-title {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 800;
-  color: #0a2a66;
-  line-height: 1.3;
-  margin: 40px 0 30px 0;
-  letter-spacing: 0.01em;
-}
-
-.picki-outcome-title .highlight-italic {
-  color: #FF91BA;
-  font-style: italic;
-}
-
-.picki-outcome-paragraph {
-  font-size: clamp(15px, 2vw, 17px);
-  line-height: 1.7;
-  color: #333;
-  margin: 0 0 60px 0;
-}
-
-.picki-next-steps {
-  background: #fff;
-  padding: 50px;
-  border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-}
-
-.picki-next-title {
-  font-size: 20px;
-  font-weight: 800;
-  color: #0a2a66;
-  margin: 0 0 24px 0;
-}
-
-.picki-next-list {
-  margin: 0;
-  padding-left: 24px;
-}
-
-.picki-next-list li {
-  font-size: 16px;
-  line-height: 1.8;
-  color: #333;
-  margin-bottom: 12px;
-}
-
-/* ================= GRID SECTION ================= */
-
-.picki-grid-section {
-  position: relative;
-  min-height: 45vh;
-  background-color: #fffcf2;
-  background-image:
-    linear-gradient(rgba(255, 145, 186, 0.25) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 145, 186, 0.25) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
-
-.picki-grid-section::before {
+.picki-page .picki-overview-image::before,
+.picki-page .picki-challenge-visual::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 240px;
-  background: linear-gradient(
-    to bottom,
-    #FFE2ED 0%,
-    rgba(255, 226, 237, 0.85) 40%,
-    rgba(255, 226, 237, 0.4) 70%,
-    rgba(255, 226, 237, 0) 100%
-  );
+  width: min(560px, 95%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed rgba(248, 250, 252, 0.3);
   pointer-events: none;
-  z-index: 2;
+}
+
+.picki-page .picki-overview-image img {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+}
+
+/* ================= WHY PICKI ================= */
+
+.picki-page .picki-challenge-section {
+  padding: 80px 120px;
+}
+
+.picki-page .picki-challenge-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.picki-page .picki-challenge-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.picki-page .picki-challenge-visual img {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+}
+
+.picki-page .picki-challenge-block {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.picki-page .picki-challenge-subtitle {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #ff5a52;
+}
+
+.picki-page .picki-challenge-paragraph {
+  margin: 0;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+}
+
+/* ================= CONCEPT ================= */
+
+.picki-page .picki-concept-section {
+  padding: 80px 120px;
+}
+
+.picki-page .picki-concept-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.picki-page .picki-concept-title {
+  margin: 8px 0 24px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #f8fafc;
+}
+
+.picki-page .picki-concept-paragraph {
+  margin: 0 0 56px;
+  max-width: 1100px;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+}
+
+.picki-page .picki-concept-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.picki-page .picki-concept-point {
+  padding: 28px 28px 30px;
+  border: 1px solid rgba(248, 250, 252, 0.18);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.picki-page .picki-concept-point:nth-child(1) { --c: #ff5a52; }
+.picki-page .picki-concept-point:nth-child(2) { --c: #f2b705; }
+.picki-page .picki-concept-point:nth-child(3) { --c: #6f94ff; }
+
+.picki-page .picki-concept-point:hover {
+  transform: translateY(-4px);
+  border-color: var(--c);
+}
+
+.picki-page .picki-point-title {
+  margin: 0 0 10px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--c);
+}
+
+.picki-page .picki-point-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ---------- picker demo ---------- */
+
+.picki-page .pk-picker {
+  margin-top: 70px;
+  padding: 44px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  border-radius: 32px;
+  background: #0f1116;
+  box-shadow: 10px 10px 0 #1747c9;
+}
+
+.picki-page .pk-picker-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.picki-page .pk-picker-tag {
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: #f2b705;
+  color: #121316;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.picki-page .pk-picker-sub {
+  margin: 0;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.picki-page .pk-picker-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 760px;
+}
+
+.picki-page .pk-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px 10px 18px;
+  border: 1px solid rgba(248, 250, 252, 0.35);
+  border-radius: 999px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #f8fafc;
+  background: transparent;
+  transition: background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease,
+    transform 0.25s cubic-bezier(0.2, 1.4, 0.4, 1), box-shadow 0.25s ease;
+}
+
+.picki-page .pk-chip.lit {
+  background: var(--c);
+  border-color: var(--c);
+  color: #121316;
+  transform: scale(1.08);
+}
+
+.picki-page .pk-chip.won {
+  background: var(--c);
+  border-color: #f8fafc;
+  color: #121316;
+  transform: scale(1.14);
+  box-shadow: 0 0 28px 2px var(--c);
+}
+
+.picki-page .pk-chip-x {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  opacity: 0.55;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.picki-page .pk-chip-x:hover:not(:disabled) {
+  opacity: 1;
+  background: rgba(248, 250, 252, 0.18);
+}
+
+.picki-page .pk-chip.lit .pk-chip-x:hover:not(:disabled),
+.picki-page .pk-chip.won .pk-chip-x:hover:not(:disabled) {
+  background: rgba(10, 11, 14, 0.2);
+}
+
+.picki-page .pk-chip-x:disabled { cursor: default; }
+
+.picki-page .pk-picker-add {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.picki-page .pk-picker-add input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 20px;
+  border: 1px solid rgba(248, 250, 252, 0.35);
+  border-radius: 999px;
+  background: transparent;
+  color: #f8fafc;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.picki-page .pk-picker-add input::placeholder { color: rgba(248, 250, 252, 0.45); }
+.picki-page .pk-picker-add input:focus { border-color: #6f94ff; }
+
+.picki-page .pk-picker-add button {
+  padding: 12px 22px;
+  border: 1px solid rgba(248, 250, 252, 0.6);
+  border-radius: 999px;
+  background: transparent;
+  color: #f8fafc;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.picki-page .pk-picker-add button:hover:not(:disabled) {
+  background: #f8fafc;
+  color: #0a0b0e;
+}
+
+.picki-page .pk-picker-add button:disabled,
+.picki-page .pk-picker-add input:disabled { opacity: 0.4; cursor: default; }
+
+.picki-page .pk-picker-go {
+  margin-top: 6px;
+  padding: 18px 54px;
+  border: 1px solid #f2b705;
+  border-radius: 999px;
+  background: #f2b705;
+  color: #121316;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.picki-page .pk-picker-go:hover:not(:disabled) {
+  background: #f7cb3d;
+  transform: translateY(-2px);
+}
+
+.picki-page .pk-picker-go:disabled { opacity: 0.55; cursor: default; }
+
+.picki-page .pk-picker-result {
+  position: relative;
+  min-height: 96px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.picki-page .pk-picker-idle {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: rgba(248, 250, 252, 0.5);
+}
+
+.picki-page .pk-picker-win {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: pkWin 0.6s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+@keyframes pkWin {
+  from { opacity: 0; scale: 0.7; }
+  to { opacity: 1; scale: 1; }
+}
+
+.picki-page .pk-picker-says {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: rgba(248, 250, 252, 0.6);
+}
+
+.picki-page .pk-picker-name {
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.picki-page .pk-picker-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  border: 1px solid rgba(248, 250, 252, 0.6);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: pkPing 1.4s ease-out forwards;
+}
+
+.picki-page .pk-picker-ring-b { animation-delay: 0.25s; }
+
+@keyframes pkPing {
+  0% { opacity: 0.8; scale: 0.4; }
+  100% { opacity: 0; scale: 4.5; }
+}
+
+/* ================= HOW IT WORKS ================= */
+
+.picki-page .picki-features-section {
+  padding: 80px 120px;
+  overflow: hidden;
+}
+
+.picki-page .picki-features-header {
+  max-width: 1400px;
+  margin: 0 auto 70px;
+}
+
+.picki-page .picki-features-header .picki-section-label {
+  display: block;
+  text-align: left;
+}
+
+.picki-page .picki-features-title {
+  margin: 8px 0 0;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.5rem, 3.4vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  color: #f8fafc;
+}
+
+.picki-page .picki-features-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.picki-page .picki-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.picki-page .picki-feature-item {
+  position: relative;
+  padding: 26px 28px 28px;
+  border: 1px solid rgba(248, 250, 252, 0.18);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.picki-page .picki-feature-item:nth-child(1) { --c: #ff5a52; }
+.picki-page .picki-feature-item:nth-child(2) { --c: #f2b705; }
+.picki-page .picki-feature-item:nth-child(3) { --c: #6f94ff; }
+
+.picki-page .picki-feature-item:hover {
+  transform: translateX(8px);
+  border-color: var(--c);
+}
+
+.picki-page .picki-feature-number {
+  margin: 0 0 6px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c);
+}
+
+.picki-page .picki-feature-name {
+  margin: 0 0 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #f8fafc;
+}
+
+.picki-page .picki-feature-description {
+  margin: 0;
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.7;
+}
+
+.picki-page .picki-features-media {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 480px;
+}
+
+.picki-page .picki-features-media::before {
+  content: '';
+  position: absolute;
+  width: min(400px, 90%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed rgba(248, 250, 252, 0.3);
+}
+
+.picki-page .picki-blobs-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+  pointer-events: none;
+  animation: pkFloat 6s ease-in-out infinite;
+}
+
+@keyframes pkFloat {
+  0%, 100% { translate: 0 0; rotate: -3deg; }
+  50% { translate: 0 -14px; rotate: 3deg; }
+}
+
+.picki-page .pk-video-wrap { z-index: 1; }
+
+.picki-page .picki-demo-video {
+  width: 280px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 40px;
+  display: block;
+}
+
+/* ================= USER FLOW ================= */
+
+.picki-page .picki-userflow-section {
+  padding: 80px 120px;
+}
+
+.picki-page .picki-userflow-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.picki-page .picki-userflow-title {
+  margin: 8px 0 24px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #f8fafc;
+}
+
+.picki-page .picki-userflow-paragraph {
+  margin: 0 0 50px;
+  max-width: 1100px;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+}
+
+.picki-page .picki-userflow-embed,
+.picki-page .picki-figma-embed {
+  width: 100%;
+  max-width: 1100px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  border-radius: 24px;
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  overflow: hidden;
+  background: #14161b;
+}
+
+.picki-page .picki-userflow-embed iframe,
+.picki-page .picki-figma-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* ================= DESIGN PROCESS ================= */
+
+.picki-page .picki-design-section {
+  padding: 80px 120px;
+}
+
+.picki-page .picki-design-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.picki-page .picki-design-paragraph {
+  margin: 0 0 60px;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+}
+
+.picki-page .picki-styleguide-header,
+.picki-page .picki-wireframes-header {
+  margin: 0 0 36px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #6f94ff;
+}
+
+.picki-page .picki-wireframes-header {
+  margin-top: 100px;
+  color: #ff5a52;
+}
+
+.picki-page .picki-styleguide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.picki-page .picki-styleguide-left,
+.picki-page .picki-styleguide-right {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.picki-page .picki-styleguide-subtitle {
+  margin: 0 0 14px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.picki-page .picki-styleguide-description {
+  margin: 0 0 24px;
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.8;
+}
+
+.picki-page .picki-screens-panel {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 36px 28px;
+}
+
+.picki-page .picki-design-labels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.picki-page .picki-design-label {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #121316;
+}
+
+.picki-page .picki-figma-embed {
+  margin-top: 60px;
+}
+
+/* ================= CHALLENGES ================= */
+
+.picki-page .picki-demo-section {
+  padding: 80px 120px 120px;
+}
+
+.picki-page .picki-demo-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.picki-page .picki-demo-title {
+  margin: 8px 0 24px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #f8fafc;
+}
+
+.picki-page .picki-demo-paragraph {
+  margin: 0 0 50px;
+  max-width: 1100px;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.8;
+}
+
+.picki-page .picki-challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.picki-page .picki-challenge-card {
+  position: relative;
+  padding: 30px 28px 34px;
+  border: 1px solid rgba(248, 250, 252, 0.18);
+  border-top: 3px solid var(--c);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.picki-page .picki-challenge-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--c);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.picki-page .picki-challenge-card-num {
+  display: block;
+  margin-bottom: 14px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c);
+}
+
+.picki-page .picki-challenge-card-title {
+  margin: 0 0 12px;
+  font-family: "Fredoka", "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #f8fafc;
+}
+
+.picki-page .picki-challenge-card-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* ================= SECTION NAV ================= */
+
+.picki-page .pk-nav {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+.picki-page .pk-nav::before {
+  content: '';
+  position: absolute;
+  right: 4px;
+  top: 8px;
+  bottom: 8px;
+  border-right: 1px dashed rgba(248, 250, 252, 0.3);
+}
+
+.picki-page .pk-nav-item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.picki-page .pk-nav-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #0a0b0e;
+  border: 1px solid rgba(248, 250, 252, 0.55);
+  transition: transform 0.3s cubic-bezier(0.2, 1.4, 0.4, 1), background-color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.picki-page .pk-nav-label {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(10, 11, 14, 0.85);
+  border: 1px solid rgba(248, 250, 252, 0.3);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #f8fafc;
+  white-space: nowrap;
+  opacity: 0;
+  translate: 8px 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, translate 0.25s ease;
+}
+
+.picki-page .pk-nav-item:hover .pk-nav-label,
+.picki-page .pk-nav-item:focus-visible .pk-nav-label,
+.picki-page .pk-nav-item.active .pk-nav-label {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.picki-page .pk-nav-item.passed .pk-nav-dot {
+  background: rgba(248, 250, 252, 0.6);
+  border-color: rgba(248, 250, 252, 0.6);
+}
+
+.picki-page .pk-nav-item.active .pk-nav-dot,
+.picki-page .pk-nav-item:hover .pk-nav-dot {
+  background: var(--c);
+  border-color: #f8fafc;
+  transform: scale(1.7);
+  box-shadow: 0 0 14px 2px var(--c);
+}
+
+@media (max-width: 1400px) {
+  .picki-page .pk-nav-label { display: none; }
+  .picki-page .pk-nav-item:hover .pk-nav-label { display: block; position: absolute; right: 22px; }
+}
+
+@media (max-width: 1100px) {
+  .picki-page .pk-nav { display: none; }
 }
 
 /* ================= RESPONSIVE ================= */
 
 @media (max-width: 1200px) {
-  .picki-intro-section {
-    padding: 140px 60px 60px;
-  }
+  .picki-page .picki-intro-section { padding: 140px 60px 80px; }
+  .picki-page .picki-intro-content { grid-template-columns: 1fr; gap: 60px; }
+  .picki-page .picki-intro-image { height: 400px; }
 
-  .picki-intro-content {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
+  .picki-page .picki-overview-section,
+  .picki-page .picki-challenge-section,
+  .picki-page .picki-concept-section,
+  .picki-page .picki-features-section,
+  .picki-page .picki-userflow-section,
+  .picki-page .picki-design-section,
+  .picki-page .picki-demo-section { padding-left: 60px; padding-right: 60px; }
 
-  .picki-intro-image {
-    height: 400px;
-  }
-
-  .picki-overview-section {
-    padding: 60px 60px;
-  }
-
-  .picki-overview-content {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-
-  .picki-challenge-section {
-    padding: 80px 60px;
-  }
-
-  .picki-challenge-layout {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-
-  .picki-challenge-visual {
-    width: 100%;
-    min-width: auto;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .picki-concept-section {
-    padding: 80px 60px;
-  }
-
-  .picki-concept-points {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .picki-demo-section {
-    padding: 80px 60px;
-  }
-
-  .picki-design-section {
-    padding: 80px 60px;
-  }
-
-  .picki-styleguide-section {
-    margin: 60px 0 80px 0;
-  }
-
-  .picki-styleguide-grid {
-    gap: 60px;
-  }
-
-  .picki-styleguide-left,
-  .picki-styleguide-right {
-    gap: 60px;
-  }
-
-  .picki-features-section {
-    padding: 80px 60px;
-  }
-
-  .picki-features-layout {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-
-  .picki-features-list {
-    margin-top: 60px;
-    gap: 60px;
-    margin-left: 0;
-  }
-
-  .picki-features-media {
-    margin-top: -40px;
-    right: 0;
-    margin: 0 auto;
-  }
-
-  .picki-blobs-img {
-    width: 100%;
-    max-width: 600px;
-  }
-
-  .picki-demo-video {
-    width: 55%;
-  }
-
-  .picki-outcome-section {
-    padding: 80px 60px;
-  }
-
-  .picki-userflow-section {
-    padding: 80px 60px;
-  }
-
-  .picki-userflow-embed iframe {
-    width: 100%;
-    max-width: 700px;
-  }
-
-  .picki-wireframes-section {
-    margin: 60px 0 0 0;
-  }
-
-  .picki-figma-embed iframe {
-    width: 100%;
-    max-width: 900px;
-    height: 506px;
-  }
-
-  .picki-challenges-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
+  .picki-page .picki-overview-content { grid-template-columns: 1fr; gap: 60px; }
+  .picki-page .picki-challenge-layout { grid-template-columns: 1fr; gap: 60px; }
+  .picki-page .picki-features-layout { grid-template-columns: 1fr; gap: 60px; }
+  .picki-page .picki-styleguide-grid { grid-template-columns: 1fr; gap: 60px; }
+  .picki-page .picki-concept-points,
+  .picki-page .picki-challenges-grid { grid-template-columns: 1fr; }
+  .picki-page .back-arrow { left: 24px; }
 }
 
 @media (max-width: 768px) {
-  .back-arrow {
-    top: 80px;
-    left: 20px;
-    width: 40px;
-    height: 40px;
-  }
+  .picki-page .picki-intro-section { padding: 120px 24px 60px; min-height: auto; }
+  .picki-page .picki-intro-image { height: 300px; box-shadow: 8px 8px 0 #f2b705; }
+  .picki-page .picki-btn-group { flex-direction: column; width: 100%; }
+  .picki-page .picki-btn { width: 100%; text-align: center; }
 
-  .picki-intro-section {
-    padding: 120px 40px 60px;
-  }
+  .picki-page .picki-overview-section,
+  .picki-page .picki-challenge-section,
+  .picki-page .picki-concept-section,
+  .picki-page .picki-features-section,
+  .picki-page .picki-userflow-section,
+  .picki-page .picki-design-section,
+  .picki-page .picki-demo-section { padding: 60px 24px; }
 
-  .picki-title {
-    font-size: 3rem;
-  }
+  .picki-page .pk-picker { padding: 32px 20px 30px; box-shadow: 6px 6px 0 #1747c9; }
+  .picki-page .picki-features-media { min-height: 400px; }
+  .picki-page .picki-demo-video { width: 220px; border-radius: 32px; }
+  .picki-page .picki-screens-panel { padding: 18px; }
+  .picki-page .picki-design-label { font-size: 9px; letter-spacing: 0.08em; }
+  .picki-page .back-arrow { top: 96px; left: 16px; width: 42px; height: 42px; }
+}
 
-  .picki-intro-image {
-    height: 300px;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .picki-page .pk-stars span,
+  .picki-page .pk-shoot,
+  .picki-page .picki-blobs-img,
+  .picki-page .pk-picker-win,
+  .picki-page .pk-picker-ring { animation: none; }
+  .picki-page .pk-shoot,
+  .picki-page .pk-picker-ring { display: none; }
+  .picki-page .pk-reveal { opacity: 1; transform: none; transition: none; }
+  .picki-page .pk-phone img,
+  .picki-page .pk-phone video { transform: none; }
+}
 
-  .picki-btn {
-    width: 100%;
-    text-align: center;
-  }
 
-  .picki-overview-section {
-    padding: 60px 40px;
-  }
+/* centred headline + intro paragraphs (section labels stay left) */
+.picki-page .picki-concept-title,
+.picki-page .picki-userflow-title,
+.picki-page .picki-demo-title { text-align: center; }
 
-  .picki-overview-title {
-    font-size: 1.8rem;
-  }
+.picki-page .picki-concept-paragraph,
+.picki-page .picki-userflow-paragraph,
+.picki-page .picki-demo-paragraph {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .picki-challenge-section {
-    padding: 60px 40px;
-  }
 
-  .picki-challenge-visual {
-    max-width: 400px;
-  }
+/* more breathing room between numbered sections */
+.picki-page .picki-overview-section,
+.picki-page .picki-challenge-section,
+.picki-page .picki-concept-section,
+.picki-page .picki-features-section,
+.picki-page .picki-userflow-section,
+.picki-page .picki-design-section,
+.picki-page .picki-demo-section {
+  padding-top: 130px;
+  padding-bottom: 130px;
+}
 
-  .picki-concept-section {
-    padding: 60px 40px;
-  }
-
-  .picki-demo-section {
-    padding: 60px 40px;
-  }
-
-  .picki-demo-placeholder {
-    height: 300px;
-  }
-
-  .picki-design-section {
-    padding: 60px 40px;
-  }
-
-  .picki-styleguide-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .picki-styleguide-left,
-  .picki-styleguide-right {
-    gap: 40px;
-  }
-
-  .picki-styleguide-section {
-    margin: 40px 0 60px 0;
-  }
-
-  .picki-styleguide-right .picki-styleguide-img {
-    width: 80%;
-  }
-
-  .picki-design-labels {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .picki-design-label {
-    font-size: 16px;
-  }
-
-  .picki-features-section {
-    padding: 60px 40px;
-  }
-
-  .picki-features-list {
-    margin-top: 40px;
-    gap: 60px;
-  }
-
-  .picki-features-media {
-    margin-top: 0;
-  }
-
-  .picki-blobs-img {
-    max-width: 450px;
-  }
-
-  .picki-demo-video {
-    width: 50%;
-    border-radius: 40px;
-  }
-
-  .picki-feature-number {
-    font-size: 2.5rem;
-  }
-
-  .picki-feature-name {
-    font-size: 18px;
-  }
-
-  .picki-outcome-section {
-    padding: 60px 40px;
-  }
-
-  .picki-next-steps {
-    padding: 30px;
-  }
-
-  .picki-userflow-section {
-    padding: 60px 40px;
-  }
-
-  .picki-userflow-embed iframe {
-    width: 100%;
-    height: 350px;
-  }
-
-  .picki-wireframes-section {
-    margin: 60px 0 0 0;
-  }
-
-  .picki-figma-embed iframe {
-    width: 100%;
-    height: 350px;
-  }
-
-  .picki-challenge-card {
-    padding: 30px;
-  }
+@media (max-width: 768px) {
+  .picki-page .picki-overview-section,
+  .picki-page .picki-challenge-section,
+  .picki-page .picki-concept-section,
+  .picki-page .picki-features-section,
+  .picki-page .picki-userflow-section,
+  .picki-page .picki-design-section,
+  .picki-page .picki-demo-section { padding-top: 90px; padding-bottom: 90px; }
 }
